@@ -15,6 +15,7 @@ dependencies = [
  "minidom",
  "mongodb",
  "rusqlite",
+ "serde",
  "suppaftp",
  "zip",
 ]

@@ -10,4 +10,5 @@ suppaftp = "^5.1.0"
 rusqlite = "0.29.0"
 zip = "0.6.4"
 minidom = "0.15.1"
-mongodb = "2.4.0"
+serde = "1.0.159"
+mongodb = { version="2.4.0", features = ["tokio-sync"], default-features = false}
