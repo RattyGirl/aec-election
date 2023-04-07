@@ -1,7 +1,8 @@
+mod database;
+
+use crate::database::{CustomDB, MongoDB};
 use minidom::Element;
-use mongodb::options::ClientOptions;
-use mongodb::sync::Database;
-use mongodb::{bson::doc, sync::Client};
+use mongodb::bson::doc;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 use std::str;
@@ -13,47 +14,34 @@ const NAMESPACE: &str = "urn:oasis:names:tc:evs:schema:eml";
 fn main() {
     let mut ftp_stream: FtpStream = FtpStream::connect("mediafeedarchive.aec.gov.au:21").unwrap();
     ftp_stream.login("anonymous", "").unwrap();
+    let database = MongoDB::setup("mongodb://127.0.0.1:27017", "election_history");
 
-    // reset_preload_db();
-    reset_lightprogress_db();
+    reset_preload_db(&database);
+    reset_lightprogress_db(&database);
 
     //get all elections
     let election_ids = get_all_in_dir(&mut ftp_stream);
     ftp_stream.quit().unwrap();
 
-    election_ids
-        .into_iter()
-        .for_each(|x| { preload_data(x.as_str()); get_progress() });
+    election_ids.into_iter().for_each(|x| {
+        preload_data(x.as_str(), &database);
+    });
 }
 
-fn reset_lightprogress_db() {
-    let mut client_options = ClientOptions::parse("mongodb://127.0.0.1:27017").unwrap();
-    client_options.app_name = Some("AEC Election History".to_string());
-    let client = Client::with_options(client_options).unwrap();
-    let db = client.database("election_history");
+fn reset_lightprogress_db(_database: &impl CustomDB) {}
+
+fn reset_preload_db(database: &impl CustomDB) {
+    database.drop::<Candidate>("candidates");
+    database.drop::<Contest>("contests");
+    database.drop::<ElectionEvent>("election_events");
+    database.drop::<Election>("elections");
+    database.drop::<PollingDistrict>("polling_district_list");
 }
 
-fn reset_preload_db() {
-    let mut client_options = ClientOptions::parse("mongodb://127.0.0.1:27017").unwrap();
-    client_options.app_name = Some("AEC Election History".to_string());
-    let client = Client::with_options(client_options).unwrap();
-    let db = client.database("election_history");
-    db.collection::<Candidate>("candidates").drop(None).unwrap();
-    db.collection::<Contest>("contests").drop(None).unwrap();
-    db.collection::<ElectionEvent>("election_events").drop(None).unwrap();
-    db.collection::<Election>("elections").drop(None).unwrap();
-    db.collection::<PollingDistrict>("polling_district_list").drop(None).unwrap();
-}
-
-fn preload_data(event_id: &str) {
+fn preload_data(event_id: &str, database: &impl CustomDB) {
     println!("Starting {}", event_id);
     let mut ftp_stream: FtpStream = FtpStream::connect("mediafeedarchive.aec.gov.au:21").unwrap();
     ftp_stream.login("anonymous", "").unwrap();
-
-    let mut client_options = ClientOptions::parse("mongodb://127.0.0.1:27017").unwrap();
-    client_options.app_name = Some("AEC Election History".to_string());
-    let client = Client::with_options(client_options).unwrap();
-    let database = client.database("election_history");
 
     ftp_stream.cwd(event_id).unwrap();
     ftp_stream.cwd("Detailed/Preload").unwrap();
@@ -67,7 +55,7 @@ fn preload_data(event_id: &str) {
         .unwrap()
         .read_to_string(&mut events_string)
         .unwrap();
-    get_all_races(events_string, &database, event_id);
+    get_all_races(events_string, database, event_id);
     println!("Gotten all races for event {}", event_id);
 
     let mut candidates_string: String = String::new();
@@ -76,7 +64,7 @@ fn preload_data(event_id: &str) {
         .unwrap()
         .read_to_string(&mut candidates_string)
         .unwrap();
-    get_all_candidates(candidates_string, &database, event_id);
+    get_all_candidates(candidates_string, database, event_id);
     println!("Gotten all candidates for event {}", event_id);
 
     let mut polling_string: String = String::new();
@@ -85,11 +73,11 @@ fn preload_data(event_id: &str) {
         .unwrap()
         .read_to_string(&mut polling_string)
         .unwrap();
-    get_all_polling_districts(polling_string, &database, event_id);
+    get_all_polling_districts(polling_string, database, event_id);
     println!("Gotten all polling districts for event {}", event_id);
 }
 
-fn get_all_polling_districts(polling_string: String, mongodb: &Database, event_id: &str) {
+fn get_all_polling_districts(polling_string: String, database: &impl CustomDB, event_id: &str) {
     let mut polling_string: Vec<&str> = polling_string.split('\n').collect();
     polling_string.remove(0);
     let polling_string = polling_string.join("\n");
@@ -100,13 +88,10 @@ fn get_all_polling_districts(polling_string: String, mongodb: &Database, event_i
         .children()
         .filter(|f| f.name().eq("PollingDistrict"))
         .for_each(|polling_district| {
-            mongodb
-                .collection("polling_district_list")
-                .insert_one(
-                    PollingDistrict::from(polling_district, event_id),
-                    None,
-                )
-                .unwrap();
+            database.insert_one(
+                "polling_district_list",
+                PollingDistrict::from(polling_district, event_id),
+            );
         });
 }
 
@@ -120,7 +105,7 @@ impl IgnoreNS for Element {
     }
 }
 
-fn get_all_candidates(candidates_string: String, mongodb: &Database, event_id: &str) {
+fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event_id: &str) {
     let mut candidates_string: Vec<&str> = candidates_string.split('\n').collect();
     candidates_string.remove(0);
     let candidates_string = candidates_string.join("\n");
@@ -164,27 +149,23 @@ fn get_all_candidates(candidates_string: String, mongodb: &Database, event_id: &
                                 .text();
                             let candidate_profession =
                                 candidate.get_child("Profession", NAMESPACE).unwrap().text();
-
-                            mongodb
-                                .collection("candidates")
-                                .insert_one(
-                                    Candidate {
-                                        id: candidate_id.to_string(),
-                                        event_id: event_id.to_string(),
-                                        election_id: election_id.to_string(),
-                                        contest_id: contest_id.to_string(),
-                                        name: candidate_name,
-                                        profession: candidate_profession,
-                                    },
-                                    None,
-                                )
-                                .unwrap();
+                            database.insert_one(
+                                "candidates",
+                                Candidate {
+                                    id: candidate_id.to_string(),
+                                    event_id: event_id.to_string(),
+                                    election_id: election_id.to_string(),
+                                    contest_id: contest_id.to_string(),
+                                    name: candidate_name,
+                                    profession: candidate_profession,
+                                },
+                            );
                         });
                 });
         })
 }
 
-fn get_all_races(events_string: String, mongodb: &Database, event_id: &str) {
+fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str) {
     let mut events_string: Vec<&str> = events_string.split('\n').collect();
     events_string.remove(0);
     let events_string = events_string.join("\n");
@@ -199,16 +180,13 @@ fn get_all_races(events_string: String, mongodb: &Database, event_id: &str) {
         .unwrap()
         .text();
 
-    mongodb
-        .collection("election_events")
-        .insert_one(
-            ElectionEvent {
-                id: event_id.parse::<u32>().unwrap(),
-                name,
-            },
-            None,
-        )
-        .unwrap();
+    database.insert_one(
+        "election_events",
+        ElectionEvent {
+            id: event_id.parse::<u32>().unwrap(),
+            name,
+        },
+    );
 
     let elections = election_event
         .children()
@@ -238,19 +216,16 @@ fn get_all_races(events_string: String, mongodb: &Database, event_id: &str) {
             .unwrap()
             .text();
 
-        mongodb
-            .collection("elections")
-            .insert_one(
-                Election {
-                    id: election_id.to_string(),
-                    event_id: event_id.to_string(),
-                    date,
-                    name,
-                    category,
-                },
-                None,
-            )
-            .unwrap();
+        database.insert_one(
+            "elections",
+            Election {
+                id: election_id.to_string(),
+                event_id: event_id.to_string(),
+                date,
+                name,
+                category,
+            },
+        );
 
         election
             .children()
@@ -278,21 +253,18 @@ fn get_all_races(events_string: String, mongodb: &Database, event_id: &str) {
                     .unwrap()
                     .text();
 
-                mongodb
-                    .collection("contests")
-                    .insert_one(
-                        Contest {
-                            id: contest_id.to_string(),
-                            event_id: event_id.to_string(),
-                            election_id: election_id.to_string(),
-                            short_code: short_code.to_string(),
-                            name,
-                            position,
-                            number,
-                        },
-                        None,
-                    )
-                    .unwrap();
+                database.insert_one(
+                    "contests",
+                    Contest {
+                        id: contest_id.to_string(),
+                        event_id: event_id.to_string(),
+                        election_id: election_id.to_string(),
+                        short_code: short_code.to_string(),
+                        name,
+                        position,
+                        number,
+                    },
+                );
             });
     });
 }
@@ -394,14 +366,8 @@ impl PollingDistrict {
                 .get_child_ignore_ns("ProductsIndustry")
                 .unwrap()
                 .text(),
-            location: element
-                .get_child_ignore_ns("Location")
-                .unwrap()
-                .text(),
-            demographic: element
-                .get_child_ignore_ns("Demographic")
-                .unwrap()
-                .text(),
+            location: element.get_child_ignore_ns("Location").unwrap().text(),
+            demographic: element.get_child_ignore_ns("Demographic").unwrap().text(),
             area: element.get_child_ignore_ns("Area").unwrap().text(),
         }
     }

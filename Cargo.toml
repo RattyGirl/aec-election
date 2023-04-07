@@ -11,3 +11,4 @@ zip = "0.6.4"
 minidom = "0.15.1"
 serde = "1.0.159"
 mongodb = { version="2.4.0", features = ["tokio-sync"], default-features = false}
+postgres = "0.19.5"
