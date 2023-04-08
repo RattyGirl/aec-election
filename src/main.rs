@@ -5,7 +5,8 @@ use minidom::{Element, ElementBuilder};
 use mongodb::bson::{doc, rawbson};
 use serde::{Deserialize, Serialize};
 use std::io::Read;
-use std::str;
+use std::{fs, str};
+use std::str::FromStr;
 use suppaftp::FtpStream;
 use zip::ZipArchive;
 
@@ -25,6 +26,7 @@ fn main() {
 
     election_ids.into_iter().for_each(|x| {
         preload_data(x.as_str(), &database);
+        load_results(x.as_str(), &database);
     });
 }
 
@@ -37,6 +39,29 @@ fn reset_preload_db(database: &impl CustomDB) {
     database.drop::<Election>("elections");
     database.drop::<PollingDistrict>("polling_district_list");
     database.drop::<Affiliation>("affiliations");
+}
+
+fn load_results(event_id: &str, database: &impl CustomDB) {
+    println!("Starting {}", event_id);
+    let mut ftp_stream: FtpStream = FtpStream::connect("mediafeedarchive.aec.gov.au:21").unwrap();
+    ftp_stream.login("anonymous", "").unwrap();
+
+    ftp_stream.cwd(event_id).unwrap();
+    ftp_stream.cwd("Detailed/LightProgress").unwrap();
+    let latest = get_all_in_dir(&mut ftp_stream).last().unwrap().clone();
+    let file = ftp_stream.retr_as_buffer(latest.as_str()).unwrap();
+    let mut zipfile = ZipArchive::new(file).unwrap();
+
+    let mut results_string: String = String::new();
+    zipfile
+        .by_name(format!("xml/aec-mediafeed-results-detailed-lightprogress-{}.xml", event_id).as_str())
+        .unwrap()
+        .read_to_string(&mut results_string)
+        .unwrap();
+    get_all_simple_results(results_string, database, event_id);
+    println!("Gotten all races for event {}", event_id);
+
+
 }
 
 fn preload_data(event_id: &str, database: &impl CustomDB) {
@@ -78,32 +103,19 @@ fn preload_data(event_id: &str, database: &impl CustomDB) {
     // println!("Gotten all polling districts for event {}", event_id);
 }
 
-fn get_all_polling_districts(polling_string: String, database: &impl CustomDB, event_id: &str) {
-    let mut polling_string: Vec<&str> = polling_string.split('\n').collect();
-    polling_string.remove(0);
-    let polling_string = polling_string.join("\n");
-    let root: Element = polling_string.parse().unwrap();
+fn get_all_simple_results(
+    results_light_progress: String,
+    database: &impl CustomDB,
+    event_id: &str,
+) -> Result<(), Err>{
+    let mut results_light_progress: Vec<&str> =
+        results_light_progress.split('\n').collect();
+    results_light_progress.remove(0);
+    let results_light_progress = results_light_progress.join("\n");
+    let root = Element::from_str(results_light_progress.as_str())?;
+    let candidate_list = root.get_child_ignore_ns("Results")?;
 
-    let polling_list = root.get_child_ignore_ns("PollingDistrictList").unwrap();
-    polling_list
-        .children()
-        .filter(|f| f.name().eq("PollingDistrict"))
-        .for_each(|polling_district| {
-            database.insert_one(
-                "polling_district_list",
-                PollingDistrict::from(polling_district, event_id),
-            );
-        });
-}
-
-trait IgnoreNS {
-    fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element>;
-}
-
-impl IgnoreNS for Element {
-    fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element> {
-        self.children().find(|&child| child.name().eq(child_name))
-    }
+    Ok(())
 }
 
 fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event_id: &str) {
@@ -156,31 +168,7 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
                             let affiliation_id: Option<i32> = candidate
                                 .get_child_ignore_ns("Affiliation")
                                 .and_then(|affiliation| {
-                                    let affiliation_obj = Affiliation {
-                                        id: affiliation
-                                            .get_child_ignore_ns("AffiliationIdentifier")
-                                            .unwrap()
-                                            .attr("Id")
-                                            .unwrap()
-                                            .parse()
-                                            .unwrap(),
-                                        short_code: affiliation
-                                            .get_child_ignore_ns("AffiliationIdentifier")
-                                            .unwrap()
-                                            .attr("ShortCode")
-                                            .unwrap()
-                                            .to_string(),
-                                        registered_name: affiliation
-                                            .get_child_ignore_ns("AffiliationIdentifier")
-                                            .unwrap()
-                                            .get_child_ignore_ns("RegisteredName")
-                                            .unwrap()
-                                            .text(),
-                                        affiliation_type: affiliation
-                                            .get_child_ignore_ns("Type")
-                                            .unwrap_or(&Element::bare("", ""))
-                                            .text(),
-                                    };
+                                    let affiliation_obj = Affiliation::from(affiliation);
 
                                     if database
                                         .find::<Affiliation>(
@@ -390,6 +378,36 @@ struct Affiliation {
     affiliation_type: String,
 }
 
+impl Affiliation {
+    fn from(element: &Element) -> Self {
+        Self {
+            id: element
+                .get_child_ignore_ns("AffiliationIdentifier")
+                .unwrap()
+                .attr("Id")
+                .unwrap()
+                .parse()
+                .unwrap(),
+            short_code: element
+                .get_child_ignore_ns("AffiliationIdentifier")
+                .unwrap()
+                .attr("ShortCode")
+                .unwrap()
+                .to_string(),
+            registered_name: element
+                .get_child_ignore_ns("AffiliationIdentifier")
+                .unwrap()
+                .get_child_ignore_ns("RegisteredName")
+                .unwrap()
+                .text(),
+            affiliation_type: element
+                .get_child_ignore_ns("Type")
+                .unwrap_or(&Element::bare("", ""))
+                .text(),
+        }
+    }
+}
+
 impl PollingDistrict {
     fn from(element: &Element, event_id: &str) -> Self {
         Self {
@@ -437,3 +455,13 @@ impl PollingDistrict {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct PollingPlace {}
+
+trait IgnoreNS {
+    fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element>;
+}
+
+impl IgnoreNS for Element {
+    fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element> {
+        self.children().find(|&child| child.name().eq(child_name))
+    }
+}
