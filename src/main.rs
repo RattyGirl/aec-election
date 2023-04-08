@@ -1,8 +1,8 @@
 mod database;
 
 use crate::database::{CustomDB, MongoDB};
-use minidom::Element;
-use mongodb::bson::doc;
+use minidom::{Element, ElementBuilder};
+use mongodb::bson::{doc, rawbson};
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 use std::str;
@@ -36,6 +36,7 @@ fn reset_preload_db(database: &impl CustomDB) {
     database.drop::<ElectionEvent>("election_events");
     database.drop::<Election>("elections");
     database.drop::<PollingDistrict>("polling_district_list");
+    database.drop::<Affiliation>("affiliations");
 }
 
 fn preload_data(event_id: &str, database: &impl CustomDB) {
@@ -67,14 +68,14 @@ fn preload_data(event_id: &str, database: &impl CustomDB) {
     get_all_candidates(candidates_string, database, event_id);
     println!("Gotten all candidates for event {}", event_id);
 
-    let mut polling_string: String = String::new();
-    zipfile
-        .by_name(format!("xml/aec-mediafeed-pollingdistricts-{}.xml", event_id).as_str())
-        .unwrap()
-        .read_to_string(&mut polling_string)
-        .unwrap();
-    get_all_polling_districts(polling_string, database, event_id);
-    println!("Gotten all polling districts for event {}", event_id);
+    // let mut polling_string: String = String::new();
+    // zipfile
+    //     .by_name(format!("xml/aec-mediafeed-pollingdistricts-{}.xml", event_id).as_str())
+    //     .unwrap()
+    //     .read_to_string(&mut polling_string)
+    //     .unwrap();
+    // get_all_polling_districts(polling_string, database, event_id);
+    // println!("Gotten all polling districts for event {}", event_id);
 }
 
 fn get_all_polling_districts(polling_string: String, database: &impl CustomDB, event_id: &str) {
@@ -149,15 +150,66 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
                                 .text();
                             let candidate_profession =
                                 candidate.get_child("Profession", NAMESPACE).unwrap().text();
+                            let candidate_gender =
+                                candidate.get_child("Gender", NAMESPACE).unwrap().text();
+
+                            let affiliation_id: Option<i32> = candidate
+                                .get_child_ignore_ns("Affiliation")
+                                .and_then(|affiliation| {
+                                    let affiliation_obj = Affiliation {
+                                        id: affiliation
+                                            .get_child_ignore_ns("AffiliationIdentifier")
+                                            .unwrap()
+                                            .attr("Id")
+                                            .unwrap()
+                                            .parse()
+                                            .unwrap(),
+                                        short_code: affiliation
+                                            .get_child_ignore_ns("AffiliationIdentifier")
+                                            .unwrap()
+                                            .attr("ShortCode")
+                                            .unwrap()
+                                            .to_string(),
+                                        registered_name: affiliation
+                                            .get_child_ignore_ns("AffiliationIdentifier")
+                                            .unwrap()
+                                            .get_child_ignore_ns("RegisteredName")
+                                            .unwrap()
+                                            .text(),
+                                        affiliation_type: affiliation
+                                            .get_child_ignore_ns("Type")
+                                            .unwrap_or(&Element::bare("", ""))
+                                            .text(),
+                                    };
+
+                                    if database
+                                        .find::<Affiliation>(
+                                            "affiliations",
+                                            doc! {
+                                                "id": affiliation_obj.id
+                                            },
+                                        )
+                                        .count()
+                                        == 0
+                                    {
+                                        database
+                                            .insert_one("affiliations", affiliation_obj.clone());
+                                    }
+
+                                    Some(affiliation_obj.id.clone())
+                                });
+
                             database.insert_one(
                                 "candidates",
                                 Candidate {
-                                    id: candidate_id.to_string(),
-                                    event_id: event_id.to_string(),
+                                    id: candidate_id.parse().unwrap(),
+                                    event_id: event_id.parse().unwrap(),
                                     election_id: election_id.to_string(),
                                     contest_id: contest_id.to_string(),
+                                    affiliation_id,
                                     name: candidate_name,
                                     profession: candidate_profession,
+                                    gender: candidate_gender,
                                 },
                             );
                         });
@@ -183,7 +235,7 @@ fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str
     database.insert_one(
         "election_events",
         ElectionEvent {
-            id: event_id.parse::<u32>().unwrap(),
+            id: event_id.parse::<i32>().unwrap(),
             name,
         },
     );
@@ -280,7 +332,7 @@ fn get_all_in_dir(ftp_stream: &mut FtpStream) -> Vec<String> {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct ElectionEvent {
-    id: u32,
+    id: i32,
     name: String,
 }
 
@@ -306,12 +358,14 @@ struct Contest {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Candidate {
-    id: String,
-    event_id: String,
+    id: i32,
+    event_id: i32,
     election_id: String,
     contest_id: String,
+    affiliation_id: Option<i32>,
     name: String,
     profession: String,
+    gender: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -326,6 +380,14 @@ struct PollingDistrict {
     location: String,
     demographic: String,
     area: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct Affiliation {
+    id: i32,
+    short_code: String,
+    registered_name: String,
+    affiliation_type: String,
 }
 
 impl PollingDistrict {

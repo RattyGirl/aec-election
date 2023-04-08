@@ -1,11 +1,14 @@
+use mongodb::bson::Document;
 use mongodb::options::ClientOptions;
-use mongodb::sync::{Client, Database};
+use mongodb::sync::{Client, Cursor, Database};
+use postgres::fallible_iterator::FallibleIterator;
 use serde::Serialize;
 
 pub trait CustomDB {
     fn setup(connection_name: &str, database_name: &str) -> Self;
     fn insert_one<T: Serialize>(&self, table: &str, object: T);
     fn drop<T: Serialize>(&self, table: &str);
+    fn find<T: Serialize>(&self, table: &str, filter: impl Into<Option<Document>>) -> Cursor<T>;
 }
 
 pub struct MongoDB {
@@ -31,5 +34,12 @@ impl CustomDB for MongoDB {
 
     fn drop<T: Serialize>(&self, table: &str) {
         self.database.collection::<T>(table).drop(None).unwrap();
+    }
+
+    fn find<T: Serialize>(&self, table: &str, filter: impl Into<Option<Document>>) -> Cursor<T> {
+        self.database
+            .collection::<T>(table)
+            .find(filter, None)
+            .unwrap()
     }
 }
