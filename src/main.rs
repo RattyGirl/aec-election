@@ -1,16 +1,17 @@
+mod aec_parser;
 mod database;
 
 use crate::database::{CustomDB, MongoDB};
-use minidom::{Element, ElementBuilder};
-use mongodb::bson::{doc, rawbson};
+use minidom::Element;
+use mongodb::bson::doc;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
-use std::{fs, str};
+use std::str;
 use std::str::FromStr;
 use suppaftp::FtpStream;
 use zip::ZipArchive;
 
-const NAMESPACE: &str = "urn:oasis:names:tc:evs:schema:eml";
+const EML_NAMESPACE: &str = "urn:oasis:names:tc:evs:schema:eml";
 
 fn main() {
     let mut ftp_stream: FtpStream = FtpStream::connect("mediafeedarchive.aec.gov.au:21").unwrap();
@@ -54,14 +55,18 @@ fn load_results(event_id: &str, database: &impl CustomDB) {
 
     let mut results_string: String = String::new();
     zipfile
-        .by_name(format!("xml/aec-mediafeed-results-detailed-lightprogress-{}.xml", event_id).as_str())
+        .by_name(
+            format!(
+                "xml/aec-mediafeed-results-detailed-lightprogress-{}.xml",
+                event_id
+            )
+            .as_str(),
+        )
         .unwrap()
         .read_to_string(&mut results_string)
         .unwrap();
     get_all_simple_results(results_string, database, event_id);
     println!("Gotten all races for event {}", event_id);
-
-
 }
 
 fn preload_data(event_id: &str, database: &impl CustomDB) {
@@ -107,15 +112,20 @@ fn get_all_simple_results(
     results_light_progress: String,
     database: &impl CustomDB,
     event_id: &str,
-) -> Result<(), Err>{
-    let mut results_light_progress: Vec<&str> =
-        results_light_progress.split('\n').collect();
+) {
+    let mut results_light_progress: Vec<&str> = results_light_progress.split('\n').collect();
     results_light_progress.remove(0);
     let results_light_progress = results_light_progress.join("\n");
-    let root = Element::from_str(results_light_progress.as_str())?;
-    let candidate_list = root.get_child_ignore_ns("Results")?;
-
-    Ok(())
+    let root = Element::from_str(results_light_progress.as_str()).unwrap();
+    // match root {
+    //     Ok(root) => {
+    //         println!("Cool beans");
+    //     }
+    //     Err(err) => {
+    //         println!("error: {}", err);
+    //     }
+    // }
+    let candidate_list = root.get_child_ignore_ns("Results").unwrap();
 }
 
 fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event_id: &str) {
@@ -123,14 +133,14 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
     candidates_string.remove(0);
     let candidates_string = candidates_string.join("\n");
     let root: Element = candidates_string.parse().unwrap();
-    let candidate_list = root.get_child("CandidateList", NAMESPACE).unwrap();
+    let candidate_list = root.get_child("CandidateList", EML_NAMESPACE).unwrap();
 
     candidate_list
         .children()
         .filter(|f| f.name().eq("Election"))
         .for_each(|election| {
             let election_id = election
-                .get_child("ElectionIdentifier", NAMESPACE)
+                .get_child("ElectionIdentifier", EML_NAMESPACE)
                 .unwrap()
                 .attr("Id")
                 .unwrap();
@@ -140,7 +150,7 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
                 .filter(|f| f.name().eq("Contest"))
                 .for_each(|contest| {
                     let contest_id = contest
-                        .get_child("ContestIdentifier", NAMESPACE)
+                        .get_child("ContestIdentifier", EML_NAMESPACE)
                         .unwrap()
                         .attr("Id")
                         .unwrap();
@@ -150,20 +160,22 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
                         .filter(|f| f.name().eq("Candidate"))
                         .for_each(|candidate| {
                             let candidate_id = candidate
-                                .get_child("CandidateIdentifier", NAMESPACE)
+                                .get_child("CandidateIdentifier", EML_NAMESPACE)
                                 .unwrap()
                                 .attr("Id")
                                 .unwrap();
                             let candidate_name = candidate
-                                .get_child("CandidateIdentifier", NAMESPACE)
+                                .get_child("CandidateIdentifier", EML_NAMESPACE)
                                 .unwrap()
-                                .get_child("CandidateName", NAMESPACE)
+                                .get_child("CandidateName", EML_NAMESPACE)
                                 .unwrap()
                                 .text();
-                            let candidate_profession =
-                                candidate.get_child("Profession", NAMESPACE).unwrap().text();
+                            let candidate_profession = candidate
+                                .get_child("Profession", EML_NAMESPACE)
+                                .unwrap()
+                                .text();
                             let candidate_gender =
-                                candidate.get_child("Gender", NAMESPACE).unwrap().text();
+                                candidate.get_child("Gender", EML_NAMESPACE).unwrap().text();
 
                             let affiliation_id: Option<i32> = candidate
                                 .get_child_ignore_ns("Affiliation")
@@ -210,13 +222,13 @@ fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str
     events_string.remove(0);
     let events_string = events_string.join("\n");
     let root: Element = events_string.parse().unwrap();
-    let election_event = root.get_child("ElectionEvent", NAMESPACE).unwrap();
+    let election_event = root.get_child("ElectionEvent", EML_NAMESPACE).unwrap();
     let event_identifier = election_event
-        .get_child("EventIdentifier", NAMESPACE)
+        .get_child("EventIdentifier", EML_NAMESPACE)
         .unwrap();
 
     let name = event_identifier
-        .get_child("EventName", NAMESPACE)
+        .get_child("EventName", EML_NAMESPACE)
         .unwrap()
         .text();
 
@@ -233,26 +245,26 @@ fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str
         .filter(|f| f.name().eq("Election"));
     elections.for_each(|election| {
         let election_id = election
-            .get_child("ElectionIdentifier", NAMESPACE)
+            .get_child("ElectionIdentifier", EML_NAMESPACE)
             .unwrap()
             .attr("Id")
             .unwrap();
         let date = election
-            .get_child("Date", NAMESPACE)
+            .get_child("Date", EML_NAMESPACE)
             .unwrap()
-            .get_child("SingleDate", NAMESPACE)
+            .get_child("SingleDate", EML_NAMESPACE)
             .unwrap()
             .text();
         let name = election
-            .get_child("ElectionIdentifier", NAMESPACE)
+            .get_child("ElectionIdentifier", EML_NAMESPACE)
             .unwrap()
-            .get_child("ElectionName", NAMESPACE)
+            .get_child("ElectionName", EML_NAMESPACE)
             .unwrap()
             .text();
         let category = election
-            .get_child("ElectionIdentifier", NAMESPACE)
+            .get_child("ElectionIdentifier", EML_NAMESPACE)
             .unwrap()
-            .get_child("ElectionCategory", NAMESPACE)
+            .get_child("ElectionCategory", EML_NAMESPACE)
             .unwrap()
             .text();
 
@@ -272,24 +284,24 @@ fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str
             .filter(|f| f.name().eq("Contest"))
             .for_each(|contest| {
                 let contest_id = contest
-                    .get_child("ContestIdentifier", NAMESPACE)
+                    .get_child("ContestIdentifier", EML_NAMESPACE)
                     .unwrap()
                     .attr("Id")
                     .unwrap_or("");
                 let short_code = contest
-                    .get_child("ContestIdentifier", NAMESPACE)
+                    .get_child("ContestIdentifier", EML_NAMESPACE)
                     .unwrap()
                     .attr("ShortCode")
                     .unwrap_or("");
                 let name = contest
-                    .get_child("ContestIdentifier", NAMESPACE)
+                    .get_child("ContestIdentifier", EML_NAMESPACE)
                     .unwrap()
-                    .get_child("ContestName", NAMESPACE)
+                    .get_child("ContestName", EML_NAMESPACE)
                     .unwrap()
                     .text();
-                let position = contest.get_child("Position", NAMESPACE).unwrap().text();
+                let position = contest.get_child("Position", EML_NAMESPACE).unwrap().text();
                 let number = contest
-                    .get_child("NumberOfPositions", NAMESPACE)
+                    .get_child("NumberOfPositions", EML_NAMESPACE)
                     .unwrap()
                     .text();
 
