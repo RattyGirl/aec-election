@@ -1,7 +1,6 @@
 use mongodb::bson::Document;
 use mongodb::options::ClientOptions;
 use mongodb::sync::{Client, Cursor, Database};
-use postgres::fallible_iterator::FallibleIterator;
 use serde::Serialize;
 
 pub trait CustomDB {

@@ -1,6 +1,7 @@
 mod aec_parser;
 mod database;
 
+use crate::aec_parser::ElectionEventMessage;
 use crate::database::{CustomDB, MongoDB};
 use minidom::Element;
 use mongodb::bson::doc;
@@ -36,7 +37,7 @@ fn reset_lightprogress_db(_database: &impl CustomDB) {}
 fn reset_preload_db(database: &impl CustomDB) {
     database.drop::<Candidate>("candidates");
     database.drop::<Contest>("contests");
-    database.drop::<ElectionEvent>("election_events");
+    database.drop::<ElectionEventSerialize>("election_events");
     database.drop::<Election>("elections");
     database.drop::<PollingDistrict>("polling_district_list");
     database.drop::<Affiliation>("affiliations");
@@ -222,103 +223,83 @@ fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str
     events_string.remove(0);
     let events_string = events_string.join("\n");
     let root: Element = events_string.parse().unwrap();
-    let election_event = root.get_child("ElectionEvent", EML_NAMESPACE).unwrap();
-    let event_identifier = election_event
-        .get_child("EventIdentifier", EML_NAMESPACE)
+    let election_event: ElectionEventMessage = root
+        .get_child("ElectionEvent", EML_NAMESPACE)
+        .unwrap()
+        .try_into()
         .unwrap();
 
-    let name = event_identifier
-        .get_child("EventName", EML_NAMESPACE)
-        .unwrap()
-        .text();
-
-    database.insert_one(
-        "election_events",
-        ElectionEvent {
-            id: event_id.parse::<i32>().unwrap(),
-            name,
-        },
-    );
-
-    let elections = election_event
-        .children()
-        .filter(|f| f.name().eq("Election"));
-    elections.for_each(|election| {
-        let election_id = election
-            .get_child("ElectionIdentifier", EML_NAMESPACE)
-            .unwrap()
-            .attr("Id")
-            .unwrap();
-        let date = election
-            .get_child("Date", EML_NAMESPACE)
-            .unwrap()
-            .get_child("SingleDate", EML_NAMESPACE)
-            .unwrap()
-            .text();
-        let name = election
-            .get_child("ElectionIdentifier", EML_NAMESPACE)
-            .unwrap()
-            .get_child("ElectionName", EML_NAMESPACE)
-            .unwrap()
-            .text();
-        let category = election
-            .get_child("ElectionIdentifier", EML_NAMESPACE)
-            .unwrap()
-            .get_child("ElectionCategory", EML_NAMESPACE)
-            .unwrap()
-            .text();
-
-        database.insert_one(
-            "elections",
-            Election {
-                id: election_id.to_string(),
-                event_id: event_id.to_string(),
-                date,
-                name,
-                category,
-            },
-        );
-
-        election
-            .children()
-            .filter(|f| f.name().eq("Contest"))
-            .for_each(|contest| {
-                let contest_id = contest
-                    .get_child("ContestIdentifier", EML_NAMESPACE)
-                    .unwrap()
-                    .attr("Id")
-                    .unwrap_or("");
-                let short_code = contest
-                    .get_child("ContestIdentifier", EML_NAMESPACE)
-                    .unwrap()
-                    .attr("ShortCode")
-                    .unwrap_or("");
-                let name = contest
-                    .get_child("ContestIdentifier", EML_NAMESPACE)
-                    .unwrap()
-                    .get_child("ContestName", EML_NAMESPACE)
-                    .unwrap()
-                    .text();
-                let position = contest.get_child("Position", EML_NAMESPACE).unwrap().text();
-                let number = contest
-                    .get_child("NumberOfPositions", EML_NAMESPACE)
-                    .unwrap()
-                    .text();
-
-                database.insert_one(
-                    "contests",
-                    Contest {
-                        id: contest_id.to_string(),
-                        event_id: event_id.to_string(),
-                        election_id: election_id.to_string(),
-                        short_code: short_code.to_string(),
-                        name,
-                        position,
-                        number,
-                    },
-                );
-            });
+    database.insert_one("election_events", ElectionEventSerialize {
+        name: election_event.event_identifier.event_name.unwrap_or("".to_string()),
+        id: election_event.event_identifier.id.unwrap_or_default().parse().unwrap(),
     });
+
+    election_event.elections.into_iter().for_each(|election| {
+        database.insert_one("elections", Election {
+            id: election.election_identifier.id,
+            event_id: election_event.event_identifier.id.unwrap_or_default().parse().unwrap(),
+            //TODO
+            date: "".to_string(),
+            name: "".to_string(),
+            category: "".to_string(),
+        });
+    })
+
+    // let elections = election_event
+    //     .children()
+    //     .filter(|f| f.name().eq("Election"));
+    // elections.for_each(|election| {    //
+    //     database.insert_one(
+    //         "elections",
+    //         Election {
+    //             id: election_id.to_string(),
+    //             event_id: event_id.to_string(),
+    //             date,
+    //             name,
+    //             category,
+    //         },
+    //     );
+    //
+    //     election
+    //         .children()
+    //         .filter(|f| f.name().eq("Contest"))
+    //         .for_each(|contest| {
+    //             let contest_id = contest
+    //                 .get_child("ContestIdentifier", EML_NAMESPACE)
+    //                 .unwrap()
+    //                 .attr("Id")
+    //                 .unwrap_or("");
+    //             let short_code = contest
+    //                 .get_child("ContestIdentifier", EML_NAMESPACE)
+    //                 .unwrap()
+    //                 .attr("ShortCode")
+    //                 .unwrap_or("");
+    //             let name = contest
+    //                 .get_child("ContestIdentifier", EML_NAMESPACE)
+    //                 .unwrap()
+    //                 .get_child("ContestName", EML_NAMESPACE)
+    //                 .unwrap()
+    //                 .text();
+    //             let position = contest.get_child("Position", EML_NAMESPACE).unwrap().text();
+    //             let number = contest
+    //                 .get_child("NumberOfPositions", EML_NAMESPACE)
+    //                 .unwrap()
+    //                 .text();
+    //
+    //             database.insert_one(
+    //                 "contests",
+    //                 Contest {
+    //                     id: contest_id.to_string(),
+    //                     event_id: event_id.to_string(),
+    //                     election_id: election_id.to_string(),
+    //                     short_code: short_code.to_string(),
+    //                     name,
+    //                     position,
+    //                     number,
+    //                 },
+    //             );
+    //         });
+    // });
 }
 
 fn get_all_in_dir(ftp_stream: &mut FtpStream) -> Vec<String> {
@@ -331,7 +312,7 @@ fn get_all_in_dir(ftp_stream: &mut FtpStream) -> Vec<String> {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct ElectionEvent {
+struct ElectionEventSerialize {
     id: i32,
     name: String,
 }
@@ -470,10 +451,17 @@ struct PollingPlace {}
 
 trait IgnoreNS {
     fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element>;
+    fn get_children_ignore_ns(&self, child_name: &str) -> Vec<&Element>;
 }
 
 impl IgnoreNS for Element {
     fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element> {
         self.children().find(|&child| child.name().eq(child_name))
+    }
+
+    fn get_children_ignore_ns(&self, child_name: &str) -> Vec<&Element> {
+        self.children()
+            .filter(|&child| child.name().eq(child_name))
+            .collect()
     }
 }
