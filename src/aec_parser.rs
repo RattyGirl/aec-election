@@ -330,12 +330,37 @@ impl From<&Element> for CandidateListContestStructure {
 }
 
 pub struct AffiliationStructure {
-    //TODO
+    //AffiliationIdentifier
+    affiliation_identifier: AffiliationIdentifierStructure,
+    //Type
+    affiliation_type: Option<String>
 }
 
 impl From<&Element> for AffiliationStructure {
     fn from(value: &Element) -> Self {
-        Self {}
+        Self {
+            affiliation_identifier: value.get_child_ignore_ns("AffiliationIdentifier").unwrap().into(),
+            affiliation_type: value.get_child_ignore_ns("Type").map(|x| x.text()),
+        }
+    }
+}
+
+pub struct AffiliationIdentifierStructure {
+    //@Id
+    id: u32,
+    //@ShortCode
+    short_code: String,
+    //RegisteredName
+    registered_name: String
+}
+
+impl From<&Element> for AffiliationIdentifierStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            id: value.attr("Id").unwrap().parse().unwrap(),
+            short_code: value.attr("ShortCode").unwrap().to_string(),
+            registered_name: value.get_child_ignore_ns("RegisteredName").unwrap().text()
+        }
     }
 }
 
@@ -353,10 +378,37 @@ pub struct CandidateStructure {
 impl From<&Element> for CandidateStructure {
     fn from(value: &Element) -> Self {
         Self {
-            candidate_identifier: value.get_child_ignore_ns("CandidateIdentifier").unwrap(),
+            candidate_identifier: value.get_child_ignore_ns("CandidateIdentifier").unwrap().into(),
             gender: value.get_child_ignore_ns("Gender").map(|x| x.text()),
-            affiliation: Some(value.get_child_ignore_ns("Affiliation").into()),
+            affiliation: value.get_child_ignore_ns("Affiliation").map(|x| x.into()),
             profession: value.get_child_ignore_ns("Profession").map(|x| x.text()),
+        }
+    }
+}
+
+impl Serialize for CandidateStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error> where S: Serializer {
+        let mut state = serializer.serialize_struct("CandidateStructure", 0)?;
+        state.serialize_field("id", &self.candidate_identifier.id)?;
+        state.serialize_field("name", &self.candidate_identifier.candidate_name)?;
+        state.serialize_field("profession", &self.profession)?;
+        state.serialize_field("gender", &self.gender)?;
+        state.end()
+    }
+}
+
+pub struct CandidateIdentifierStructure {
+    //@Id
+    id: u32,
+    //CandidateName
+    candidate_name: Option<String>,
+}
+
+impl From<&Element> for CandidateIdentifierStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            id: value.attr("Id").unwrap().parse().unwrap(),
+            candidate_name: value.get_child_ignore_ns("CandidateName").map(|x| x.text()),
         }
     }
 }

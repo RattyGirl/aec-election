@@ -147,6 +147,7 @@ fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, 
         election.contests.into_iter().for_each(|contest| {
             let contest_id = contest.contest_identifier.id;
             contest.candidates.into_iter().for_each(|candidate| {
+                //TODO affiliation linking
                 let candidate_id = database.insert_one(
                     "candidates", candidate
                 );
@@ -158,9 +159,6 @@ fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, 
         //                             "candidates",
         //                             Candidate {
         //                                 id: candidate_id.parse().unwrap(),
-        //                                 event_id: event_id.parse().unwrap(),
-        //                                 election_id: election_id.to_string(),
-        //                                 contest_id: contest_id.to_string(),
         //                                 affiliation_id,
         //                                 name: candidate_name,
         //                                 profession: candidate_profession,
