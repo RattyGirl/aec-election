@@ -2,7 +2,7 @@ mod aec_parser;
 mod database;
 mod xml_extension;
 
-use crate::aec_parser::{ElectionEventMessage, EventIdentifierStructure};
+use crate::aec_parser::{CandidateListMessage, ElectionEventMessage, EventIdentifierStructure};
 use crate::database::{CustomDB, MongoDB};
 use crate::xml_extension::IgnoreNS;
 use minidom::Element;
@@ -94,18 +94,14 @@ fn preload_data(event_id: &str, database: &impl CustomDB) {
         .unwrap()
         .read_to_string(&mut events_string)
         .unwrap();
-    get_all_races(events_string, database, event_id);
-    println!("Gotten all races for event {}", event_id);
-
+    parse_event_preload(events_string, database, event_id);
     let mut candidates_string: String = String::new();
     zipfile
         .by_name(format!("xml/eml-230-candidates-{}.xml", event_id).as_str())
         .unwrap()
         .read_to_string(&mut candidates_string)
         .unwrap();
-    get_all_candidates(candidates_string, database, event_id);
-    println!("Gotten all candidates for event {}", event_id);
-
+    parse_candidate_preload(candidates_string, database, event_id);
     // let mut polling_string: String = String::new();
     // zipfile
     //     .by_name(format!("xml/aec-mediafeed-pollingdistricts-{}.xml", event_id).as_str())
@@ -128,96 +124,55 @@ fn get_all_simple_results(
     // let candidate_list = root.get_child_ignore_ns("Results").unwrap();
 }
 
-fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event_id: &str) {
+fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, event_id: &str) {
+    //
+    // let election_event_id = database
+    //     .insert_one("election_events", election_event.event_identifier.clone())
+    //     .unwrap_or("".to_string());
+
     let mut candidates_string: Vec<&str> = candidates_string.split('\n').collect();
     candidates_string.remove(0);
     let candidates_string = candidates_string.join("\n");
     let root: Element = candidates_string.parse().unwrap();
-    let candidate_list = root.get_child("CandidateList", EML_NAMESPACE).unwrap();
+    let candidate_list: CandidateListMessage = root
+        .get_child("CandidateList", EML_NAMESPACE)
+        .unwrap()
+        .try_into()
+        .unwrap();
 
-    candidate_list
-        .children()
-        .filter(|f| f.name().eq("Election"))
-        .for_each(|election| {
-            let election_id = election
-                .get_child("ElectionIdentifier", EML_NAMESPACE)
-                .unwrap()
-                .attr("Id")
-                .unwrap();
+    let election_event_id = candidate_list.event_identifier.id.unwrap_or("".to_string());
 
-            election
-                .children()
-                .filter(|f| f.name().eq("Contest"))
-                .for_each(|contest| {
-                    let contest_id = contest
-                        .get_child("ContestIdentifier", EML_NAMESPACE)
-                        .unwrap()
-                        .attr("Id")
-                        .unwrap();
-
-                    contest
-                        .children()
-                        .filter(|f| f.name().eq("Candidate"))
-                        .for_each(|candidate| {
-                            let candidate_id = candidate
-                                .get_child("CandidateIdentifier", EML_NAMESPACE)
-                                .unwrap()
-                                .attr("Id")
-                                .unwrap();
-                            let candidate_name = candidate
-                                .get_child("CandidateIdentifier", EML_NAMESPACE)
-                                .unwrap()
-                                .get_child("CandidateName", EML_NAMESPACE)
-                                .unwrap()
-                                .text();
-                            let candidate_profession = candidate
-                                .get_child("Profession", EML_NAMESPACE)
-                                .unwrap()
-                                .text();
-                            let candidate_gender =
-                                candidate.get_child("Gender", EML_NAMESPACE).unwrap().text();
-
-                            let affiliation_id: Option<i32> = candidate
-                                .get_child_ignore_ns("Affiliation")
-                                .map(|affiliation| {
-                                    let affiliation_obj = Affiliation::from(affiliation);
-
-                                    if database
-                                        .find::<Affiliation>(
-                                            "affiliations",
-                                            doc! {
-                                                "id": affiliation_obj.id
-                                            },
-                                        )
-                                        .count()
-                                        == 0
-                                    {
-                                        database
-                                            .insert_one("affiliations", affiliation_obj.clone());
-                                    }
-
-                                    affiliation_obj.id
-                                });
-
-                            database.insert_one(
-                                "candidates",
-                                Candidate {
-                                    id: candidate_id.parse().unwrap(),
-                                    event_id: event_id.parse().unwrap(),
-                                    election_id: election_id.to_string(),
-                                    contest_id: contest_id.to_string(),
-                                    affiliation_id,
-                                    name: candidate_name,
-                                    profession: candidate_profession,
-                                    gender: candidate_gender,
-                                },
-                            );
-                        });
-                });
-        })
+    candidate_list.elections.into_iter().for_each(|election| {
+        let election_id = election.election_identifier.id;
+        election.contests.into_iter().for_each(|contest| {
+            let contest_id = contest.contest_identifier.id;
+            contest.candidates.into_iter().for_each(|candidate| {
+                let candidate_id = database.insert_one(
+                    "candidates", candidate
+                );
+            })
+        });
+    });
+        //
+        //                         database.insert_one(
+        //                             "candidates",
+        //                             Candidate {
+        //                                 id: candidate_id.parse().unwrap(),
+        //                                 event_id: event_id.parse().unwrap(),
+        //                                 election_id: election_id.to_string(),
+        //                                 contest_id: contest_id.to_string(),
+        //                                 affiliation_id,
+        //                                 name: candidate_name,
+        //                                 profession: candidate_profession,
+        //                                 gender: candidate_gender,
+        //                             },
+        //                         );
+        //                     });
+        //             });
+        //     })
 }
 
-fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str) {
+fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id: &str) {
     let mut events_string: Vec<&str> = events_string.split('\n').collect();
     events_string.remove(0);
     let events_string = events_string.join("\n");

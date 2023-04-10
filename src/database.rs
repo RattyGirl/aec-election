@@ -8,6 +8,11 @@ pub trait CustomDB {
     fn insert_one<T: Serialize>(&self, table: &str, object: T) -> Option<String>;
     fn drop<T: Serialize>(&self, table: &str);
     fn find<T: Serialize>(&self, table: &str, filter: impl Into<Option<Document>>) -> Cursor<T>;
+    fn aggregate(
+        &self,
+        table: &str,
+        pipeline: impl IntoIterator<Item = Document>,
+    ) -> Cursor<Document>;
 }
 
 pub struct MongoDB {
@@ -43,6 +48,17 @@ impl CustomDB for MongoDB {
         self.database
             .collection::<T>(table)
             .find(filter, None)
+            .unwrap()
+    }
+
+    fn aggregate(
+        &self,
+        table: &str,
+        pipeline: impl IntoIterator<Item = Document>,
+    ) -> Cursor<Document> {
+        self.database
+            .collection::<Document>(table)
+            .aggregate(pipeline, None)
             .unwrap()
     }
 }

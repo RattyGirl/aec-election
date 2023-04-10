@@ -4,6 +4,27 @@ use minidom::Element;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
+pub struct CandidateListMessage {
+    //EventIdentifier
+    pub(crate) event_identifier: EventIdentifierStructure,
+    //Election
+    pub(crate) elections: Vec<CandidateListElectionStructure>,
+}
+
+impl From<&Element> for CandidateListMessage {
+    fn from(value: &Element) -> Self {
+        let event_identifier = value.get_child_ignore_ns("EventIdentifier").unwrap();
+        let elections: Vec<&Element> = value.get_children_ignore_ns("Election");
+        Self {
+            event_identifier: event_identifier.into(),
+            elections: elections
+                .into_iter()
+                .map(CandidateListElectionStructure::from)
+                .collect(),
+        }
+    }
+}
+
 #[derive(Clone)]
 pub struct ElectionEventMessage {
     //EventIdentifier
@@ -11,7 +32,7 @@ pub struct ElectionEventMessage {
     //ManagingAuthority
     managing_authority: Option<ManagingAuthorityStructure>,
     //Election
-    pub(crate) elections: Vec<ElectionStructure>,
+    pub(crate) elections: Vec<ElectionEventElectionStructure>,
 }
 
 impl From<&Element> for ElectionEventMessage {
@@ -22,7 +43,10 @@ impl From<&Element> for ElectionEventMessage {
         Self {
             event_identifier: event_identifier.into(),
             managing_authority: managing_authority.map(ManagingAuthorityStructure::from),
-            elections: elections.into_iter().map(ElectionStructure::from).collect(),
+            elections: elections
+                .into_iter()
+                .map(ElectionEventElectionStructure::from)
+                .collect(),
         }
     }
 }
@@ -82,17 +106,40 @@ impl From<&Element> for ManagingAuthorityStructure {
     }
 }
 
+pub struct CandidateListElectionStructure {
+    //ElectionIdentifier
+    pub(crate) election_identifier: ElectionIdentifierStructure,
+    //Contest
+    pub(crate) contests: Vec<CandidateListContestStructure>,
+}
+
+impl From<&Element> for CandidateListElectionStructure {
+    fn from(value: &Element) -> Self {
+        let contests: Vec<&Element> = value.get_children_ignore_ns("Contest");
+        Self {
+            election_identifier: value
+                .get_child_ignore_ns("ElectionIdentifier")
+                .unwrap()
+                .into(),
+            contests: contests
+                .into_iter()
+                .map(CandidateListContestStructure::from)
+                .collect(),
+        }
+    }
+}
+
 #[derive(Clone)]
-pub struct ElectionStructure {
+pub struct ElectionEventElectionStructure {
     //ElectionIdentifier
     pub(crate) election_identifier: ElectionIdentifierStructure,
     //Date
     pub(crate) date: Option<ComplexDateRangeStructure>,
     //Contest
-    pub(crate) contests: Vec<ContestStructure>,
+    pub(crate) contests: Vec<ElectionEventContestStructure>,
 }
 
-impl From<&Element> for ElectionStructure {
+impl From<&Element> for ElectionEventElectionStructure {
     fn from(value: &Element) -> Self {
         let date = value.get_child_ignore_ns("Date");
         let contests: Vec<&Element> = value.get_children_ignore_ns("Contest");
@@ -102,12 +149,15 @@ impl From<&Element> for ElectionStructure {
                 .unwrap()
                 .into(),
             date: date.map(ComplexDateRangeStructure::from),
-            contests: contests.into_iter().map(ContestStructure::from).collect(),
+            contests: contests
+                .into_iter()
+                .map(ElectionEventContestStructure::from)
+                .collect(),
         }
     }
 }
 
-impl Serialize for ElectionStructure {
+impl Serialize for ElectionEventElectionStructure {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
@@ -250,8 +300,69 @@ impl Serialize for ComplexDateRangeStructure {
     }
 }
 
+pub struct CandidateListContestStructure {
+    //ContestIdentifier
+    pub(crate) contest_identifier: ContestIdentifierStructure,
+    //Candidate
+    pub(crate) candidates: Vec<CandidateStructure>,
+    pub(crate) affiliations: Vec<AffiliationStructure>,
+}
+
+impl From<&Element> for CandidateListContestStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            contest_identifier: value
+                .get_child_ignore_ns("ContestIdentifier")
+                .unwrap()
+                .into(),
+            candidates: value
+                .get_children_ignore_ns("Candidate")
+                .into_iter()
+                .map(CandidateStructure::from)
+                .collect(),
+            affiliations: value
+                .get_children_ignore_ns("Affiliation")
+                .into_iter()
+                .map(AffiliationStructure::from)
+                .collect(),
+        }
+    }
+}
+
+pub struct AffiliationStructure {
+    //TODO
+}
+
+impl From<&Element> for AffiliationStructure {
+    fn from(value: &Element) -> Self {
+        Self {}
+    }
+}
+
+pub struct CandidateStructure {
+    //CandidateIdentifier
+    candidate_identifier: CandidateIdentifierStructure,
+    //Gender
+    gender: Option<String>,
+    //Affiliation
+    affiliation: Option<AffiliationStructure>,
+    //Profession
+    profession: Option<String>
+}
+
+impl From<&Element> for CandidateStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            candidate_identifier: value.get_child_ignore_ns("CandidateIdentifier").unwrap(),
+            gender: value.get_child_ignore_ns("Gender").map(|x| x.text()),
+            affiliation: Some(value.get_child_ignore_ns("Affiliation").into()),
+            profession: value.get_child_ignore_ns("Profession").map(|x| x.text()),
+        }
+    }
+}
+
 #[derive(Clone)]
-pub struct ContestStructure {
+pub struct ElectionEventContestStructure {
     //ContestIdentifier
     contest_identifier: ContestIdentifierStructure,
     //Area
@@ -266,7 +377,7 @@ pub struct ContestStructure {
     number_of_positions: u32,
 }
 
-impl From<&Element> for ContestStructure {
+impl From<&Element> for ElectionEventContestStructure {
     fn from(value: &Element) -> Self {
         Self {
             contest_identifier: value
@@ -298,7 +409,7 @@ impl From<&Element> for ContestStructure {
     }
 }
 
-impl Serialize for ContestStructure {
+impl Serialize for ElectionEventContestStructure {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
@@ -316,7 +427,7 @@ impl Serialize for ContestStructure {
 #[derive(Clone)]
 pub struct ContestIdentifierStructure {
     //@Id
-    id: String,
+    pub(crate) id: String,
     //@ShortCode
     short_code: Option<String>,
     //ContestName
