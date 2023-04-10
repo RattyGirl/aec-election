@@ -6,7 +6,7 @@ use crate::aec_parser::{ElectionEventMessage, EventIdentifierStructure};
 use crate::database::{CustomDB, MongoDB};
 use crate::xml_extension::IgnoreNS;
 use minidom::Element;
-use mongodb::bson::Bson::{ObjectId};
+use mongodb::bson::Bson::ObjectId;
 use mongodb::bson::{bson, doc, oid, Bson, Document};
 use serde::{Deserialize, Serialize};
 use std::io::Read;
@@ -38,12 +38,12 @@ fn main() {
 fn reset_lightprogress_db(_database: &impl CustomDB) {}
 
 fn reset_preload_db(database: &impl CustomDB) {
-    database.drop::<Candidate>("candidates");
-    database.drop::<Contest>("contests");
-    database.drop::<EventIdentifierStructure>("election_events");
-    database.drop::<Election>("elections");
-    database.drop::<PollingDistrict>("polling_district_list");
-    database.drop::<Affiliation>("affiliations");
+    database.drop::<Document>("candidates");
+    database.drop::<Document>("contests");
+    database.drop::<Document>("election_events");
+    database.drop::<Document>("elections");
+    database.drop::<Document>("polling_district_list");
+    database.drop::<Document>("affiliations");
 
     //relationships
     database.drop::<Document>("election_events_elections");

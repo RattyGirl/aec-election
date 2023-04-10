@@ -300,8 +300,8 @@ impl From<&Element> for ContestStructure {
 
 impl Serialize for ContestStructure {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut state = serializer.serialize_struct("ContestStructure", 5)?;
         state.serialize_field("id", &self.contest_identifier.id)?;
