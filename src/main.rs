@@ -1,10 +1,13 @@
 mod aec_parser;
 mod database;
+mod xml_extension;
 
-use crate::aec_parser::ElectionEventMessage;
+use crate::aec_parser::{ElectionEventMessage, EventIdentifierStructure};
 use crate::database::{CustomDB, MongoDB};
+use crate::xml_extension::IgnoreNS;
 use minidom::Element;
-use mongodb::bson::doc;
+use mongodb::bson::Bson::{ObjectId};
+use mongodb::bson::{bson, doc, oid, Bson, Document};
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 use std::str;
@@ -37,10 +40,14 @@ fn reset_lightprogress_db(_database: &impl CustomDB) {}
 fn reset_preload_db(database: &impl CustomDB) {
     database.drop::<Candidate>("candidates");
     database.drop::<Contest>("contests");
-    database.drop::<ElectionEventSerialize>("election_events");
+    database.drop::<EventIdentifierStructure>("election_events");
     database.drop::<Election>("elections");
     database.drop::<PollingDistrict>("polling_district_list");
     database.drop::<Affiliation>("affiliations");
+
+    //relationships
+    database.drop::<Document>("election_events_elections");
+    database.drop::<Document>("election_contests");
 }
 
 fn load_results(event_id: &str, database: &impl CustomDB) {
@@ -117,16 +124,8 @@ fn get_all_simple_results(
     let mut results_light_progress: Vec<&str> = results_light_progress.split('\n').collect();
     results_light_progress.remove(0);
     let results_light_progress = results_light_progress.join("\n");
-    let root = Element::from_str(results_light_progress.as_str()).unwrap();
-    // match root {
-    //     Ok(root) => {
-    //         println!("Cool beans");
-    //     }
-    //     Err(err) => {
-    //         println!("error: {}", err);
-    //     }
-    // }
-    let candidate_list = root.get_child_ignore_ns("Results").unwrap();
+    // let root = Element::from_str(results_light_progress.as_str()).unwrap();
+    // let candidate_list = root.get_child_ignore_ns("Results").unwrap();
 }
 
 fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event_id: &str) {
@@ -180,7 +179,7 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
 
                             let affiliation_id: Option<i32> = candidate
                                 .get_child_ignore_ns("Affiliation")
-                                .and_then(|affiliation| {
+                                .map(|affiliation| {
                                     let affiliation_obj = Affiliation::from(affiliation);
 
                                     if database
@@ -197,7 +196,7 @@ fn get_all_candidates(candidates_string: String, database: &impl CustomDB, event
                                             .insert_one("affiliations", affiliation_obj.clone());
                                     }
 
-                                    Some(affiliation_obj.id.clone())
+                                    affiliation_obj.id
                                 });
 
                             database.insert_one(
@@ -229,77 +228,28 @@ fn get_all_races(events_string: String, database: &impl CustomDB, event_id: &str
         .try_into()
         .unwrap();
 
-    database.insert_one("election_events", ElectionEventSerialize {
-        name: election_event.event_identifier.event_name.unwrap_or("".to_string()),
-        id: election_event.event_identifier.id.unwrap_or_default().parse().unwrap(),
-    });
+    let election_event_id = database
+        .insert_one("election_events", election_event.event_identifier.clone())
+        .unwrap_or("".to_string());
 
     election_event.elections.into_iter().for_each(|election| {
-        database.insert_one("elections", Election {
-            id: election.election_identifier.id,
-            event_id: election_event.event_identifier.id.unwrap_or_default().parse().unwrap(),
-            //TODO
-            date: "".to_string(),
-            name: "".to_string(),
-            category: "".to_string(),
-        });
-    })
+        let election_id = database.insert_one("elections", election.clone()).unwrap_or("".to_string());
 
-    // let elections = election_event
-    //     .children()
-    //     .filter(|f| f.name().eq("Election"));
-    // elections.for_each(|election| {    //
-    //     database.insert_one(
-    //         "elections",
-    //         Election {
-    //             id: election_id.to_string(),
-    //             event_id: event_id.to_string(),
-    //             date,
-    //             name,
-    //             category,
-    //         },
-    //     );
-    //
-    //     election
-    //         .children()
-    //         .filter(|f| f.name().eq("Contest"))
-    //         .for_each(|contest| {
-    //             let contest_id = contest
-    //                 .get_child("ContestIdentifier", EML_NAMESPACE)
-    //                 .unwrap()
-    //                 .attr("Id")
-    //                 .unwrap_or("");
-    //             let short_code = contest
-    //                 .get_child("ContestIdentifier", EML_NAMESPACE)
-    //                 .unwrap()
-    //                 .attr("ShortCode")
-    //                 .unwrap_or("");
-    //             let name = contest
-    //                 .get_child("ContestIdentifier", EML_NAMESPACE)
-    //                 .unwrap()
-    //                 .get_child("ContestName", EML_NAMESPACE)
-    //                 .unwrap()
-    //                 .text();
-    //             let position = contest.get_child("Position", EML_NAMESPACE).unwrap().text();
-    //             let number = contest
-    //                 .get_child("NumberOfPositions", EML_NAMESPACE)
-    //                 .unwrap()
-    //                 .text();
-    //
-    //             database.insert_one(
-    //                 "contests",
-    //                 Contest {
-    //                     id: contest_id.to_string(),
-    //                     event_id: event_id.to_string(),
-    //                     election_id: election_id.to_string(),
-    //                     short_code: short_code.to_string(),
-    //                     name,
-    //                     position,
-    //                     number,
-    //                 },
-    //             );
-    //         });
-    // });
+        database.insert_one("election_events_elections", doc! {
+            "election_event": Bson::ObjectId(oid::ObjectId::from_str(election_event_id.as_str()).unwrap()),
+            "election": ObjectId(oid::ObjectId::from_str(election_id.as_str()).unwrap()),
+        });
+
+        election.contests.into_iter().for_each(|contest| {
+            let contest_id = database.insert_one("contests", contest).unwrap_or("".to_string());
+
+            database.insert_one("election_contests", doc! {
+                "election": ObjectId(oid::ObjectId::from_str(election_id.as_str()).unwrap()),
+                "contests": ObjectId(oid::ObjectId::from_str(contest_id.as_str()).unwrap()),
+            });
+        });
+
+    })
 }
 
 fn get_all_in_dir(ftp_stream: &mut FtpStream) -> Vec<String> {
@@ -448,20 +398,3 @@ impl PollingDistrict {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct PollingPlace {}
-
-trait IgnoreNS {
-    fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element>;
-    fn get_children_ignore_ns(&self, child_name: &str) -> Vec<&Element>;
-}
-
-impl IgnoreNS for Element {
-    fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element> {
-        self.children().find(|&child| child.name().eq(child_name))
-    }
-
-    fn get_children_ignore_ns(&self, child_name: &str) -> Vec<&Element> {
-        self.children()
-            .filter(|&child| child.name().eq(child_name))
-            .collect()
-    }
-}

@@ -5,7 +5,7 @@ use serde::Serialize;
 
 pub trait CustomDB {
     fn setup(connection_name: &str, database_name: &str) -> Self;
-    fn insert_one<T: Serialize>(&self, table: &str, object: T);
+    fn insert_one<T: Serialize>(&self, table: &str, object: T) -> Option<String>;
     fn drop<T: Serialize>(&self, table: &str);
     fn find<T: Serialize>(&self, table: &str, filter: impl Into<Option<Document>>) -> Cursor<T>;
 }
@@ -24,11 +24,15 @@ impl CustomDB for MongoDB {
         }
     }
 
-    fn insert_one<T: Serialize>(&self, table: &str, object: T) {
-        self.database
+    fn insert_one<T: Serialize>(&self, table: &str, object: T) -> Option<String> {
+        let result = self
+            .database
             .collection::<T>(table)
-            .insert_one(object, None)
-            .unwrap();
+            .insert_one(object, None);
+
+        result
+            .ok()
+            .map(|x| x.inserted_id.as_object_id().unwrap().to_string())
     }
 
     fn drop<T: Serialize>(&self, table: &str) {

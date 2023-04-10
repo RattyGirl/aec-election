@@ -1,7 +1,10 @@
 use crate::aec_parser::ComplexDateRangeEnum::{End, SingleDate, StartEnd};
-use crate::IgnoreNS;
+use crate::xml_extension::IgnoreNS;
 use minidom::Element;
+use serde::ser::SerializeStruct;
+use serde::{Serialize, Serializer};
 
+#[derive(Clone)]
 pub struct ElectionEventMessage {
     //EventIdentifier
     pub(crate) event_identifier: EventIdentifierStructure,
@@ -24,6 +27,7 @@ impl From<&Element> for ElectionEventMessage {
     }
 }
 
+#[derive(Clone)]
 pub struct EventIdentifierStructure {
     //@Id
     pub(crate) id: Option<String>,
@@ -33,8 +37,7 @@ pub struct EventIdentifierStructure {
 
 impl From<&Element> for EventIdentifierStructure {
     fn from(value: &Element) -> Self {
-        let event_name: Option<String> = value
-            .get_child_ignore_ns("EventName").map(|x| x.text());
+        let event_name: Option<String> = value.get_child_ignore_ns("EventName").map(|x| x.text());
         Self {
             id: value.attr("Id").map(|x| x.to_string()),
             event_name,
@@ -42,6 +45,19 @@ impl From<&Element> for EventIdentifierStructure {
     }
 }
 
+impl Serialize for EventIdentifierStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("EventIdentifierStructure", 2)?;
+        state.serialize_field("name", &self.event_name.clone().unwrap_or("".to_string()))?;
+        state.serialize_field("id", &self.id.clone().unwrap_or("".to_string()))?;
+        state.end()
+    }
+}
+
+#[derive(Clone)]
 pub struct ManagingAuthorityStructure {
     //AuthorityIdentifier
     authority_identifier: AuthorityIdentifierStructure,
@@ -66,6 +82,7 @@ impl From<&Element> for ManagingAuthorityStructure {
     }
 }
 
+#[derive(Clone)]
 pub struct ElectionStructure {
     //ElectionIdentifier
     pub(crate) election_identifier: ElectionIdentifierStructure,
@@ -85,14 +102,27 @@ impl From<&Element> for ElectionStructure {
                 .unwrap()
                 .into(),
             date: date.map(ComplexDateRangeStructure::from),
-            contests: contests
-                .into_iter()
-                .map(ContestStructure::from)
-                .collect(),
+            contests: contests.into_iter().map(ContestStructure::from).collect(),
         }
     }
 }
 
+impl Serialize for ElectionStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("ElectionStructure", 5)?;
+        state.serialize_field("id", &self.election_identifier.id)?;
+        state.serialize_field("date", &self.date)?;
+        state.serialize_field("name", &self.election_identifier.election_name)?;
+        state.serialize_field("category", &self.election_identifier.election_category)?;
+        state.end()
+        // state.end()
+    }
+}
+
+#[derive(Clone)]
 pub struct AuthorityIdentifierStructure {
     //@Id
     id: String,
@@ -109,6 +139,7 @@ impl From<&Element> for AuthorityIdentifierStructure {
     }
 }
 
+#[derive(Copy, Clone)]
 pub struct AuthorityAddressStructure {
     //TODO
 }
@@ -119,6 +150,7 @@ impl From<&Element> for AuthorityAddressStructure {
     }
 }
 
+#[derive(Clone)]
 pub struct ElectionIdentifierStructure {
     //@Id
     pub(crate) id: String,
@@ -141,12 +173,40 @@ impl From<&Element> for ElectionIdentifierStructure {
     }
 }
 
+#[derive(Clone)]
 enum ComplexDateRangeEnum {
     SingleDate(String),
     End(String),
     StartEnd(String, Option<String>),
 }
 
+impl Serialize for ComplexDateRangeEnum {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        match &self {
+            SingleDate(x) => {
+                let mut state = serializer.serialize_struct("SingleDate", 1)?;
+                state.serialize_field("date", x)?;
+                state.end()
+            }
+            End(x) => {
+                let mut state = serializer.serialize_struct("End", 1)?;
+                state.serialize_field("end_date", x)?;
+                state.end()
+            }
+            StartEnd(x, y) => {
+                let mut state = serializer.serialize_struct("StartEnd", 2)?;
+                state.serialize_field("start", x)?;
+                state.serialize_field("end", y)?;
+                state.end()
+            }
+        }
+    }
+}
+
+#[derive(Clone)]
 pub struct ComplexDateRangeStructure {
     //@Type
     date_type: String,
@@ -171,14 +231,26 @@ impl From<&Element> for ComplexDateRangeStructure {
                 date_type,
                 choice: StartEnd(
                     value.get_child_ignore_ns("Start").unwrap().text(),
-                    value
-                        .get_child_ignore_ns("End").map(|x| x.text()),
+                    value.get_child_ignore_ns("End").map(|x| x.text()),
                 ),
             }
         }
     }
 }
 
+impl Serialize for ComplexDateRangeStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("ComplexDateRangeStructure", 2)?;
+        state.serialize_field("date_type", &self.date_type)?;
+        state.serialize_field("choice", &self.choice)?;
+        state.end()
+    }
+}
+
+#[derive(Clone)]
 pub struct ContestStructure {
     //ContestIdentifier
     contest_identifier: ContestIdentifierStructure,
@@ -201,10 +273,10 @@ impl From<&Element> for ContestStructure {
                 .get_child_ignore_ns("ContestIdentifier")
                 .unwrap()
                 .into(),
-            area: value
-                .get_child_ignore_ns("Area").map(AreaStructure::from),
+            area: value.get_child_ignore_ns("Area").map(AreaStructure::from),
             position: value
-                .get_child_ignore_ns("Position").map(PositionStructure::from),
+                .get_child_ignore_ns("Position")
+                .map(PositionStructure::from),
             voting_method: value
                 .get_children_ignore_ns("VotingMethod")
                 .into_iter()
@@ -226,6 +298,22 @@ impl From<&Element> for ContestStructure {
     }
 }
 
+impl Serialize for ContestStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("ContestStructure", 5)?;
+        state.serialize_field("id", &self.contest_identifier.id)?;
+        state.serialize_field("short_code", &self.contest_identifier.short_code)?;
+        state.serialize_field("name", &self.contest_identifier.contest_name)?;
+        state.serialize_field("position", &self.position.clone().map(|x| x.text))?;
+        state.serialize_field("number", &self.number_of_positions)?;
+        state.end()
+    }
+}
+
+#[derive(Clone)]
 pub struct ContestIdentifierStructure {
     //@Id
     id: String,
@@ -240,13 +328,13 @@ impl From<&Element> for ContestIdentifierStructure {
         Self {
             id: value.attr("Id").unwrap().to_string(),
             short_code: value.attr("ShortCode").map(|x| x.to_string()),
-            contest_name: value
-                .get_child_ignore_ns("ContestName").map(|x| x.text()),
+            contest_name: value.get_child_ignore_ns("ContestName").map(|x| x.text()),
         }
     }
 }
 
 #[allow(non_camel_case_types)]
+#[derive(Clone)]
 enum VotingMethodType {
     AMS,
     FPP,
@@ -288,6 +376,7 @@ impl From<&Element> for VotingMethodType {
     }
 }
 
+#[derive(Clone)]
 pub struct AreaStructure {
     //@Id
     id: Option<String>,
@@ -307,9 +396,10 @@ impl From<&Element> for AreaStructure {
     }
 }
 
+#[derive(Clone)]
 pub struct PositionStructure {
     //text
-    text: String,
+    pub(crate) text: String,
 }
 
 impl From<&Element> for PositionStructure {
