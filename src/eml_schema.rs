@@ -94,7 +94,26 @@ impl From<&Element> for PhysicalLocationStructure {
         }
     }
 }
+impl Serialize for PhysicalLocationStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("PhysicalLocationStructure", 9)?;
+        state.serialize_field("lat", &self.lat)?;
+        state.serialize_field("long", &self.long)?;
+        state.serialize_field("address_details", &self.address_details)?;
 
+        state.serialize_field("premises", &self.premises)?;
+        state.serialize_field("address_line_1", &self.address_line_1)?;
+        state.serialize_field("address_line_2", &self.address_line_2)?;
+
+        state.serialize_field("suburb", &self.suburb)?;
+        state.serialize_field("state", &self.state)?;
+        state.serialize_field("postcode", &self.postcode)?;
+        state.end()
+    }
+}
 #[derive(Clone)]
 pub enum PollingPlaceLocationEnum {
     Physical(PhysicalLocationStructure),
@@ -108,7 +127,12 @@ impl Serialize for PollingPlaceLocationEnum {
     where
         S: Serializer,
     {
-        serializer.serialize_newtype_struct("PollingPlaceLocationEnum", &self)
+        match self.clone() {
+            PollingPlaceLocationEnum::Physical(l) => serializer.serialize_newtype_struct("Physical", &l),
+            PollingPlaceLocationEnum::Postal(l) => serializer.serialize_newtype_struct("Postal", &l),
+            PollingPlaceLocationEnum::Electronic(l) => serializer.serialize_newtype_struct("Electronic", &l),
+            PollingPlaceLocationEnum::Other(l) => serializer.serialize_newtype_struct("Other", &l)
+        }
     }
 }
 #[derive(Clone)]
@@ -125,7 +149,7 @@ impl Serialize for PollingPlaceLocation {
 #[derive(Clone)]
 pub struct PollingPlaceIdentifierStructure {
     //@Id
-    id: xs::NMTOKEN,
+    pub(crate) id: xs::NMTOKEN,
     //@Name
     name: Option<String>,
     //@ShortCode
@@ -626,8 +650,8 @@ impl Serialize for EventIdentifierStructure {
         S: Serializer,
     {
         let mut state = serializer.serialize_struct("EventIdentifierStructure", 2)?;
-        state.serialize_field("name", &self.event_name.clone().unwrap_or("".to_string()))?;
-        state.serialize_field("id", &self.id.clone().unwrap_or("".to_string()))?;
+        state.serialize_field("name", &self.event_name.clone().unwrap_or_default())?;
+        state.serialize_field("id", &self.id.clone().unwrap_or_default())?;
         state.end()
     }
 }
@@ -774,7 +798,7 @@ pub struct PollingPlaceStructure {
     //PhysicalLocation/PostalLocation/ElectronicLocation/OtherLocation
     location: PollingPlaceLocation,
     //PollingPlaceIdentifier
-    identifier: PollingPlaceIdentifierStructure,
+    pub(crate) identifier: PollingPlaceIdentifierStructure,
     //WheelchairAccess
     wheelchair: Option<WheelChairAccessType>,
 }

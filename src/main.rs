@@ -170,7 +170,8 @@ fn get_all_polling_districts(polling_districts: String, database: &impl CustomDB
                 .polling_places
                 .into_iter()
                 .for_each(|polling_place| {
-                    database.insert_one("polling_places", polling_place);
+                    let polling_place_id = database.insert_one("polling_places", polling_place).unwrap();
+                    database.many_to_many_connection("election_event", "polling_place", election_event_id.as_str(), polling_place_id.as_str())
                 });
         });
 }
@@ -186,7 +187,7 @@ fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, 
         .try_into()
         .unwrap();
 
-    let election_event_id = candidate_list.event_identifier.id.unwrap_or("".to_string());
+    let election_event_id = candidate_list.event_identifier.id.unwrap_or_default();
 
     candidate_list.elections.into_iter().for_each(|election| {
         let election_id = election.election_identifier.id;
@@ -242,13 +243,11 @@ fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id
         .unwrap();
 
     let election_event_id = database
-        .insert_one("election_events", election_event.event_identifier.clone())
-        .unwrap_or("".to_string());
+        .insert_one("election_events", election_event.event_identifier.clone()).unwrap_or_default();
 
     election_event.elections.into_iter().for_each(|election| {
         let election_id = database
-            .insert_one("elections", election.clone())
-            .unwrap_or("".to_string());
+            .insert_one("elections", election.clone()).unwrap_or_default();
 
         database.many_to_many_connection(
             "election_event",
@@ -259,8 +258,7 @@ fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id
 
         election.contests.into_iter().for_each(|contest| {
             let contest_id = database
-                .insert_one("contests", contest)
-                .unwrap_or("".to_string());
+                .insert_one("contests", contest).unwrap_or_default();
 
             database.insert_one(
                 "election_contests",
