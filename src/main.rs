@@ -5,13 +5,13 @@ mod xml_extension;
 
 use crate::aec_parser::candidate::CandidateList;
 use crate::aec_parser::event::ElectionEvent;
+use crate::aec_parser::polling::PollingDistrictListStructure;
 use crate::database::{CustomDB, MongoDB};
-use crate::eml_schema::AffiliationStructure;
+use crate::xml_extension::IgnoreNS;
 use minidom::Element;
 use mongodb::bson::Bson::ObjectId;
-use mongodb::bson::{doc, oid, Bson, Document};
+use mongodb::bson::{doc, oid, Document};
 use mongodb::sync::Cursor;
-use serde::Serialize;
 use std::io::Read;
 use std::str;
 use std::str::FromStr;
@@ -98,14 +98,14 @@ fn preload_data(event_id: &str, database: &impl CustomDB) {
         .read_to_string(&mut candidates_string)
         .unwrap();
     parse_candidate_preload(candidates_string, database, event_id);
-    // let mut polling_string: String = String::new();
-    // zipfile
-    //     .by_name(format!("xml/aec-mediafeed-pollingdistricts-{}.xml", event_id).as_str())
-    //     .unwrap()
-    //     .read_to_string(&mut polling_string)
-    //     .unwrap();
-    // get_all_polling_districts(polling_string, database, event_id);
-    // println!("Gotten all polling districts for event {}", event_id);
+    let mut polling_string: String = String::new();
+    zipfile
+        .by_name(format!("xml/aec-mediafeed-pollingdistricts-{}.xml", event_id).as_str())
+        .unwrap()
+        .read_to_string(&mut polling_string)
+        .unwrap();
+    get_all_polling_districts(polling_string, database, event_id);
+    println!("Gotten all polling districts for event {}", event_id);
 }
 
 fn get_all_simple_results(
@@ -118,6 +118,61 @@ fn get_all_simple_results(
     let results_light_progress = results_light_progress.join("\n");
     // let root = Element::from_str(results_light_progress.as_str()).unwrap();
     // let candidate_list = root.get_child_ignore_ns("Results").unwrap();
+}
+
+fn get_all_polling_districts(polling_districts: String, database: &impl CustomDB, event_id: &str) {
+    let mut polling_districts: Vec<&str> = polling_districts.split('\n').collect();
+    polling_districts.remove(0);
+    let polling_districts = polling_districts.join("\n");
+    let root = Element::from_str(polling_districts.as_str()).unwrap();
+
+    let polling_district_list: PollingDistrictListStructure = root
+        .get_child_ignore_ns("PollingDistrictList")
+        .unwrap()
+        .try_into()
+        .unwrap();
+
+    let election_event_id = polling_district_list
+        .event_identifier
+        .id
+        .unwrap_or_default();
+
+    let search: Vec<Document> = database
+        .find(
+            "election_events",
+            doc! {
+                "id": election_event_id
+            },
+        )
+        .map(|x| x.unwrap())
+        .collect();
+    let election_event_id = search
+        .first()
+        .unwrap()
+        .get_object_id("_id")
+        .unwrap()
+        .to_string();
+
+    polling_district_list
+        .polling_districts
+        .into_iter()
+        .for_each(|district| {
+            let district_id = database
+                .insert_one("polling_districts", district.clone())
+                .unwrap();
+            database.many_to_many_connection(
+                "polling_district",
+                "election_event",
+                district_id.as_str(),
+                election_event_id.as_str(),
+            );
+            district
+                .polling_places
+                .into_iter()
+                .for_each(|polling_place| {
+                    database.insert_one("polling_places", polling_place);
+                });
+        });
 }
 
 fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, event_id: &str) {

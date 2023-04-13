@@ -3,6 +3,7 @@ use minidom::Element;
 pub(crate) trait IgnoreNS {
     fn get_child_ignore_ns(&self, child_name: &str) -> Option<&Element>;
     fn get_children_ignore_ns(&self, child_name: &str) -> Vec<&Element>;
+    fn get_child_with_type(&self, line_type: &str) -> Option<&Element>;
 }
 
 impl IgnoreNS for Element {
@@ -14,6 +15,11 @@ impl IgnoreNS for Element {
         self.children()
             .filter(|&child| child.name().eq(child_name))
             .collect()
+    }
+
+    fn get_child_with_type(&self, line_type: &str) -> Option<&Element> {
+        self.children()
+            .find(|x| x.attr("Type").unwrap_or_default().eq(line_type))
     }
 }
 

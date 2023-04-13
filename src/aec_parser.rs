@@ -208,6 +208,30 @@ pub mod event {
     }
 }
 
+pub mod polling {
+    use crate::eml_schema::{EventIdentifierStructure, PollingDistrictStructure};
+    use crate::xml_extension::IgnoreNS;
+    use minidom::Element;
+
+    pub struct PollingDistrictListStructure {
+        pub(crate) event_identifier: EventIdentifierStructure,
+        pub(crate) polling_districts: Vec<PollingDistrictStructure>,
+    }
+
+    impl From<&Element> for PollingDistrictListStructure {
+        fn from(value: &Element) -> Self {
+            let event_identifier = value.get_child_ignore_ns("EventIdentifier").unwrap();
+            let districts: Vec<&Element> = value.get_children_ignore_ns("PollingDistrict");
+            Self {
+                event_identifier: event_identifier.into(),
+                polling_districts: districts
+                    .into_iter()
+                    .map(PollingDistrictStructure::from)
+                    .collect(),
+            }
+        }
+    }
+}
 //Externals
 
 #[derive(Clone, Default)]

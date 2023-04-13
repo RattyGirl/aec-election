@@ -4,6 +4,144 @@ use minidom::Element;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
+// AEC Types
+#[derive(Clone)]
+pub struct WheelChairAccessType(String);
+
+impl From<&Element> for WheelChairAccessType {
+    fn from(value: &Element) -> Self {
+        Self(value.text())
+    }
+}
+
+impl Serialize for WheelChairAccessType {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_newtype_struct("WheelChairAccessType", &self.0)
+    }
+}
+#[derive(Clone)]
+pub struct PhysicalLocationStructure {
+    lat: String,
+    long: String,
+    address_details: String,
+    premises: String,
+    address_line_1: String,
+    address_line_2: String,
+    suburb: String,
+    state: String,
+    postcode: String,
+}
+
+impl From<&Element> for PhysicalLocationStructure {
+    fn from(value: &Element) -> Self {
+        let address = value.get_child_ignore_ns("Address").unwrap();
+        Self {
+            lat: address
+                .get_child_ignore_ns("PostalServiceElements")
+                .unwrap()
+                .get_child_ignore_ns("AddressLatitude")
+                .unwrap()
+                .text(),
+            long: address
+                .get_child_ignore_ns("PostalServiceElements")
+                .unwrap()
+                .get_child_ignore_ns("AddressLongitude")
+                .unwrap()
+                .text(),
+            address_details: address
+                .attr("AddressDetailsKey")
+                .unwrap_or_default()
+                .to_string(),
+            premises: address
+                .get_child_ignore_ns("AddressLines")
+                .unwrap()
+                .get_child_with_type("Premises")
+                .map(|x| x.text())
+                .unwrap_or("".to_string()),
+            address_line_1: address
+                .get_child_ignore_ns("AddressLines")
+                .unwrap()
+                .get_child_with_type("AddressLine1")
+                .map(|x| x.text())
+                .unwrap_or("".to_string()),
+            address_line_2: address
+                .get_child_ignore_ns("AddressLines")
+                .unwrap()
+                .get_child_with_type("AddressLine2")
+                .map(|x| x.text())
+                .unwrap_or("".to_string()),
+            suburb: address
+                .get_child_ignore_ns("AddressLines")
+                .unwrap()
+                .get_child_with_type("Suburb")
+                .map(|x| x.text())
+                .unwrap_or("".to_string()),
+            state: address
+                .get_child_ignore_ns("AddressLines")
+                .unwrap()
+                .get_child_with_type("State")
+                .map(|x| x.text())
+                .unwrap_or("".to_string()),
+            postcode: address
+                .get_child_ignore_ns("AddressLines")
+                .unwrap()
+                .get_child_with_type("Postcode")
+                .map(|x| x.text())
+                .unwrap_or("".to_string()),
+        }
+    }
+}
+
+#[derive(Clone)]
+pub enum PollingPlaceLocationEnum {
+    Physical(PhysicalLocationStructure),
+    Postal(PhysicalLocationStructure),
+    Electronic(xs::Token),
+    Other(String),
+}
+
+impl Serialize for PollingPlaceLocationEnum {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_newtype_struct("PollingPlaceLocationEnum", &self)
+    }
+}
+#[derive(Clone)]
+pub struct PollingPlaceLocation(PollingPlaceLocationEnum);
+
+impl Serialize for PollingPlaceLocation {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_newtype_struct("PollingPlaceLocation", &self.0)
+    }
+}
+#[derive(Clone)]
+pub struct PollingPlaceIdentifierStructure {
+    //@Id
+    id: xs::NMTOKEN,
+    //@Name
+    name: Option<String>,
+    //@ShortCode
+    short_code: Option<xs::NMTOKEN>,
+}
+
+impl From<&Element> for PollingPlaceIdentifierStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            id: xs::NMTOKEN(value.attr("Id").unwrap().to_string()),
+            name: value.attr("Name").map(|x| x.to_string()),
+            short_code: value.attr("ShortCode").map(|x| xs::NMTOKEN(x.to_string())),
+        }
+    }
+}
+
 // XML Types
 pub mod xs {
     use serde::{Serialize, Serializer};
@@ -21,6 +159,21 @@ pub mod xs {
 
     #[derive(Clone)]
     pub struct PositiveInteger(pub u32);
+
+    impl From<String> for PositiveInteger {
+        fn from(value: String) -> Self {
+            Self(value.parse().unwrap())
+        }
+    }
+
+    impl Serialize for PositiveInteger {
+        fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+        {
+            serializer.serialize_newtype_struct("PositiveInteger", &self.0)
+        }
+    }
     #[derive(Clone)]
     pub struct Token(pub String);
     impl Serialize for Token {
@@ -526,9 +679,148 @@ pub struct OutgoingGenericCommunicationStructure {}
 #[derive(Clone)]
 pub struct PeriodStructure {}
 #[derive(Clone)]
-pub struct PollingDistrictStructure {}
+pub struct PollingDistrictStructure {
+    //PollingDistrictIdentifier
+    polling_district_identifier: PollingDistrictIdentifierStructure,
+    //NameDerivation
+    name_derivation: String,
+    //ProductsIndustry
+    product_industry: String,
+    //Location
+    location: String,
+    //Demographic
+    demographic: String,
+    //Area
+    area: xs::PositiveInteger,
+    //PollingPlace
+    pub(crate) polling_places: Vec<PollingPlaceStructure>,
+}
+
+impl From<&Element> for PollingDistrictStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            polling_district_identifier: value
+                .get_child_ignore_ns("PollingDistrictIdentifier")
+                .unwrap()
+                .into(),
+            name_derivation: value.get_child_ignore_ns("NameDerivation").unwrap().text(),
+            product_industry: value
+                .get_child_ignore_ns("ProductsIndustry")
+                .unwrap()
+                .text(),
+            location: value.get_child_ignore_ns("Location").unwrap().text(),
+            demographic: value.get_child_ignore_ns("Demographic").unwrap().text(),
+            area: value.get_child_ignore_ns("Area").unwrap().text().into(),
+            polling_places: value
+                .get_child_ignore_ns("PollingPlaces")
+                .unwrap()
+                .get_children_ignore_ns("PollingPlace")
+                .into_iter()
+                .map(PollingPlaceStructure::from)
+                .collect(),
+        }
+    }
+}
+
+impl Serialize for PollingDistrictStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("PollingDistrictStructure", 9)?;
+        state.serialize_field("id", &self.polling_district_identifier.id)?;
+        state.serialize_field("state", &self.polling_district_identifier.state_identifier)?;
+        state.serialize_field("short_code", &self.polling_district_identifier.short_code)?;
+        state.serialize_field("name", &self.polling_district_identifier.name)?;
+        state.serialize_field("name_derivation", &self.name_derivation)?;
+        state.serialize_field("product_industry", &self.product_industry)?;
+        state.serialize_field("location", &self.location)?;
+        state.serialize_field("demographic", &self.demographic)?;
+        state.serialize_field("area", &self.area)?;
+        state.end()
+    }
+}
+
 #[derive(Clone)]
-pub struct PollingPlaceStructure {}
+pub struct PollingDistrictIdentifierStructure {
+    //@Id
+    id: u32,
+    //@ShortCode
+    short_code: String,
+    //Name
+    name: String,
+    //StateIdentifier
+    state_identifier: String,
+}
+
+impl From<&Element> for PollingDistrictIdentifierStructure {
+    fn from(value: &Element) -> Self {
+        Self {
+            id: value.attr("Id").unwrap().parse().unwrap(),
+            name: value.get_child_ignore_ns("Name").unwrap().text(),
+            short_code: value.attr("ShortCode").unwrap().to_string(),
+            state_identifier: value
+                .get_child_ignore_ns("StateIdentifier")
+                .unwrap()
+                .attr("Id")
+                .unwrap()
+                .to_string(),
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct PollingPlaceStructure {
+    //PhysicalLocation/PostalLocation/ElectronicLocation/OtherLocation
+    location: PollingPlaceLocation,
+    //PollingPlaceIdentifier
+    identifier: PollingPlaceIdentifierStructure,
+    //WheelchairAccess
+    wheelchair: Option<WheelChairAccessType>,
+}
+
+impl From<&Element> for PollingPlaceStructure {
+    fn from(value: &Element) -> Self {
+        let location: PollingPlaceLocationEnum =
+            if let Some(location) = value.get_child_ignore_ns("PhysicalLocation") {
+                PollingPlaceLocationEnum::Physical(location.into())
+            } else if let Some(location) = value.get_child_ignore_ns("PostalLocation") {
+                PollingPlaceLocationEnum::Postal(location.into())
+            } else if let Some(location) = value.get_child_ignore_ns("ElectronicLocation") {
+                PollingPlaceLocationEnum::Electronic(xs::Token(location.text()))
+            } else if let Some(location) = value.get_child_ignore_ns("OtherLocation") {
+                PollingPlaceLocationEnum::Other(location.text())
+            } else {
+                PollingPlaceLocationEnum::Other("".to_string())
+            };
+
+        Self {
+            location: PollingPlaceLocation(location),
+            identifier: value
+                .get_child_ignore_ns("PollingPlaceIdentifier")
+                .unwrap()
+                .into(),
+            wheelchair: value
+                .get_child_ignore_ns("WheelchairAccess")
+                .map(|x| x.into()),
+        }
+    }
+}
+
+impl Serialize for PollingPlaceStructure {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("PollingDistrictStructure", 5)?;
+        state.serialize_field("location", &self.location)?;
+        state.serialize_field("wheelchair", &self.wheelchair)?;
+        state.serialize_field("id", &self.identifier.id)?;
+        state.serialize_field("name", &self.identifier.name)?;
+        state.serialize_field("short_code", &self.identifier.short_code)?;
+        state.end()
+    }
+}
 #[derive(Clone)]
 pub struct PositionStructure {
     //text

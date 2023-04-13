@@ -1,5 +1,5 @@
 use mongodb::bson::Bson::ObjectId;
-use mongodb::bson::{doc, oid, Bson, Document};
+use mongodb::bson::{oid, Document};
 use mongodb::options::ClientOptions;
 use mongodb::sync::{Client, Cursor, Database};
 use serde::Serialize;
