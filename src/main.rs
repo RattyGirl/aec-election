@@ -1,14 +1,17 @@
 mod aec_parser;
 mod database;
+mod eml_schema;
 mod xml_extension;
 
-use crate::aec_parser::{CandidateListMessage, ElectionEventMessage, EventIdentifierStructure};
+use crate::aec_parser::candidate::CandidateList;
+use crate::aec_parser::event::ElectionEvent;
 use crate::database::{CustomDB, MongoDB};
-use crate::xml_extension::IgnoreNS;
+use crate::eml_schema::AffiliationStructure;
 use minidom::Element;
 use mongodb::bson::Bson::ObjectId;
-use mongodb::bson::{bson, doc, oid, Bson, Document};
-use serde::{Deserialize, Serialize};
+use mongodb::bson::{doc, oid, Bson, Document};
+use mongodb::sync::Cursor;
+use serde::Serialize;
 use std::io::Read;
 use std::str;
 use std::str::FromStr;
@@ -38,20 +41,13 @@ fn main() {
 fn reset_lightprogress_db(_database: &impl CustomDB) {}
 
 fn reset_preload_db(database: &impl CustomDB) {
-    database.drop::<Document>("candidates");
-    database.drop::<Document>("contests");
-    database.drop::<Document>("election_events");
-    database.drop::<Document>("elections");
-    database.drop::<Document>("polling_district_list");
-    database.drop::<Document>("affiliations");
-
-    //relationships
-    database.drop::<Document>("election_events_elections");
-    database.drop::<Document>("election_contests");
+    database
+        .list_tables()
+        .into_iter()
+        .for_each(|x| database.drop::<Document>(x.as_str()));
 }
 
 fn load_results(event_id: &str, database: &impl CustomDB) {
-    println!("Starting {}", event_id);
     let mut ftp_stream: FtpStream = FtpStream::connect("mediafeedarchive.aec.gov.au:21").unwrap();
     ftp_stream.login("anonymous", "").unwrap();
 
@@ -125,16 +121,11 @@ fn get_all_simple_results(
 }
 
 fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, event_id: &str) {
-    //
-    // let election_event_id = database
-    //     .insert_one("election_events", election_event.event_identifier.clone())
-    //     .unwrap_or("".to_string());
-
     let mut candidates_string: Vec<&str> = candidates_string.split('\n').collect();
     candidates_string.remove(0);
     let candidates_string = candidates_string.join("\n");
     let root: Element = candidates_string.parse().unwrap();
-    let candidate_list: CandidateListMessage = root
+    let candidate_list: CandidateList = root
         .get_child("CandidateList", EML_NAMESPACE)
         .unwrap()
         .try_into()
@@ -148,26 +139,40 @@ fn parse_candidate_preload(candidates_string: String, database: &impl CustomDB, 
             let contest_id = contest.contest_identifier.id;
             contest.candidates.into_iter().for_each(|candidate| {
                 //TODO affiliation linking
-                let candidate_id = database.insert_one(
-                    "candidates", candidate
-                );
+                let candidate_id = database.insert_one("candidates", candidate.clone());
+                match candidate.affiliation {
+                    None => {}
+                    Some(affiliation) => {
+                        let search: Cursor<Document> = database.find(
+                            "affiliations",
+                            doc! {
+                                "id": affiliation.clone().affiliation_identifier.id.unwrap().0
+                            },
+                        );
+                        let list: Vec<Document> = search.map(|x| x.unwrap()).collect();
+                        let affiliation_id = if list.is_empty() {
+                            database
+                                .insert_one("affiliations", affiliation.affiliation_identifier)
+                                .unwrap()
+                        } else {
+                            list.first()
+                                .unwrap()
+                                .get_object_id("_id")
+                                .unwrap()
+                                .to_string()
+                        };
+                        //connect affiliation
+                        database.many_to_many_connection(
+                            "candidate",
+                            "affiliation",
+                            candidate_id.unwrap().as_str(),
+                            affiliation_id.as_str(),
+                        );
+                    }
+                }
             })
         });
     });
-        //
-        //                         database.insert_one(
-        //                             "candidates",
-        //                             Candidate {
-        //                                 id: candidate_id.parse().unwrap(),
-        //                                 affiliation_id,
-        //                                 name: candidate_name,
-        //                                 profession: candidate_profession,
-        //                                 gender: candidate_gender,
-        //                             },
-        //                         );
-        //                     });
-        //             });
-        //     })
 }
 
 fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id: &str) {
@@ -175,7 +180,7 @@ fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id
     events_string.remove(0);
     let events_string = events_string.join("\n");
     let root: Element = events_string.parse().unwrap();
-    let election_event: ElectionEventMessage = root
+    let election_event: ElectionEvent = root
         .get_child("ElectionEvent", EML_NAMESPACE)
         .unwrap()
         .try_into()
@@ -186,22 +191,30 @@ fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id
         .unwrap_or("".to_string());
 
     election_event.elections.into_iter().for_each(|election| {
-        let election_id = database.insert_one("elections", election.clone()).unwrap_or("".to_string());
+        let election_id = database
+            .insert_one("elections", election.clone())
+            .unwrap_or("".to_string());
 
-        database.insert_one("election_events_elections", doc! {
-            "election_event": Bson::ObjectId(oid::ObjectId::from_str(election_event_id.as_str()).unwrap()),
-            "election": ObjectId(oid::ObjectId::from_str(election_id.as_str()).unwrap()),
-        });
+        database.many_to_many_connection(
+            "election_event",
+            "election",
+            election_event_id.as_str(),
+            election_id.as_str(),
+        );
 
         election.contests.into_iter().for_each(|contest| {
-            let contest_id = database.insert_one("contests", contest).unwrap_or("".to_string());
+            let contest_id = database
+                .insert_one("contests", contest)
+                .unwrap_or("".to_string());
 
-            database.insert_one("election_contests", doc! {
-                "election": ObjectId(oid::ObjectId::from_str(election_id.as_str()).unwrap()),
-                "contests": ObjectId(oid::ObjectId::from_str(contest_id.as_str()).unwrap()),
-            });
+            database.insert_one(
+                "election_contests",
+                doc! {
+                    "election": ObjectId(oid::ObjectId::from_str(election_id.as_str()).unwrap()),
+                    "contests": ObjectId(oid::ObjectId::from_str(contest_id.as_str()).unwrap()),
+                },
+            );
         });
-
     })
 }
 
@@ -213,141 +226,3 @@ fn get_all_in_dir(ftp_stream: &mut FtpStream) -> Vec<String> {
         .map(|row| row.split(' ').last().unwrap_or("").to_string())
         .collect::<Vec<_>>()
 }
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ElectionEventSerialize {
-    id: i32,
-    name: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Election {
-    id: String,
-    event_id: String,
-    date: String,
-    name: String,
-    category: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Contest {
-    id: String,
-    event_id: String,
-    election_id: String,
-    short_code: String,
-    name: String,
-    position: String,
-    number: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Candidate {
-    id: i32,
-    event_id: i32,
-    election_id: String,
-    contest_id: String,
-    affiliation_id: Option<i32>,
-    name: String,
-    profession: String,
-    gender: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct PollingDistrict {
-    id: String,
-    event_id: String,
-    short_code: String,
-    name: String,
-    state_id: String,
-    derivation: String,
-    products_industry: String,
-    location: String,
-    demographic: String,
-    area: String,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-struct Affiliation {
-    id: i32,
-    short_code: String,
-    registered_name: String,
-    affiliation_type: String,
-}
-
-impl Affiliation {
-    fn from(element: &Element) -> Self {
-        Self {
-            id: element
-                .get_child_ignore_ns("AffiliationIdentifier")
-                .unwrap()
-                .attr("Id")
-                .unwrap()
-                .parse()
-                .unwrap(),
-            short_code: element
-                .get_child_ignore_ns("AffiliationIdentifier")
-                .unwrap()
-                .attr("ShortCode")
-                .unwrap()
-                .to_string(),
-            registered_name: element
-                .get_child_ignore_ns("AffiliationIdentifier")
-                .unwrap()
-                .get_child_ignore_ns("RegisteredName")
-                .unwrap()
-                .text(),
-            affiliation_type: element
-                .get_child_ignore_ns("Type")
-                .unwrap_or(&Element::bare("", ""))
-                .text(),
-        }
-    }
-}
-
-impl PollingDistrict {
-    fn from(element: &Element, event_id: &str) -> Self {
-        Self {
-            id: element
-                .get_child_ignore_ns("PollingDistrictIdentifier")
-                .unwrap()
-                .attr("Id")
-                .unwrap()
-                .to_string(),
-            event_id: event_id.to_string(),
-            short_code: element
-                .get_child_ignore_ns("PollingDistrictIdentifier")
-                .unwrap()
-                .attr("ShortCode")
-                .unwrap()
-                .to_string(),
-            name: element
-                .get_child_ignore_ns("PollingDistrictIdentifier")
-                .unwrap()
-                .get_child_ignore_ns("Name")
-                .unwrap()
-                .text(),
-            state_id: element
-                .get_child_ignore_ns("PollingDistrictIdentifier")
-                .unwrap()
-                .get_child_ignore_ns("StateIdentifier")
-                .unwrap()
-                .attr("Id")
-                .unwrap()
-                .to_string(),
-            derivation: element
-                .get_child_ignore_ns("NameDerivation")
-                .unwrap()
-                .text(),
-            products_industry: element
-                .get_child_ignore_ns("ProductsIndustry")
-                .unwrap()
-                .text(),
-            location: element.get_child_ignore_ns("Location").unwrap().text(),
-            demographic: element.get_child_ignore_ns("Demographic").unwrap().text(),
-            area: element.get_child_ignore_ns("Area").unwrap().text(),
-        }
-    }
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct PollingPlace {}
