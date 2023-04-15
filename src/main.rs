@@ -15,6 +15,7 @@ use mongodb::sync::Cursor;
 use std::io::Read;
 use std::str;
 use std::str::FromStr;
+use serde::Serialize;
 use suppaftp::FtpStream;
 use zip::ZipArchive;
 
@@ -169,9 +170,9 @@ fn get_all_polling_districts(polling_districts: String, database: &impl CustomDB
             district
                 .polling_places
                 .into_iter()
-                .for_each(|polling_place| {
+                .for_each(|mut polling_place| {
+                    polling_place.district = Some(oid::ObjectId::from_str(district_id.as_str()).unwrap());
                     let polling_place_id = database.insert_one("polling_places", polling_place).unwrap();
-                    database.many_to_many_connection("election_event", "polling_place", election_event_id.as_str(), polling_place_id.as_str())
                 });
         });
 }

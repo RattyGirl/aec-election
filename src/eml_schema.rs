@@ -1,6 +1,8 @@
 use crate::eml_schema::ComplexDateRangeEnum::{End, SingleDate, StartEnd};
 use crate::xml_extension::IgnoreNS;
 use minidom::Element;
+use mongodb::bson::oid;
+use mongodb::bson::oid::ObjectId;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
@@ -801,6 +803,9 @@ pub struct PollingPlaceStructure {
     pub(crate) identifier: PollingPlaceIdentifierStructure,
     //WheelchairAccess
     wheelchair: Option<WheelChairAccessType>,
+
+    pub(crate) district: Option<ObjectId>
+
 }
 
 impl From<&Element> for PollingPlaceStructure {
@@ -827,6 +832,7 @@ impl From<&Element> for PollingPlaceStructure {
             wheelchair: value
                 .get_child_ignore_ns("WheelchairAccess")
                 .map(|x| x.into()),
+            district: None,
         }
     }
 }
@@ -836,12 +842,13 @@ impl Serialize for PollingPlaceStructure {
     where
         S: Serializer,
     {
-        let mut state = serializer.serialize_struct("PollingDistrictStructure", 5)?;
+        let mut state = serializer.serialize_struct("PollingDistrictStructure", 6)?;
         state.serialize_field("location", &self.location)?;
         state.serialize_field("wheelchair", &self.wheelchair)?;
         state.serialize_field("id", &self.identifier.id)?;
         state.serialize_field("name", &self.identifier.name)?;
         state.serialize_field("short_code", &self.identifier.short_code)?;
+        state.serialize_field("district_id", &self.district)?;
         state.end()
     }
 }
