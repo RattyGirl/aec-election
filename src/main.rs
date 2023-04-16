@@ -1,4 +1,3 @@
-#![warn(missing_docs)]
 mod aec_parser;
 mod database;
 mod eml_schema;
@@ -14,7 +13,7 @@ use mongodb::bson::Bson::ObjectId;
 use mongodb::bson::{doc, oid, Document};
 use mongodb::sync::Cursor;
 use std::io::Read;
-use std::str;
+use std::{env, str};
 use std::str::FromStr;
 
 use suppaftp::FtpStream;
@@ -23,19 +22,24 @@ use zip::ZipArchive;
 const EML_NAMESPACE: &str = "urn:oasis:names:tc:evs:schema:eml";
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+    let option = &args[1];
+
     let mut ftp_stream: FtpStream = FtpStream::connect("mediafeedarchive.aec.gov.au:21").unwrap();
     ftp_stream.login("anonymous", "").unwrap();
     let database = MongoDB::setup("mongodb://127.0.0.1:27017", "election_history");
 
-    reset_preload_db(&database);
+    // reset_preload_db(&database);
     reset_lightprogress_db(&database);
 
     //get all elections
     let election_ids = get_all_in_dir(&mut ftp_stream);
     ftp_stream.quit().unwrap();
-
     election_ids.into_iter().for_each(|x| {
-        preload_data(x.as_str(), &database);
+
+        if option.eq("preload") {
+            preload_data(x.as_str(), &database);
+        }
         load_results(x.as_str(), &database);
     });
 }
@@ -118,7 +122,7 @@ fn get_all_simple_results(
     let mut results_light_progress: Vec<&str> = results_light_progress.split('\n').collect();
     results_light_progress.remove(0);
     let results_light_progress = results_light_progress.join("\n");
-    // let root = Element::from_str(results_light_progress.as_str()).unwrap();
+    let root = Element::from_str(results_light_progress.as_str()).unwrap();
     // let candidate_list = root.get_child_ignore_ns("Results").unwrap();
 }
 
