@@ -21,7 +21,7 @@ pub mod candidate {
             let event_identifier = value.get_child_ignore_ns("EventIdentifier").unwrap();
             let elections: Vec<&Element> = value.get_children_ignore_ns("Election");
             Self {
-                event_identifier: event_identifier.into(),
+                event_identifier: event_identifier.try_into().unwrap(),
                 elections: elections.into_iter().map(Election::from).collect(),
             }
         }
@@ -40,7 +40,8 @@ pub mod candidate {
                 election_identifier: value
                     .get_child_ignore_ns("ElectionIdentifier")
                     .unwrap()
-                    .into(),
+                    .try_into()
+                    .unwrap(),
                 contests: contests.into_iter().map(Contest::from).collect(),
             }
         }
@@ -59,16 +60,19 @@ pub mod candidate {
                 contest_identifier: value
                     .get_child_ignore_ns("ContestIdentifier")
                     .unwrap()
-                    .into(),
+                    .try_into()
+                    .unwrap(),
                 candidates: value
                     .get_children_ignore_ns("Candidate")
                     .into_iter()
-                    .map(CandidateStructure::from)
+                    .map(CandidateStructure::try_from)
+                    .map(|x| x.unwrap())
                     .collect(),
                 affiliations: value
                     .get_children_ignore_ns("Affiliation")
                     .into_iter()
-                    .map(AffiliationStructure::from)
+                    .map(AffiliationStructure::try_from)
+                    .map(|x| x.unwrap())
                     .collect(),
             }
         }
@@ -103,7 +107,7 @@ pub mod event {
             let managing_authority = value.get_child_ignore_ns("ManagingAuthority");
             let elections: Vec<&Element> = value.get_children_ignore_ns("Election");
             Self {
-                event_identifier: event_identifier.into(),
+                event_identifier: event_identifier.try_into().unwrap(),
                 managing_authority: managing_authority.map(|x| x.into()),
                 elections: elections.into_iter().map(Election::from).collect(),
             }
@@ -126,8 +130,8 @@ pub mod event {
                 election_identifier: value
                     .get_child_ignore_ns("ElectionIdentifier")
                     .unwrap()
-                    .into(),
-                date: date.map(ComplexDateRangeStructure::from),
+                    .try_into().unwrap(),
+                date: date.map(ComplexDateRangeStructure::try_from).map(|x| x.unwrap()),
                 contests: contests.into_iter().map(Contest::from).collect(),
             }
         }
@@ -167,15 +171,15 @@ pub mod event {
                 contest_identifier: value
                     .get_child_ignore_ns("ContestIdentifier")
                     .unwrap()
-                    .into(),
-                area: value.get_child_ignore_ns("Area").map(AreaStructure::from),
+                    .try_into().unwrap(),
+                area: value.get_child_ignore_ns("Area").map(AreaStructure::try_from).map(|x| x.unwrap()),
                 position: value
                     .get_child_ignore_ns("Position")
-                    .map(PositionStructure::from),
+                    .map(PositionStructure::try_from).map(|x| x.unwrap()),
                 voting_method: value
                     .get_children_ignore_ns("VotingMethod")
                     .into_iter()
-                    .map(VotingMethodType::from)
+                    .map(VotingMethodType::try_from).map(|x| x.unwrap())
                     .collect(),
                 max_votes: value
                     .get_child_ignore_ns("MaxVotes")
@@ -223,10 +227,10 @@ pub mod polling {
             let event_identifier = value.get_child_ignore_ns("EventIdentifier").unwrap();
             let districts: Vec<&Element> = value.get_children_ignore_ns("PollingDistrict");
             Self {
-                event_identifier: event_identifier.into(),
+                event_identifier: event_identifier.try_into().unwrap(),
                 polling_districts: districts
                     .into_iter()
-                    .map(PollingDistrictStructure::from)
+                    .map(PollingDistrictStructure::try_from).map(|x| x.unwrap())
                     .collect(),
             }
         }

@@ -1,18 +1,26 @@
 use crate::eml_schema::ComplexDateRangeEnum::{End, SingleDate, StartEnd};
 use crate::xml_extension::IgnoreNS;
 use minidom::Element;
-use mongodb::bson::oid;
 use mongodb::bson::oid::ObjectId;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
+
+// EML Parser Error
+#[derive(Debug)]
+pub enum EMLError {
+    /// An error representing an inability to find an element: A inside another element: B
+    CannotFindElement(String, String)
+}
 
 // AEC Types
 #[derive(Clone)]
 pub struct WheelChairAccessType(String);
 
-impl From<&Element> for WheelChairAccessType {
-    fn from(value: &Element) -> Self {
-        Self(value.text())
+impl TryFrom<&Element> for WheelChairAccessType {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self(value.text()))
     }
 }
 
@@ -24,6 +32,7 @@ impl Serialize for WheelChairAccessType {
         serializer.serialize_newtype_struct("WheelChairAccessType", &self.0)
     }
 }
+
 #[derive(Clone)]
 pub struct PhysicalLocationStructure {
     lat: String,
@@ -37,19 +46,39 @@ pub struct PhysicalLocationStructure {
     postcode: String,
 }
 
-impl From<&Element> for PhysicalLocationStructure {
-    fn from(value: &Element) -> Self {
-        let address = value.get_child_ignore_ns("Address").unwrap();
-        Self {
-            lat: address
-                .get_child_ignore_ns("PostalServiceElements")
-                .unwrap()
+impl TryFrom<&Element> for PhysicalLocationStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        let address = match value.get_child_ignore_ns("Address") {
+            None => {
+                return Err(EMLError::CannotFindElement("Address".to_string(), String::from(value)))
+            }
+            Some(add) => add
+        };
+
+        let postal_service_elements = match address.get_child_ignore_ns("PostalServiceElements") {
+            None => {
+                return Err(EMLError::CannotFindElement("PostalServiceElements".to_string(), String::from(address)))
+            }
+            Some(pse) => pse
+        };
+
+        let address_lines = match address
+            .get_child_ignore_ns("AddressLines") {
+            None => {
+                return Err(EMLError::CannotFindElement("AddressLines".to_string(), String::from(address)))
+            }
+            Some(address_lines) => address_lines
+        };
+
+
+        Ok(Self {
+            lat: postal_service_elements
                 .get_child_ignore_ns("AddressLatitude")
                 .unwrap()
                 .text(),
-            long: address
-                .get_child_ignore_ns("PostalServiceElements")
-                .unwrap()
+            long: postal_service_elements
                 .get_child_ignore_ns("AddressLongitude")
                 .unwrap()
                 .text(),
@@ -57,49 +86,37 @@ impl From<&Element> for PhysicalLocationStructure {
                 .attr("AddressDetailsKey")
                 .unwrap_or_default()
                 .to_string(),
-            premises: address
-                .get_child_ignore_ns("AddressLines")
-                .unwrap()
+            premises: address_lines
                 .get_child_with_type("Premises")
                 .map(|x| x.text())
-                .unwrap_or("".to_string()),
-            address_line_1: address
-                .get_child_ignore_ns("AddressLines")
-                .unwrap()
+                .unwrap_or_else(|| "".to_string()),
+            address_line_1: address_lines
                 .get_child_with_type("AddressLine1")
                 .map(|x| x.text())
-                .unwrap_or("".to_string()),
-            address_line_2: address
-                .get_child_ignore_ns("AddressLines")
-                .unwrap()
+                .unwrap_or_else(|| "".to_string()),
+            address_line_2: address_lines
                 .get_child_with_type("AddressLine2")
                 .map(|x| x.text())
-                .unwrap_or("".to_string()),
-            suburb: address
-                .get_child_ignore_ns("AddressLines")
-                .unwrap()
+                .unwrap_or_else(|| "".to_string()),
+            suburb:address_lines
                 .get_child_with_type("Suburb")
                 .map(|x| x.text())
-                .unwrap_or("".to_string()),
-            state: address
-                .get_child_ignore_ns("AddressLines")
-                .unwrap()
+                .unwrap_or_else(|| "".to_string()),
+            state: address_lines
                 .get_child_with_type("State")
                 .map(|x| x.text())
-                .unwrap_or("".to_string()),
-            postcode: address
-                .get_child_ignore_ns("AddressLines")
-                .unwrap()
+                .unwrap_or_else(|| "".to_string()),
+            postcode: address_lines
                 .get_child_with_type("Postcode")
                 .map(|x| x.text())
-                .unwrap_or("".to_string()),
-        }
+                .unwrap_or_else(|| "".to_string()),
+        })
     }
 }
 impl Serialize for PhysicalLocationStructure {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut state = serializer.serialize_struct("PhysicalLocationStructure", 9)?;
         state.serialize_field("lat", &self.lat)?;
@@ -130,10 +147,16 @@ impl Serialize for PollingPlaceLocationEnum {
         S: Serializer,
     {
         match self.clone() {
-            PollingPlaceLocationEnum::Physical(l) => serializer.serialize_newtype_struct("Physical", &l),
-            PollingPlaceLocationEnum::Postal(l) => serializer.serialize_newtype_struct("Postal", &l),
-            PollingPlaceLocationEnum::Electronic(l) => serializer.serialize_newtype_struct("Electronic", &l),
-            PollingPlaceLocationEnum::Other(l) => serializer.serialize_newtype_struct("Other", &l)
+            PollingPlaceLocationEnum::Physical(l) => {
+                serializer.serialize_newtype_struct("Physical", &l)
+            }
+            PollingPlaceLocationEnum::Postal(l) => {
+                serializer.serialize_newtype_struct("Postal", &l)
+            }
+            PollingPlaceLocationEnum::Electronic(l) => {
+                serializer.serialize_newtype_struct("Electronic", &l)
+            }
+            PollingPlaceLocationEnum::Other(l) => serializer.serialize_newtype_struct("Other", &l),
         }
     }
 }
@@ -151,30 +174,33 @@ impl Serialize for PollingPlaceLocation {
 #[derive(Clone)]
 pub struct PollingPlaceIdentifierStructure {
     //@Id
-    pub(crate) id: xs::NMTOKEN,
+    pub(crate) id: xs::Nmtoken,
     //@Name
     name: Option<String>,
     //@ShortCode
-    short_code: Option<xs::NMTOKEN>,
+    short_code: Option<xs::Nmtoken>,
 }
 
-impl From<&Element> for PollingPlaceIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
-            id: xs::NMTOKEN(value.attr("Id").unwrap().to_string()),
+impl TryFrom<&Element> for PollingPlaceIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
+            id: xs::Nmtoken(value.attr("Id").unwrap().to_string()),
             name: value.attr("Name").map(|x| x.to_string()),
-            short_code: value.attr("ShortCode").map(|x| xs::NMTOKEN(x.to_string())),
-        }
+            short_code: value.attr("ShortCode").map(|x| xs::Nmtoken(x.to_string())),
+        })
     }
 }
 
 // XML Types
 pub mod xs {
     use serde::{Serialize, Serializer};
+    use crate::eml_schema::EMLError;
 
     #[derive(Clone)]
-    pub struct NMTOKEN(pub String);
-    impl Serialize for NMTOKEN {
+    pub struct Nmtoken(pub String);
+    impl Serialize for Nmtoken {
         fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
         where
             S: Serializer,
@@ -186,9 +212,11 @@ pub mod xs {
     #[derive(Clone)]
     pub struct PositiveInteger(pub u32);
 
-    impl From<String> for PositiveInteger {
-        fn from(value: String) -> Self {
-            Self(value.parse().unwrap())
+    impl TryFrom<String> for PositiveInteger {
+        type Error = EMLError;
+
+        fn try_from(value: String) -> Result<Self, Self::Error> {
+            Ok(Self(value.parse().unwrap()))
         }
     }
 
@@ -232,7 +260,7 @@ pub struct MessageTypeType;
 #[derive(Clone)]
 pub struct SealUsageType;
 #[derive(Clone)]
-pub struct ShortCodeType(xs::NMTOKEN);
+pub struct ShortCodeType(xs::Nmtoken);
 impl Serialize for ShortCodeType {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -248,14 +276,14 @@ pub struct VotingChannelType;
 #[allow(non_camel_case_types)]
 #[derive(Clone)]
 pub enum VotingMethodType {
-    AMS,
-    FPP,
-    IRV,
-    OPV,
-    RCV,
-    SPV,
-    STV,
-    NOR,
+    Ams,
+    Fpp,
+    Irv,
+    Opv,
+    Rcv,
+    Spv,
+    Stv,
+    Nor,
     cumulative,
     approval,
     block,
@@ -264,17 +292,19 @@ pub enum VotingMethodType {
     supplementaryvote,
     other,
 }
-impl From<&Element> for VotingMethodType {
-    fn from(value: &Element) -> Self {
-        match value.text().as_str() {
-            "AMS" => VotingMethodType::AMS,
-            "FPP" => VotingMethodType::FPP,
-            "IRV" => VotingMethodType::IRV,
-            "OPV" => VotingMethodType::OPV,
-            "RCV" => VotingMethodType::RCV,
-            "SPV" => VotingMethodType::SPV,
-            "STV" => VotingMethodType::STV,
-            "NOR" => VotingMethodType::NOR,
+impl TryFrom<&Element> for VotingMethodType {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(match value.text().as_str() {
+            "AMS" => VotingMethodType::Ams,
+            "FPP" => VotingMethodType::Fpp,
+            "IRV" => VotingMethodType::Irv,
+            "OPV" => VotingMethodType::Opv,
+            "RCV" => VotingMethodType::Rcv,
+            "SPV" => VotingMethodType::Spv,
+            "STV" => VotingMethodType::Stv,
+            "NOR" => VotingMethodType::Nor,
             "cumulative" => VotingMethodType::cumulative,
             "approval" => VotingMethodType::approval,
             "block" => VotingMethodType::block,
@@ -283,7 +313,7 @@ impl From<&Element> for VotingMethodType {
             "supplementaryvote" => VotingMethodType::supplementaryvote,
             "other" => VotingMethodType::other,
             _ => VotingMethodType::other,
-        }
+        })
     }
 }
 #[derive(Clone)]
@@ -297,7 +327,7 @@ pub struct YesNoType;
 #[derive(Clone)]
 pub struct AffiliationIdentifierStructure {
     //@Id
-    pub id: Option<xs::NMTOKEN>,
+    pub id: Option<xs::Nmtoken>,
     //@DisplayOrder
     display_order: Option<xs::PositiveInteger>,
     //@ShortCode
@@ -319,13 +349,15 @@ pub struct AffiliationStructure {
     logo: Vec<LogoStructure>,
 }
 
-impl From<&Element> for AffiliationStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for AffiliationStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             affiliation_identifier: value
                 .get_child_ignore_ns("AffiliationIdentifier")
                 .unwrap()
-                .into(),
+                .try_into().unwrap(),
             affiliation_type: value
                 .get_child_ignore_ns("Type")
                 .map(|x| xs::Token(x.text())),
@@ -335,26 +367,29 @@ impl From<&Element> for AffiliationStructure {
             logo: value
                 .get_children_ignore_ns("Logo")
                 .into_iter()
-                .map(LogoStructure::from)
+                .map(LogoStructure::try_from)
+                .map(|x| x.unwrap())
                 .collect(),
-        }
+        })
     }
 }
-impl From<&Element> for AffiliationIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
-            id: value.attr("Id").map(|x| xs::NMTOKEN(x.to_string())),
+impl TryFrom<&Element> for AffiliationIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
+            id: value.attr("Id").map(|x| xs::Nmtoken(x.to_string())),
             display_order: value
                 .attr("Id")
                 .map(|x| xs::PositiveInteger(x.parse().unwrap_or(1))),
             short_code: value
                 .attr("ShortCode")
-                .map(|x| ShortCodeType(xs::NMTOKEN(x.to_string()))),
+                .map(|x| ShortCodeType(xs::Nmtoken(x.to_string()))),
             expected_confirmation_reference: value
                 .attr("ExpectedConfirmationReference")
                 .map(|x| ConfirmationReferenceType(x.to_string())),
             registered_name: xs::Token(value.get_child_ignore_ns("RegisteredName").unwrap().text()),
-        }
+        })
     }
 }
 
@@ -374,7 +409,7 @@ impl Serialize for AffiliationIdentifierStructure {
 #[derive(Clone)]
 pub struct AgentIdentifierStructure<PersonNameStructure> {
     //@Id
-    id: Option<xs::NMTOKEN>,
+    id: Option<xs::Nmtoken>,
     //@DisplayOrder
     display_order: Option<xs::PositiveInteger>,
     //AgentName
@@ -383,7 +418,7 @@ pub struct AgentIdentifierStructure<PersonNameStructure> {
 #[derive(Clone)]
 pub struct AgentStructure<OfficialAddressStructure, PersonNameStructure> {
     //@Id
-    id: Option<xs::NMTOKEN>,
+    id: Option<xs::Nmtoken>,
     //@DisplayOrder
     display_order: Option<xs::PositiveInteger>,
     //@Role
@@ -400,7 +435,7 @@ pub struct AgentStructure<OfficialAddressStructure, PersonNameStructure> {
 #[derive(Clone)]
 pub struct AreaStructure {
     //@Id
-    id: Option<xs::NMTOKEN>,
+    id: Option<xs::Nmtoken>,
     //@DisplayOrder
     display_order: Option<xs::PositiveInteger>,
     //@Type
@@ -408,21 +443,25 @@ pub struct AreaStructure {
     //text
     text: String,
 }
-impl From<&Element> for AreaStructure {
-    fn from(value: &Element) -> Self {
-        Self {
-            id: value.attr("Id").map(|x| xs::NMTOKEN(x.to_string())),
+impl TryFrom<&Element> for AreaStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
+            id: value.attr("Id").map(|x| xs::Nmtoken(x.to_string())),
             display_order: value
                 .attr("DisplayOrder")
                 .map(|x| xs::PositiveInteger(x.parse().unwrap_or(1))),
             area_type: value.attr("Type").map(|x| xs::Token(x.to_string())),
             text: value.text(),
-        }
+        })
     }
 }
-impl From<&Element> for PositionStructure {
-    fn from(value: &Element) -> Self {
-        Self { text: value.text() }
+impl TryFrom<&Element> for PositionStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self { text: value.text() })
     }
 }
 #[derive(Clone)]
@@ -435,12 +474,14 @@ pub struct AuthorityIdentifierStructure {
     text: String,
 }
 
-impl From<&Element> for AuthorityIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for AuthorityIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             id: value.attr("Id").unwrap().to_string(),
             text: value.text(),
-        }
+        })
     }
 }
 #[derive(Clone)]
@@ -467,17 +508,18 @@ pub struct CandidateStructure {
     //Profession
     profession: Option<String>,
 }
-impl From<&Element> for CandidateStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for CandidateStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {        Ok(Self {
             candidate_identifier: value
                 .get_child_ignore_ns("CandidateIdentifier")
                 .unwrap()
-                .into(),
+                .try_into().unwrap(),
             gender: value.get_child_ignore_ns("Gender").map(|x| x.text()),
-            affiliation: value.get_child_ignore_ns("Affiliation").map(|x| x.into()),
+            affiliation: value.get_child_ignore_ns("Affiliation").map(|x| x.try_into().unwrap()),
             profession: value.get_child_ignore_ns("Profession").map(|x| x.text()),
-        }
+        })
     }
 }
 impl Serialize for CandidateStructure {
@@ -493,12 +535,13 @@ impl Serialize for CandidateStructure {
         state.end()
     }
 }
-impl From<&Element> for CandidateIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for CandidateIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {        Ok(Self {
             id: value.attr("Id").unwrap().parse().unwrap(),
             candidate_name: value.get_child_ignore_ns("CandidateName").map(|x| x.text()),
-        }
+        })
     }
 }
 #[derive(Clone)]
@@ -541,27 +584,28 @@ impl Serialize for ComplexDateRangeEnum {
     }
 }
 
-impl From<&Element> for ComplexDateRangeStructure {
-    fn from(value: &Element) -> Self {
-        let date_type = value.attr("Type").unwrap().to_string();
+impl TryFrom<&Element> for ComplexDateRangeStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {        let date_type = value.attr("Type").unwrap().to_string();
         if let Some(date) = value.get_child_ignore_ns("SingleDate") {
-            Self {
+            Ok(Self {
                 date_type,
                 choice: SingleDate(date.text()),
-            }
+            })
         } else if let Some(end_date) = value.get_child_ignore_ns("End") {
-            Self {
+            Ok(Self {
                 date_type,
                 choice: End(end_date.text()),
-            }
+            })
         } else {
-            Self {
+            Ok(Self {
                 date_type,
                 choice: StartEnd(
                     value.get_child_ignore_ns("Start").unwrap().text(),
                     value.get_child_ignore_ns("End").map(|x| x.text()),
                 ),
-            }
+            })
         }
     }
 }
@@ -589,13 +633,14 @@ pub struct ContestIdentifierStructure {
     //ContestName
     pub(crate) contest_name: Option<String>,
 }
-impl From<&Element> for ContestIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for ContestIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {        Ok(Self {
             id: value.attr("Id").unwrap().to_string(),
             short_code: value.attr("ShortCode").map(|x| x.to_string()),
             contest_name: value.get_child_ignore_ns("ContestName").map(|x| x.text()),
-        }
+        })
     }
 }
 #[derive(Clone)]
@@ -616,15 +661,17 @@ pub struct ElectionIdentifierStructure {
     pub(crate) election_category: Option<String>,
 }
 
-impl From<&Element> for ElectionIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for ElectionIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             id: value.attr("Id").unwrap().to_string(),
             election_name: value.get_child_ignore_ns("ElectionName").map(|x| x.text()),
             election_category: value
                 .get_child_ignore_ns("ElectionCategory")
                 .map(|x| x.text()),
-        }
+        })
     }
 }
 #[derive(Clone)]
@@ -637,13 +684,15 @@ pub struct EventIdentifierStructure {
     pub(crate) event_name: Option<String>,
 }
 
-impl From<&Element> for EventIdentifierStructure {
-    fn from(value: &Element) -> Self {
+impl TryFrom<&Element> for EventIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
         let event_name: Option<String> = value.get_child_ignore_ns("EventName").map(|x| x.text());
-        Self {
+        Ok(Self {
             id: value.attr("Id").map(|x| x.to_string()),
             event_name,
-        }
+        })
     }
 }
 impl Serialize for EventIdentifierStructure {
@@ -667,10 +716,12 @@ pub struct InternalGenericCommunicationStructure {}
 #[derive(Clone)]
 pub struct LogoStructure {}
 
-impl From<&Element> for LogoStructure {
-    fn from(value: &Element) -> Self {
+impl TryFrom<&Element> for LogoStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
         //TODO
-        Self {}
+        Ok(Self {})
     }
 }
 
@@ -690,7 +741,7 @@ impl<AuthorityAddressStructure: Default> From<&Element>
             authority_identifier: value
                 .get_child_ignore_ns("AuthorityIdentifier")
                 .unwrap()
-                .into(),
+                .try_into().unwrap(),
             authority_address: AuthorityAddressStructure::default(),
         }
     }
@@ -722,13 +773,15 @@ pub struct PollingDistrictStructure {
     pub(crate) polling_places: Vec<PollingPlaceStructure>,
 }
 
-impl From<&Element> for PollingDistrictStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for PollingDistrictStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             polling_district_identifier: value
                 .get_child_ignore_ns("PollingDistrictIdentifier")
                 .unwrap()
-                .into(),
+                .try_into().unwrap(),
             name_derivation: value.get_child_ignore_ns("NameDerivation").unwrap().text(),
             product_industry: value
                 .get_child_ignore_ns("ProductsIndustry")
@@ -736,15 +789,16 @@ impl From<&Element> for PollingDistrictStructure {
                 .text(),
             location: value.get_child_ignore_ns("Location").unwrap().text(),
             demographic: value.get_child_ignore_ns("Demographic").unwrap().text(),
-            area: value.get_child_ignore_ns("Area").unwrap().text().into(),
+            area: value.get_child_ignore_ns("Area").unwrap().text().try_into().unwrap(),
             polling_places: value
                 .get_child_ignore_ns("PollingPlaces")
                 .unwrap()
                 .get_children_ignore_ns("PollingPlace")
                 .into_iter()
-                .map(PollingPlaceStructure::from)
+                .map(PollingPlaceStructure::try_from)
+                .map(|x| x.unwrap())
                 .collect(),
-        }
+        })
     }
 }
 
@@ -779,9 +833,11 @@ pub struct PollingDistrictIdentifierStructure {
     state_identifier: String,
 }
 
-impl From<&Element> for PollingDistrictIdentifierStructure {
-    fn from(value: &Element) -> Self {
-        Self {
+impl TryFrom<&Element> for PollingDistrictIdentifierStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             id: value.attr("Id").unwrap().parse().unwrap(),
             name: value.get_child_ignore_ns("Name").unwrap().text(),
             short_code: value.attr("ShortCode").unwrap().to_string(),
@@ -791,7 +847,7 @@ impl From<&Element> for PollingDistrictIdentifierStructure {
                 .attr("Id")
                 .unwrap()
                 .to_string(),
-        }
+        })
     }
 }
 
@@ -804,17 +860,18 @@ pub struct PollingPlaceStructure {
     //WheelchairAccess
     wheelchair: Option<WheelChairAccessType>,
 
-    pub(crate) district: Option<ObjectId>
-
+    pub(crate) district: Option<ObjectId>,
 }
 
-impl From<&Element> for PollingPlaceStructure {
-    fn from(value: &Element) -> Self {
+impl TryFrom<&Element> for PollingPlaceStructure {
+    type Error = EMLError;
+
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
         let location: PollingPlaceLocationEnum =
             if let Some(location) = value.get_child_ignore_ns("PhysicalLocation") {
-                PollingPlaceLocationEnum::Physical(location.into())
+                PollingPlaceLocationEnum::Physical(location.try_into().unwrap())
             } else if let Some(location) = value.get_child_ignore_ns("PostalLocation") {
-                PollingPlaceLocationEnum::Postal(location.into())
+                PollingPlaceLocationEnum::Postal(location.try_into().unwrap())
             } else if let Some(location) = value.get_child_ignore_ns("ElectronicLocation") {
                 PollingPlaceLocationEnum::Electronic(xs::Token(location.text()))
             } else if let Some(location) = value.get_child_ignore_ns("OtherLocation") {
@@ -823,17 +880,17 @@ impl From<&Element> for PollingPlaceStructure {
                 PollingPlaceLocationEnum::Other("".to_string())
             };
 
-        Self {
+        Ok(Self {
             location: PollingPlaceLocation(location),
             identifier: value
                 .get_child_ignore_ns("PollingPlaceIdentifier")
                 .unwrap()
-                .into(),
+                .try_into().unwrap(),
             wheelchair: value
                 .get_child_ignore_ns("WheelchairAccess")
-                .map(|x| x.into()),
+                .map(|x| x.try_into().unwrap()),
             district: None,
-        }
+        })
     }
 }
 

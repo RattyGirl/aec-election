@@ -1,3 +1,4 @@
+#![warn(missing_docs)]
 mod aec_parser;
 mod database;
 mod eml_schema;
@@ -15,7 +16,7 @@ use mongodb::sync::Cursor;
 use std::io::Read;
 use std::str;
 use std::str::FromStr;
-use serde::Serialize;
+
 use suppaftp::FtpStream;
 use zip::ZipArchive;
 
@@ -171,8 +172,11 @@ fn get_all_polling_districts(polling_districts: String, database: &impl CustomDB
                 .polling_places
                 .into_iter()
                 .for_each(|mut polling_place| {
-                    polling_place.district = Some(oid::ObjectId::from_str(district_id.as_str()).unwrap());
-                    let polling_place_id = database.insert_one("polling_places", polling_place).unwrap();
+                    polling_place.district =
+                        Some(oid::ObjectId::from_str(district_id.as_str()).unwrap());
+                    let polling_place_id = database
+                        .insert_one("polling_places", polling_place)
+                        .unwrap();
                 });
         });
 }
@@ -244,11 +248,13 @@ fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id
         .unwrap();
 
     let election_event_id = database
-        .insert_one("election_events", election_event.event_identifier.clone()).unwrap_or_default();
+        .insert_one("election_events", election_event.event_identifier.clone())
+        .unwrap_or_default();
 
     election_event.elections.into_iter().for_each(|election| {
         let election_id = database
-            .insert_one("elections", election.clone()).unwrap_or_default();
+            .insert_one("elections", election.clone())
+            .unwrap_or_default();
 
         database.many_to_many_connection(
             "election_event",
@@ -258,8 +264,7 @@ fn parse_event_preload(events_string: String, database: &impl CustomDB, event_id
         );
 
         election.contests.into_iter().for_each(|contest| {
-            let contest_id = database
-                .insert_one("contests", contest).unwrap_or_default();
+            let contest_id = database.insert_one("contests", contest).unwrap_or_default();
 
             database.insert_one(
                 "election_contests",
