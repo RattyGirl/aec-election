@@ -130,8 +130,11 @@ pub mod event {
                 election_identifier: value
                     .get_child_ignore_ns("ElectionIdentifier")
                     .unwrap()
-                    .try_into().unwrap(),
-                date: date.map(ComplexDateRangeStructure::try_from).map(|x| x.unwrap()),
+                    .try_into()
+                    .unwrap(),
+                date: date
+                    .map(ComplexDateRangeStructure::try_from)
+                    .map(|x| x.unwrap()),
                 contests: contests.into_iter().map(Contest::from).collect(),
             }
         }
@@ -171,15 +174,21 @@ pub mod event {
                 contest_identifier: value
                     .get_child_ignore_ns("ContestIdentifier")
                     .unwrap()
-                    .try_into().unwrap(),
-                area: value.get_child_ignore_ns("Area").map(AreaStructure::try_from).map(|x| x.unwrap()),
+                    .try_into()
+                    .unwrap(),
+                area: value
+                    .get_child_ignore_ns("Area")
+                    .map(AreaStructure::try_from)
+                    .map(|x| x.unwrap()),
                 position: value
                     .get_child_ignore_ns("Position")
-                    .map(PositionStructure::try_from).map(|x| x.unwrap()),
+                    .map(PositionStructure::try_from)
+                    .map(|x| x.unwrap()),
                 voting_method: value
                     .get_children_ignore_ns("VotingMethod")
                     .into_iter()
-                    .map(VotingMethodType::try_from).map(|x| x.unwrap())
+                    .map(VotingMethodType::try_from)
+                    .map(|x| x.unwrap())
                     .collect(),
                 max_votes: value
                     .get_child_ignore_ns("MaxVotes")
@@ -230,9 +239,344 @@ pub mod polling {
                 event_identifier: event_identifier.try_into().unwrap(),
                 polling_districts: districts
                     .into_iter()
-                    .map(PollingDistrictStructure::try_from).map(|x| x.unwrap())
+                    .map(PollingDistrictStructure::try_from)
+                    .map(|x| x.unwrap())
                     .collect(),
             }
+        }
+    }
+}
+
+pub mod results {
+    use crate::eml_schema::{
+        CandidateIdentifierStructure, ContestIdentifierStructure, EMLError,
+        ElectionIdentifierStructure, EventIdentifierStructure, ManagingAuthorityStructure,
+    };
+    use crate::xml_extension::IgnoreNS;
+    use minidom::Element;
+    use std::str::FromStr;
+
+    pub struct ResultsMediaFeed {
+        //@Id
+        pub(crate) id: String,
+        //@Created
+        created: String,
+        //?ManagingAuthority
+        managing_authority: Option<ManagingAuthorityStructure<()>>,
+        //?MessageLanguage
+        message_language: Option<String>,
+        //?Cycle
+        cycle: Option<CycleStructure>,
+        //Results
+        pub(crate) results: ResultsStructure,
+    }
+
+    impl From<&Element> for ResultsMediaFeed {
+        fn from(value: &Element) -> Self {
+            Self {
+                id: value.attr("Id").unwrap().to_string(),
+                created: value.attr("Created").unwrap().to_string(),
+                managing_authority: value
+                    .get_child_ignore_ns("ManagingAuthority")
+                    .map(|x| x.into()),
+                message_language: value
+                    .get_child_ignore_ns("MessageLanguage")
+                    .map(|x| x.text()),
+                cycle: value.get_child_ignore_ns("Cycle").map(|x| x.into()),
+                results: value.get_child_ignore_ns("Results").unwrap().into(),
+            }
+        }
+    }
+
+    struct CycleStructure {
+        created: String,
+        guid: String,
+    }
+    impl From<&Element> for CycleStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                created: value.attr("Created").unwrap().to_string(),
+                guid: value.text(),
+            }
+        }
+    }
+
+    pub struct ResultsStructure {
+        //@Updated
+        updated: Option<String>,
+        //@Phase
+        phase: String,
+        //EventIdentifier
+        pub(crate) event_identifier: EventIdentifierStructure,
+        //Election
+        pub(crate) election: Vec<ElectionStructure>,
+    }
+
+    impl From<&Element> for ResultsStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                updated: value.attr("Updated").map(|x| x.to_string()),
+                phase: value.attr("Phase").unwrap_or("").to_string(),
+                event_identifier: EventIdentifierStructure::try_from(
+                    value.get_child_ignore_ns("EventIdentifier").unwrap(),
+                )
+                .unwrap(),
+                election: value
+                    .get_children_ignore_ns("Election")
+                    .into_iter()
+                    .map(ElectionStructure::from)
+                    .collect(),
+            }
+        }
+    }
+
+    struct ElectionStructure {
+        updated: Option<String>,
+        election_identifier: ElectionIdentifierStructure,
+        election_type: ElectionType,
+    }
+
+    impl From<&Element> for ElectionStructure {
+        fn from(value: &Element) -> Self {
+            let category: ElectionType = if let Some(category) = value.get_child_ignore_ns("House")
+            {
+                ElectionType::House(category.into())
+            } else if let Some(category) = value.get_child_ignore_ns("Senate") {
+                ElectionType::Senate(category.into())
+            } else if let Some(category) = value.get_child_ignore_ns("Referendum") {
+                ElectionType::Referendum(category.into())
+            } else {
+                ElectionType::Other
+            };
+            Self {
+                updated: value.attr("Updated").map(|x| x.to_string()),
+                election_identifier: ElectionIdentifierStructure::try_from(
+                    value.get_child_ignore_ns("ElectionIdentifier").unwrap(),
+                )
+                .unwrap(),
+                election_type: category,
+            }
+        }
+    }
+
+    enum ElectionType {
+        House(HouseMediaFeedStructure),
+        Senate(SenateMediaFeedStructure),
+        Referendum(ReferendumMediaFeedStructure),
+        Other,
+    }
+
+    struct HouseMediaFeedStructure {
+        contests: Vec<HouseContestsStructure>,
+    }
+
+    impl From<&Element> for HouseMediaFeedStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                contests: value
+                    .get_child_ignore_ns("Contests")
+                    .unwrap()
+                    .get_children_ignore_ns("Contest")
+                    .into_iter()
+                    .map(HouseContestsStructure::from)
+                    .collect(),
+            }
+        }
+    }
+    struct HouseContestsStructure {
+        //@Updated
+        updated: Option<String>,
+        //@Declared
+        declared: Option<String>,
+        //@Projected
+        projected: Option<String>,
+        //ContestIdentifier
+        contest_identifier: ContestIdentifierStructure,
+        //Enrolment
+        enrolment: u32,
+        //FirstPreferences
+        first_prefs: HouseFirstPreferencesStructure,
+        //TwoCandidatePreferred
+        tcp: Option<TwoCandidatePreferredStructure>,
+    }
+
+    impl From<&Element> for HouseContestsStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                updated: value.attr("Updated").map(|x| x.to_string()),
+                declared: value.attr("Declared").map(|x| x.to_string()),
+                projected: value.attr("Projected").map(|x| x.to_string()),
+                contest_identifier: value
+                    .get_child_ignore_ns("ContestIdentifier")
+                    .unwrap()
+                    .try_into()
+                    .unwrap(),
+                enrolment: value
+                    .get_child_ignore_ns("Enrolment")
+                    .unwrap()
+                    .text()
+                    .parse()
+                    .unwrap_or(0),
+                first_prefs: value
+                    .get_child_ignore_ns("FirstPreferences")
+                    .unwrap()
+                    .into(),
+                tcp: value
+                    .get_child_ignore_ns("TwoCandidatePreferred")
+                    .map(|x| x.into()),
+            }
+        }
+    }
+
+    struct HouseFirstPreferencesStructure {
+        updated: Option<String>,
+        polling_places_returned: Option<u32>,
+        polling_places_expected: Option<u32>,
+        candidates: Vec<HouseCandidateResultsStructure>,
+        ghosts: Vec<HouseCandidateResultsStructure>,
+        formal: HouseRawTotal,
+        informal: HouseRawTotal,
+        total: HouseRawTotal,
+    }
+
+    impl From<&Element> for HouseFirstPreferencesStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                updated: value.attr("Updated").map(|x| x.to_string()),
+                polling_places_returned: value
+                    .attr("PollingPlacesReturned")
+                    .map(|x| u32::from_str(x).unwrap_or(0)),
+                polling_places_expected: value
+                    .attr("PollingPlacesExpected")
+                    .map(|x| u32::from_str(x).unwrap_or(0)),
+                candidates: value
+                    .get_children_ignore_ns("Candidate")
+                    .into_iter()
+                    .map(HouseCandidateResultsStructure::from)
+                    .collect(),
+                ghosts: value
+                    .get_children_ignore_ns("Ghost")
+                    .into_iter()
+                    .map(HouseCandidateResultsStructure::from)
+                    .collect(),
+                formal: value.get_child_ignore_ns("Formal").unwrap().into(),
+                informal: value.get_child_ignore_ns("Informal").unwrap().into(),
+                total: value.get_child_ignore_ns("Total").unwrap().into(),
+            }
+        }
+    }
+    struct TwoCandidatePreferredStructure {
+        updated: Option<String>,
+        polling_places_returned: Option<u32>,
+        polling_places_expected: Option<u32>,
+        candidates: Vec<HouseCandidateResultsStructure>,
+    }
+
+    impl From<&Element> for TwoCandidatePreferredStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                updated: value.attr("Updated").map(|x| x.to_string()),
+                polling_places_returned: value
+                    .attr("PollingPlacesReturned")
+                    .map(|x| u32::from_str(x).unwrap_or(0)),
+                polling_places_expected: value
+                    .attr("PollingPlacesExpected")
+                    .map(|x| u32::from_str(x).unwrap_or(0)),
+                candidates: value
+                    .get_children_ignore_ns("Candidate")
+                    .into_iter()
+                    .map(HouseCandidateResultsStructure::from)
+                    .collect(),
+            }
+        }
+    }
+    struct HouseRawTotal {
+        votes: u32,
+        matched_historic: Option<u32>,
+        votes_by_type: Vec<VotesByTypeStructure>,
+    }
+
+    impl From<&Element> for HouseRawTotal {
+        fn from(value: &Element) -> Self {
+            Self {
+                votes: value.text().parse().unwrap_or(0),
+                matched_historic: value
+                    .attr("MatchedHistoric")
+                    .map(|x| u32::from_str(x).unwrap_or(0)),
+                votes_by_type: value
+                    .get_child_ignore_ns("VotesByType")
+                    .unwrap()
+                    .get_children_ignore_ns("Votes")
+                    .into_iter()
+                    .map(VotesByTypeStructure::from)
+                    .collect(),
+            }
+        }
+    }
+    struct VotesByTypeStructure {
+        votes_by_type_enum: String,
+        votes: String,
+        historic: Option<String>,
+        percentage: Option<String>,
+        swing: Option<String>,
+        matched_historic: Option<String>,
+    }
+
+    impl From<&Element> for VotesByTypeStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                votes: value.text(),
+                votes_by_type_enum: value.attr("Type").unwrap().to_string(),
+                historic: value.attr("Historic").map(|x| x.to_string()),
+                percentage: value.attr("Percentage").map(|x| x.to_string()),
+                swing: value.attr("Swing").map(|x| x.to_string()),
+                matched_historic: value.attr("MatchedHistoric").map(|x| x.to_string()),
+            }
+        }
+    }
+    struct HouseCandidateResultsStructure {
+        candidate_identifier: CandidateIdentifierStructure,
+        ballot_position: Option<String>,
+        elected: Option<String>,
+        votes: u32,
+        matched_historic: Option<u32>,
+        votes_by_type: Vec<VotesByTypeStructure>,
+    }
+
+    impl From<&Element> for HouseCandidateResultsStructure {
+        fn from(value: &Element) -> Self {
+            Self {
+                candidate_identifier: value.get_child_ignore_ns("CandidateIdentifier").unwrap().try_into().unwrap(),
+                ballot_position: value.get_child_ignore_ns("BallotPosition").map(|x| x.text()),
+                elected: value.get_child_ignore_ns("BallotPosition").map(|x| x.text()),
+                votes: value.get_child_ignore_ns("Votes").unwrap().text().parse().unwrap(),
+                matched_historic: value.get_child_ignore_ns("Votes").unwrap().attr("MatchedHistoric").map(|x| u32::from_str(x).unwrap_or(0)),
+                votes_by_type: value
+                    .get_child_ignore_ns("VotesByType")
+                    .unwrap()
+                    .get_children_ignore_ns("Votes")
+                    .into_iter()
+                    .map(VotesByTypeStructure::from)
+                    .collect(),
+            }
+        }
+    }
+
+    struct SenateMediaFeedStructure {
+
+    }
+
+    impl From<&Element> for SenateMediaFeedStructure {
+        fn from(value: &Element) -> Self {
+            Self{}
+        }
+    }
+
+
+    struct ReferendumMediaFeedStructure {}
+    impl From<&Element> for ReferendumMediaFeedStructure {
+        fn from(value: &Element) -> Self {
+            Self{}
         }
     }
 }

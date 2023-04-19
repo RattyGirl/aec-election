@@ -13,8 +13,8 @@ use mongodb::bson::Bson::ObjectId;
 use mongodb::bson::{doc, oid, Document};
 use mongodb::sync::Cursor;
 use std::io::Read;
-use std::{env, str};
 use std::str::FromStr;
+use std::{env, str};
 
 use suppaftp::FtpStream;
 use zip::ZipArchive;
@@ -36,7 +36,6 @@ fn main() {
     let election_ids = get_all_in_dir(&mut ftp_stream);
     ftp_stream.quit().unwrap();
     election_ids.into_iter().for_each(|x| {
-
         if option.eq("preload") {
             preload_data(x.as_str(), &database);
         }
@@ -123,7 +122,25 @@ fn get_all_simple_results(
     results_light_progress.remove(0);
     let results_light_progress = results_light_progress.join("\n");
     let root = Element::from_str(results_light_progress.as_str()).unwrap();
-    // let candidate_list = root.get_child_ignore_ns("Results").unwrap();
+    let results_list = aec_parser::results::ResultsMediaFeed::from(&root);
+
+    let election_event_id = results_list.results.event_identifier.id.unwrap_or_default();
+
+    let search: Vec<Document> = database
+        .find(
+            "election_events",
+            doc! {
+                "id": election_event_id
+            },
+        )
+        .map(|x| x.unwrap())
+        .collect();
+    let election_event_id = search
+        .first()
+        .unwrap()
+        .get_object_id("_id")
+        .unwrap()
+        .to_string();
 }
 
 fn get_all_polling_districts(polling_districts: String, database: &impl CustomDB, event_id: &str) {

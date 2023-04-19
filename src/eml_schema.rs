@@ -9,7 +9,7 @@ use serde::{Serialize, Serializer};
 #[derive(Debug)]
 pub enum EMLError {
     /// An error representing an inability to find an element: A inside another element: B
-    CannotFindElement(String, String)
+    CannotFindElement(String, String),
 }
 
 // AEC Types
@@ -52,26 +52,33 @@ impl TryFrom<&Element> for PhysicalLocationStructure {
     fn try_from(value: &Element) -> Result<Self, Self::Error> {
         let address = match value.get_child_ignore_ns("Address") {
             None => {
-                return Err(EMLError::CannotFindElement("Address".to_string(), String::from(value)))
+                return Err(EMLError::CannotFindElement(
+                    "Address".to_string(),
+                    String::from(value),
+                ))
             }
-            Some(add) => add
+            Some(add) => add,
         };
 
         let postal_service_elements = match address.get_child_ignore_ns("PostalServiceElements") {
             None => {
-                return Err(EMLError::CannotFindElement("PostalServiceElements".to_string(), String::from(address)))
+                return Err(EMLError::CannotFindElement(
+                    "PostalServiceElements".to_string(),
+                    String::from(address),
+                ))
             }
-            Some(pse) => pse
+            Some(pse) => pse,
         };
 
-        let address_lines = match address
-            .get_child_ignore_ns("AddressLines") {
+        let address_lines = match address.get_child_ignore_ns("AddressLines") {
             None => {
-                return Err(EMLError::CannotFindElement("AddressLines".to_string(), String::from(address)))
+                return Err(EMLError::CannotFindElement(
+                    "AddressLines".to_string(),
+                    String::from(address),
+                ))
             }
-            Some(address_lines) => address_lines
+            Some(address_lines) => address_lines,
         };
-
 
         Ok(Self {
             lat: postal_service_elements
@@ -98,7 +105,7 @@ impl TryFrom<&Element> for PhysicalLocationStructure {
                 .get_child_with_type("AddressLine2")
                 .map(|x| x.text())
                 .unwrap_or_else(|| "".to_string()),
-            suburb:address_lines
+            suburb: address_lines
                 .get_child_with_type("Suburb")
                 .map(|x| x.text())
                 .unwrap_or_else(|| "".to_string()),
@@ -195,8 +202,8 @@ impl TryFrom<&Element> for PollingPlaceIdentifierStructure {
 
 // XML Types
 pub mod xs {
-    use serde::{Serialize, Serializer};
     use crate::eml_schema::EMLError;
+    use serde::{Serialize, Serializer};
 
     #[derive(Clone)]
     pub struct Nmtoken(pub String);
@@ -357,7 +364,8 @@ impl TryFrom<&Element> for AffiliationStructure {
             affiliation_identifier: value
                 .get_child_ignore_ns("AffiliationIdentifier")
                 .unwrap()
-                .try_into().unwrap(),
+                .try_into()
+                .unwrap(),
             affiliation_type: value
                 .get_child_ignore_ns("Type")
                 .map(|x| xs::Token(x.text())),
@@ -511,13 +519,17 @@ pub struct CandidateStructure {
 impl TryFrom<&Element> for CandidateStructure {
     type Error = EMLError;
 
-    fn try_from(value: &Element) -> Result<Self, Self::Error> {        Ok(Self {
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             candidate_identifier: value
                 .get_child_ignore_ns("CandidateIdentifier")
                 .unwrap()
-                .try_into().unwrap(),
+                .try_into()
+                .unwrap(),
             gender: value.get_child_ignore_ns("Gender").map(|x| x.text()),
-            affiliation: value.get_child_ignore_ns("Affiliation").map(|x| x.try_into().unwrap()),
+            affiliation: value
+                .get_child_ignore_ns("Affiliation")
+                .map(|x| x.try_into().unwrap()),
             profession: value.get_child_ignore_ns("Profession").map(|x| x.text()),
         })
     }
@@ -538,7 +550,8 @@ impl Serialize for CandidateStructure {
 impl TryFrom<&Element> for CandidateIdentifierStructure {
     type Error = EMLError;
 
-    fn try_from(value: &Element) -> Result<Self, Self::Error> {        Ok(Self {
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             id: value.attr("Id").unwrap().parse().unwrap(),
             candidate_name: value.get_child_ignore_ns("CandidateName").map(|x| x.text()),
         })
@@ -587,7 +600,8 @@ impl Serialize for ComplexDateRangeEnum {
 impl TryFrom<&Element> for ComplexDateRangeStructure {
     type Error = EMLError;
 
-    fn try_from(value: &Element) -> Result<Self, Self::Error> {        let date_type = value.attr("Type").unwrap().to_string();
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        let date_type = value.attr("Type").unwrap().to_string();
         if let Some(date) = value.get_child_ignore_ns("SingleDate") {
             Ok(Self {
                 date_type,
@@ -636,7 +650,8 @@ pub struct ContestIdentifierStructure {
 impl TryFrom<&Element> for ContestIdentifierStructure {
     type Error = EMLError;
 
-    fn try_from(value: &Element) -> Result<Self, Self::Error> {        Ok(Self {
+    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+        Ok(Self {
             id: value.attr("Id").unwrap().to_string(),
             short_code: value.attr("ShortCode").map(|x| x.to_string()),
             contest_name: value.get_child_ignore_ns("ContestName").map(|x| x.text()),
@@ -741,7 +756,8 @@ impl<AuthorityAddressStructure: Default> From<&Element>
             authority_identifier: value
                 .get_child_ignore_ns("AuthorityIdentifier")
                 .unwrap()
-                .try_into().unwrap(),
+                .try_into()
+                .unwrap(),
             authority_address: AuthorityAddressStructure::default(),
         }
     }
@@ -781,7 +797,8 @@ impl TryFrom<&Element> for PollingDistrictStructure {
             polling_district_identifier: value
                 .get_child_ignore_ns("PollingDistrictIdentifier")
                 .unwrap()
-                .try_into().unwrap(),
+                .try_into()
+                .unwrap(),
             name_derivation: value.get_child_ignore_ns("NameDerivation").unwrap().text(),
             product_industry: value
                 .get_child_ignore_ns("ProductsIndustry")
@@ -789,7 +806,12 @@ impl TryFrom<&Element> for PollingDistrictStructure {
                 .text(),
             location: value.get_child_ignore_ns("Location").unwrap().text(),
             demographic: value.get_child_ignore_ns("Demographic").unwrap().text(),
-            area: value.get_child_ignore_ns("Area").unwrap().text().try_into().unwrap(),
+            area: value
+                .get_child_ignore_ns("Area")
+                .unwrap()
+                .text()
+                .try_into()
+                .unwrap(),
             polling_places: value
                 .get_child_ignore_ns("PollingPlaces")
                 .unwrap()
@@ -885,7 +907,8 @@ impl TryFrom<&Element> for PollingPlaceStructure {
             identifier: value
                 .get_child_ignore_ns("PollingPlaceIdentifier")
                 .unwrap()
-                .try_into().unwrap(),
+                .try_into()
+                .unwrap(),
             wheelchair: value
                 .get_child_ignore_ns("WheelchairAccess")
                 .map(|x| x.try_into().unwrap()),
