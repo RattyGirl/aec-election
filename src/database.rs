@@ -1,10 +1,10 @@
 use serde::Serialize;
-use std::str::FromStr;
 
-use mongodb::bson::Bson::ObjectId;
-use mongodb::bson::{oid, Document};
-use mongodb::options::ClientOptions;
-use mongodb::sync::{Client, Cursor, Database};
+
+
+use mongodb::bson::{Document};
+
+use mongodb::sync::{Cursor};
 
 pub trait CustomDB {
     fn setup(connection_name: &str, database_name: &str) -> Self;

@@ -249,7 +249,7 @@ pub mod polling {
 
 pub mod results {
     use crate::eml_schema::{
-        CandidateIdentifierStructure, ContestIdentifierStructure, EMLError,
+        CandidateIdentifierStructure, ContestIdentifierStructure,
         ElectionIdentifierStructure, EventIdentifierStructure, ManagingAuthorityStructure,
     };
     use crate::xml_extension::IgnoreNS;
@@ -567,7 +567,7 @@ pub mod results {
     }
 
     impl From<&Element> for SenateMediaFeedStructure {
-        fn from(value: &Element) -> Self {
+        fn from(_value: &Element) -> Self {
             Self{}
         }
     }
@@ -575,7 +575,7 @@ pub mod results {
 
     struct ReferendumMediaFeedStructure {}
     impl From<&Element> for ReferendumMediaFeedStructure {
-        fn from(value: &Element) -> Self {
+        fn from(_value: &Element) -> Self {
             Self{}
         }
     }
@@ -586,7 +586,7 @@ pub mod results {
 pub struct AuthorityAddressStructure;
 
 impl From<Element> for AuthorityAddressStructure {
-    fn from(value: Element) -> Self {
+    fn from(_value: Element) -> Self {
         Self {}
     }
 }

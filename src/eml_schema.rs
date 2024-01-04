@@ -734,7 +734,7 @@ pub struct LogoStructure {}
 impl TryFrom<&Element> for LogoStructure {
     type Error = EMLError;
 
-    fn try_from(value: &Element) -> Result<Self, Self::Error> {
+    fn try_from(_value: &Element) -> Result<Self, Self::Error> {
         //TODO
         Ok(Self {})
     }
