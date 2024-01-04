@@ -2,11 +2,13 @@ mod aec_parser;
 mod database;
 mod eml_schema;
 mod xml_extension;
+mod mongo_db;
 
 use crate::aec_parser::candidate::CandidateList;
 use crate::aec_parser::event::ElectionEvent;
 use crate::aec_parser::polling::PollingDistrictListStructure;
-use crate::database::{CustomDB, MongoDB};
+use crate::database::{CustomDB};
+use crate::mongo_db::MongoDB;
 use crate::xml_extension::IgnoreNS;
 use minidom::Element;
 use mongodb::bson::Bson::ObjectId;
