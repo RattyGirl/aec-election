@@ -1,0 +1,1619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EML xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:ts="urn:oasis:names:tc:evs:schema:eml:ts" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:oasis:names:tc:evs:schema:eml ../Schema/EML/110-electionevent-v5-0.xsd" SchemaVersion="5" Id="67a427b6-4b3e-48e5-80c5-9ad471b1fa56">
+  <TransactionId>72a72f5c-97e7-419a-ab9c-3496d99357a6</TransactionId>
+  <ElectionEvent>
+    <EventIdentifier Id="20499">
+      <EventName>2016 Federal Election</EventName>
+    </EventIdentifier>
+    <ManagingAuthority>
+      <AuthorityIdentifier Id="AEC">Australian Electoral Commission</AuthorityIdentifier>
+      <AuthorityAddress AddressType="Office">
+        <xal:AddressLines>
+          <xal:AddressLine Type="AddressLine1">West Block Offices</xal:AddressLine>
+          <xal:AddressLine Type="AddressLine2">Queen Victoria Terrace</xal:AddressLine>
+          <xal:AddressLine Type="Suburb">Parkes</xal:AddressLine>
+          <xal:AddressLine Type="State">ACT</xal:AddressLine>
+          <xal:AddressLine Type="Postcode">2600</xal:AddressLine>
+        </xal:AddressLines>
+      </AuthorityAddress>
+    </ManagingAuthority>
+    <Election>
+      <ElectionIdentifier Id="H">
+        <ElectionName>House of Representatives Election</ElectionName>
+        <ElectionCategory>House</ElectionCategory>
+      </ElectionIdentifier>
+      <Date Type="PollingDay">
+        <SingleDate>2016-07-02T00:00:00</SingleDate>
+      </Date>
+      <Contest>
+        <ContestIdentifier Id="179" ShortCode="ADEL">
+          <ContestName>Adelaide</ContestName>
+        </ContestIdentifier>
+        <Area Id="179" Type="division">Adelaide</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Adelaide</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="197" ShortCode="ASTO">
+          <ContestName>Aston</ContestName>
+        </ContestIdentifier>
+        <Area Id="197" Type="division">Aston</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Aston</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="198" ShortCode="BALL">
+          <ContestName>Ballarat</ContestName>
+        </ContestIdentifier>
+        <Area Id="198" Type="division">Ballarat</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Ballarat</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="103" ShortCode="BANK">
+          <ContestName>Banks</ContestName>
+        </ContestIdentifier>
+        <Area Id="103" Type="division">Banks</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Banks</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="180" ShortCode="BARK">
+          <ContestName>Barker</ContestName>
+        </ContestIdentifier>
+        <Area Id="180" Type="division">Barker</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Barker</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="104" ShortCode="BART">
+          <ContestName>Barton</ContestName>
+        </ContestIdentifier>
+        <Area Id="104" Type="division">Barton</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Barton</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="192" ShortCode="BASS">
+          <ContestName>Bass</ContestName>
+        </ContestIdentifier>
+        <Area Id="192" Type="division">Bass</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bass</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="199" ShortCode="BATM">
+          <ContestName>Batman</ContestName>
+        </ContestIdentifier>
+        <Area Id="199" Type="division">Batman</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Batman</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="200" ShortCode="BEND">
+          <ContestName>Bendigo</ContestName>
+        </ContestIdentifier>
+        <Area Id="200" Type="division">Bendigo</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bendigo</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="105" ShortCode="BENN">
+          <ContestName>Bennelong</ContestName>
+        </ContestIdentifier>
+        <Area Id="105" Type="division">Bennelong</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bennelong</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="106" ShortCode="BERO">
+          <ContestName>Berowra</ContestName>
+        </ContestIdentifier>
+        <Area Id="106" Type="division">Berowra</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Berowra</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="304" ShortCode="BLAI">
+          <ContestName>Blair</ContestName>
+        </ContestIdentifier>
+        <Area Id="304" Type="division">Blair</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Blair</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="107" ShortCode="BLAX">
+          <ContestName>Blaxland</ContestName>
+        </ContestIdentifier>
+        <Area Id="107" Type="division">Blaxland</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Blaxland</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="310" ShortCode="BONN">
+          <ContestName>Bonner</ContestName>
+        </ContestIdentifier>
+        <Area Id="310" Type="division">Bonner</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bonner</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="182" ShortCode="BOOT">
+          <ContestName>Boothby</ContestName>
+        </ContestIdentifier>
+        <Area Id="182" Type="division">Boothby</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Boothby</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="155" ShortCode="BOWM">
+          <ContestName>Bowman</ContestName>
+        </ContestIdentifier>
+        <Area Id="155" Type="division">Bowman</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bowman</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="193" ShortCode="BRAD">
+          <ContestName>Braddon</ContestName>
+        </ContestIdentifier>
+        <Area Id="193" Type="division">Braddon</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Braddon</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="108" ShortCode="BRFD">
+          <ContestName>Bradfield</ContestName>
+        </ContestIdentifier>
+        <Area Id="108" Type="division">Bradfield</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bradfield</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="235" ShortCode="BRAN">
+          <ContestName>Brand</ContestName>
+        </ContestIdentifier>
+        <Area Id="235" Type="division">Brand</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Brand</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="156" ShortCode="BRIS">
+          <ContestName>Brisbane</ContestName>
+        </ContestIdentifier>
+        <Area Id="156" Type="division">Brisbane</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Brisbane</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="201" ShortCode="BRUC">
+          <ContestName>Bruce</ContestName>
+        </ContestIdentifier>
+        <Area Id="201" Type="division">Bruce</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Bruce</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="317" ShortCode="BURT">
+          <ContestName>Burt</ContestName>
+        </ContestIdentifier>
+        <Area Id="317" Type="division">Burt</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Burt</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="109" ShortCode="CALA">
+          <ContestName>Calare</ContestName>
+        </ContestIdentifier>
+        <Area Id="109" Type="division">Calare</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Calare</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="203" ShortCode="CALW">
+          <ContestName>Calwell</ContestName>
+        </ContestIdentifier>
+        <Area Id="203" Type="division">Calwell</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Calwell</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="101" ShortCode="CANB">
+          <ContestName>Canberra</ContestName>
+        </ContestIdentifier>
+        <Area Id="101" Type="division">Canberra</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Canberra</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="236" ShortCode="CANN">
+          <ContestName>Canning</ContestName>
+        </ContestIdentifier>
+        <Area Id="236" Type="division">Canning</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Canning</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="157" ShortCode="CAPR">
+          <ContestName>Capricornia</ContestName>
+        </ContestIdentifier>
+        <Area Id="157" Type="division">Capricornia</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Capricornia</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="204" ShortCode="CASE">
+          <ContestName>Casey</ContestName>
+        </ContestIdentifier>
+        <Area Id="204" Type="division">Casey</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Casey</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="111" ShortCode="CHIF">
+          <ContestName>Chifley</ContestName>
+        </ContestIdentifier>
+        <Area Id="111" Type="division">Chifley</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Chifley</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="205" ShortCode="CHIS">
+          <ContestName>Chisholm</ContestName>
+        </ContestIdentifier>
+        <Area Id="205" Type="division">Chisholm</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Chisholm</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="112" ShortCode="COOK">
+          <ContestName>Cook</ContestName>
+        </ContestIdentifier>
+        <Area Id="112" Type="division">Cook</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Cook</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="207" ShortCode="CORA">
+          <ContestName>Corangamite</ContestName>
+        </ContestIdentifier>
+        <Area Id="207" Type="division">Corangamite</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Corangamite</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="208" ShortCode="CORI">
+          <ContestName>Corio</ContestName>
+        </ContestIdentifier>
+        <Area Id="208" Type="division">Corio</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Corio</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="237" ShortCode="COWA">
+          <ContestName>Cowan</ContestName>
+        </ContestIdentifier>
+        <Area Id="237" Type="division">Cowan</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Cowan</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="113" ShortCode="COWP">
+          <ContestName>Cowper</ContestName>
+        </ContestIdentifier>
+        <Area Id="113" Type="division">Cowper</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Cowper</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="114" ShortCode="CUNN">
+          <ContestName>Cunningham</ContestName>
+        </ContestIdentifier>
+        <Area Id="114" Type="division">Cunningham</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Cunningham</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="238" ShortCode="CURT">
+          <ContestName>Curtin</ContestName>
+        </ContestIdentifier>
+        <Area Id="238" Type="division">Curtin</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Curtin</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="158" ShortCode="DAWS">
+          <ContestName>Dawson</ContestName>
+        </ContestIdentifier>
+        <Area Id="158" Type="division">Dawson</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Dawson</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="209" ShortCode="DEAK">
+          <ContestName>Deakin</ContestName>
+        </ContestIdentifier>
+        <Area Id="209" Type="division">Deakin</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Deakin</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="194" ShortCode="DENI">
+          <ContestName>Denison</ContestName>
+        </ContestIdentifier>
+        <Area Id="194" Type="division">Denison</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Denison</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="252" ShortCode="DICK">
+          <ContestName>Dickson</ContestName>
+        </ContestIdentifier>
+        <Area Id="252" Type="division">Dickson</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Dickson</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="115" ShortCode="DOBE">
+          <ContestName>Dobell</ContestName>
+        </ContestIdentifier>
+        <Area Id="115" Type="division">Dobell</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Dobell</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="210" ShortCode="DUNK">
+          <ContestName>Dunkley</ContestName>
+        </ContestIdentifier>
+        <Area Id="210" Type="division">Dunkley</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Dunkley</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="312" ShortCode="DURA">
+          <ContestName>Durack</ContestName>
+        </ContestIdentifier>
+        <Area Id="312" Type="division">Durack</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Durack</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="117" ShortCode="EMON">
+          <ContestName>Eden-Monaro</ContestName>
+        </ContestIdentifier>
+        <Area Id="117" Type="division">Eden-Monaro</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Eden-Monaro</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="159" ShortCode="FADD">
+          <ContestName>Fadden</ContestName>
+        </ContestIdentifier>
+        <Area Id="159" Type="division">Fadden</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fadden</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="160" ShortCode="FAIR">
+          <ContestName>Fairfax</ContestName>
+        </ContestIdentifier>
+        <Area Id="160" Type="division">Fairfax</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fairfax</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="118" ShortCode="FARR">
+          <ContestName>Farrer</ContestName>
+        </ContestIdentifier>
+        <Area Id="118" Type="division">Farrer</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Farrer</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="102" ShortCode="FENN">
+          <ContestName>Fenner</ContestName>
+        </ContestIdentifier>
+        <Area Id="102" Type="division">Fenner</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fenner</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="161" ShortCode="FISH">
+          <ContestName>Fisher</ContestName>
+        </ContestIdentifier>
+        <Area Id="161" Type="division">Fisher</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fisher</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="211" ShortCode="FLIN">
+          <ContestName>Flinders</ContestName>
+        </ContestIdentifier>
+        <Area Id="211" Type="division">Flinders</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Flinders</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="311" ShortCode="FLYN">
+          <ContestName>Flynn</ContestName>
+        </ContestIdentifier>
+        <Area Id="311" Type="division">Flynn</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Flynn</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="162" ShortCode="FORD">
+          <ContestName>Forde</ContestName>
+        </ContestIdentifier>
+        <Area Id="162" Type="division">Forde</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Forde</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="239" ShortCode="FORR">
+          <ContestName>Forrest</ContestName>
+        </ContestIdentifier>
+        <Area Id="239" Type="division">Forrest</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Forrest</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="119" ShortCode="FOWL">
+          <ContestName>Fowler</ContestName>
+        </ContestIdentifier>
+        <Area Id="119" Type="division">Fowler</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fowler</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="195" ShortCode="FRAN">
+          <ContestName>Franklin</ContestName>
+        </ContestIdentifier>
+        <Area Id="195" Type="division">Franklin</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Franklin</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="240" ShortCode="FREM">
+          <ContestName>Fremantle</ContestName>
+        </ContestIdentifier>
+        <Area Id="240" Type="division">Fremantle</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fremantle</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="212" ShortCode="GELL">
+          <ContestName>Gellibrand</ContestName>
+        </ContestIdentifier>
+        <Area Id="212" Type="division">Gellibrand</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Gellibrand</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="120" ShortCode="GILM">
+          <ContestName>Gilmore</ContestName>
+        </ContestIdentifier>
+        <Area Id="120" Type="division">Gilmore</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Gilmore</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="213" ShortCode="GIPP">
+          <ContestName>Gippsland</ContestName>
+        </ContestIdentifier>
+        <Area Id="213" Type="division">Gippsland</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Gippsland</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="214" ShortCode="GOLD">
+          <ContestName>Goldstein</ContestName>
+        </ContestIdentifier>
+        <Area Id="214" Type="division">Goldstein</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Goldstein</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="309" ShortCode="GORT">
+          <ContestName>Gorton</ContestName>
+        </ContestIdentifier>
+        <Area Id="309" Type="division">Gorton</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Gorton</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="121" ShortCode="GRAY">
+          <ContestName>Grayndler</ContestName>
+        </ContestIdentifier>
+        <Area Id="121" Type="division">Grayndler</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Grayndler</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="122" ShortCode="GREE">
+          <ContestName>Greenway</ContestName>
+        </ContestIdentifier>
+        <Area Id="122" Type="division">Greenway</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Greenway</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="183" ShortCode="GREY">
+          <ContestName>Grey</ContestName>
+        </ContestIdentifier>
+        <Area Id="183" Type="division">Grey</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Grey</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="163" ShortCode="GRIF">
+          <ContestName>Griffith</ContestName>
+        </ContestIdentifier>
+        <Area Id="163" Type="division">Griffith</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Griffith</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="164" ShortCode="GROO">
+          <ContestName>Groom</ContestName>
+        </ContestIdentifier>
+        <Area Id="164" Type="division">Groom</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Groom</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="305" ShortCode="HASL">
+          <ContestName>Hasluck</ContestName>
+        </ContestIdentifier>
+        <Area Id="305" Type="division">Hasluck</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hasluck</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="165" ShortCode="HERB">
+          <ContestName>Herbert</ContestName>
+        </ContestIdentifier>
+        <Area Id="165" Type="division">Herbert</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Herbert</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="215" ShortCode="HIGG">
+          <ContestName>Higgins</ContestName>
+        </ContestIdentifier>
+        <Area Id="215" Type="division">Higgins</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Higgins</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="185" ShortCode="HIND">
+          <ContestName>Hindmarsh</ContestName>
+        </ContestIdentifier>
+        <Area Id="185" Type="division">Hindmarsh</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hindmarsh</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="166" ShortCode="HINK">
+          <ContestName>Hinkler</ContestName>
+        </ContestIdentifier>
+        <Area Id="166" Type="division">Hinkler</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hinkler</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="216" ShortCode="HOLT">
+          <ContestName>Holt</ContestName>
+        </ContestIdentifier>
+        <Area Id="216" Type="division">Holt</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Holt</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="217" ShortCode="HOTH">
+          <ContestName>Hotham</ContestName>
+        </ContestIdentifier>
+        <Area Id="217" Type="division">Hotham</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hotham</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="124" ShortCode="HUGH">
+          <ContestName>Hughes</ContestName>
+        </ContestIdentifier>
+        <Area Id="124" Type="division">Hughes</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hughes</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="125" ShortCode="HUME">
+          <ContestName>Hume</ContestName>
+        </ContestIdentifier>
+        <Area Id="125" Type="division">Hume</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hume</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="126" ShortCode="HUNT">
+          <ContestName>Hunter</ContestName>
+        </ContestIdentifier>
+        <Area Id="126" Type="division">Hunter</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Hunter</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="218" ShortCode="INDI">
+          <ContestName>Indi</ContestName>
+        </ContestIdentifier>
+        <Area Id="218" Type="division">Indi</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Indi</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="219" ShortCode="ISAA">
+          <ContestName>Isaacs</ContestName>
+        </ContestIdentifier>
+        <Area Id="219" Type="division">Isaacs</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Isaacs</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="220" ShortCode="JAGA">
+          <ContestName>Jagajaga</ContestName>
+        </ContestIdentifier>
+        <Area Id="220" Type="division">Jagajaga</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Jagajaga</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="167" ShortCode="KENN">
+          <ContestName>Kennedy</ContestName>
+        </ContestIdentifier>
+        <Area Id="167" Type="division">Kennedy</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Kennedy</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="127" ShortCode="KSMI">
+          <ContestName>Kingsford Smith</ContestName>
+        </ContestIdentifier>
+        <Area Id="127" Type="division">Kingsford Smith</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Kingsford Smith</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="186" ShortCode="KING">
+          <ContestName>Kingston</ContestName>
+        </ContestIdentifier>
+        <Area Id="186" Type="division">Kingston</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Kingston</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="221" ShortCode="KOOY">
+          <ContestName>Kooyong</ContestName>
+        </ContestIdentifier>
+        <Area Id="221" Type="division">Kooyong</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Kooyong</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="223" ShortCode="LTRO">
+          <ContestName>La Trobe</ContestName>
+        </ContestIdentifier>
+        <Area Id="223" Type="division">La Trobe</Area>
+        <Position>Member of the House of Representatives for the Federal Division of La Trobe</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="222" ShortCode="LALO">
+          <ContestName>Lalor</ContestName>
+        </ContestIdentifier>
+        <Area Id="222" Type="division">Lalor</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Lalor</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="168" ShortCode="LEIC">
+          <ContestName>Leichhardt</ContestName>
+        </ContestIdentifier>
+        <Area Id="168" Type="division">Leichhardt</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Leichhardt</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="169" ShortCode="LILL">
+          <ContestName>Lilley</ContestName>
+        </ContestIdentifier>
+        <Area Id="169" Type="division">Lilley</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Lilley</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="128" ShortCode="LIND">
+          <ContestName>Lindsay</ContestName>
+        </ContestIdentifier>
+        <Area Id="128" Type="division">Lindsay</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Lindsay</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="306" ShortCode="LING">
+          <ContestName>Lingiari</ContestName>
+        </ContestIdentifier>
+        <Area Id="306" Type="division">Lingiari</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Lingiari</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="302" ShortCode="LONG">
+          <ContestName>Longman</ContestName>
+        </ContestIdentifier>
+        <Area Id="302" Type="division">Longman</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Longman</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="130" ShortCode="LYNE">
+          <ContestName>Lyne</ContestName>
+        </ContestIdentifier>
+        <Area Id="130" Type="division">Lyne</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Lyne</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="196" ShortCode="LYON">
+          <ContestName>Lyons</ContestName>
+        </ContestIdentifier>
+        <Area Id="196" Type="division">Lyons</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Lyons</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="131" ShortCode="MACA">
+          <ContestName>Macarthur</ContestName>
+        </ContestIdentifier>
+        <Area Id="131" Type="division">Macarthur</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Macarthur</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="132" ShortCode="MACK">
+          <ContestName>Mackellar</ContestName>
+        </ContestIdentifier>
+        <Area Id="132" Type="division">Mackellar</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Mackellar</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="133" ShortCode="MACQ">
+          <ContestName>Macquarie</ContestName>
+        </ContestIdentifier>
+        <Area Id="133" Type="division">Macquarie</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Macquarie</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="187" ShortCode="MAKI">
+          <ContestName>Makin</ContestName>
+        </ContestIdentifier>
+        <Area Id="187" Type="division">Makin</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Makin</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="224" ShortCode="MALL">
+          <ContestName>Mallee</ContestName>
+        </ContestIdentifier>
+        <Area Id="224" Type="division">Mallee</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Mallee</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="170" ShortCode="MARA">
+          <ContestName>Maranoa</ContestName>
+        </ContestIdentifier>
+        <Area Id="170" Type="division">Maranoa</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Maranoa</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="225" ShortCode="MARI">
+          <ContestName>Maribyrnong</ContestName>
+        </ContestIdentifier>
+        <Area Id="225" Type="division">Maribyrnong</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Maribyrnong</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="188" ShortCode="MAYO">
+          <ContestName>Mayo</ContestName>
+        </ContestIdentifier>
+        <Area Id="188" Type="division">Mayo</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Mayo</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="226" ShortCode="MCEW">
+          <ContestName>McEwen</ContestName>
+        </ContestIdentifier>
+        <Area Id="226" Type="division">McEwen</Area>
+        <Position>Member of the House of Representatives for the Federal Division of McEwen</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="315" ShortCode="MCMA">
+          <ContestName>McMahon</ContestName>
+        </ContestIdentifier>
+        <Area Id="315" Type="division">McMahon</Area>
+        <Position>Member of the House of Representatives for the Federal Division of McMahon</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="227" ShortCode="MCMI">
+          <ContestName>McMillan</ContestName>
+        </ContestIdentifier>
+        <Area Id="227" Type="division">McMillan</Area>
+        <Position>Member of the House of Representatives for the Federal Division of McMillan</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="171" ShortCode="MCPH">
+          <ContestName>McPherson</ContestName>
+        </ContestIdentifier>
+        <Area Id="171" Type="division">McPherson</Area>
+        <Position>Member of the House of Representatives for the Federal Division of McPherson</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="228" ShortCode="MELB">
+          <ContestName>Melbourne</ContestName>
+        </ContestIdentifier>
+        <Area Id="228" Type="division">Melbourne</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Melbourne</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="230" ShortCode="MPOR">
+          <ContestName>Melbourne Ports</ContestName>
+        </ContestIdentifier>
+        <Area Id="230" Type="division">Melbourne Ports</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Melbourne Ports</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="229" ShortCode="MENZ">
+          <ContestName>Menzies</ContestName>
+        </ContestIdentifier>
+        <Area Id="229" Type="division">Menzies</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Menzies</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="134" ShortCode="MITC">
+          <ContestName>Mitchell</ContestName>
+        </ContestIdentifier>
+        <Area Id="134" Type="division">Mitchell</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Mitchell</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="172" ShortCode="MONC">
+          <ContestName>Moncrieff</ContestName>
+        </ContestIdentifier>
+        <Area Id="172" Type="division">Moncrieff</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Moncrieff</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="242" ShortCode="MOOR">
+          <ContestName>Moore</ContestName>
+        </ContestIdentifier>
+        <Area Id="242" Type="division">Moore</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Moore</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="173" ShortCode="MORE">
+          <ContestName>Moreton</ContestName>
+        </ContestIdentifier>
+        <Area Id="173" Type="division">Moreton</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Moreton</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="231" ShortCode="MURR">
+          <ContestName>Murray</ContestName>
+        </ContestIdentifier>
+        <Area Id="231" Type="division">Murray</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Murray</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="135" ShortCode="NENG">
+          <ContestName>New England</ContestName>
+        </ContestIdentifier>
+        <Area Id="135" Type="division">New England</Area>
+        <Position>Member of the House of Representatives for the Federal Division of New England</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="136" ShortCode="NEWC">
+          <ContestName>Newcastle</ContestName>
+        </ContestIdentifier>
+        <Area Id="136" Type="division">Newcastle</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Newcastle</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="137" ShortCode="NSYD">
+          <ContestName>North Sydney</ContestName>
+        </ContestIdentifier>
+        <Area Id="137" Type="division">North Sydney</Area>
+        <Position>Member of the House of Representatives for the Federal Division of North Sydney</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="243" ShortCode="OCON">
+          <ContestName>O'Connor</ContestName>
+        </ContestIdentifier>
+        <Area Id="243" Type="division">O'Connor</Area>
+        <Position>Member of the House of Representatives for the Federal Division of O'Connor</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="174" ShortCode="OXLE">
+          <ContestName>Oxley</ContestName>
+        </ContestIdentifier>
+        <Area Id="174" Type="division">Oxley</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Oxley</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="138" ShortCode="PAGE">
+          <ContestName>Page</ContestName>
+        </ContestIdentifier>
+        <Area Id="138" Type="division">Page</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Page</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="139" ShortCode="PARK">
+          <ContestName>Parkes</ContestName>
+        </ContestIdentifier>
+        <Area Id="139" Type="division">Parkes</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Parkes</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="140" ShortCode="PARR">
+          <ContestName>Parramatta</ContestName>
+        </ContestIdentifier>
+        <Area Id="140" Type="division">Parramatta</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Parramatta</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="249" ShortCode="PATE">
+          <ContestName>Paterson</ContestName>
+        </ContestIdentifier>
+        <Area Id="249" Type="division">Paterson</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Paterson</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="244" ShortCode="PEAR">
+          <ContestName>Pearce</ContestName>
+        </ContestIdentifier>
+        <Area Id="244" Type="division">Pearce</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Pearce</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="245" ShortCode="PERT">
+          <ContestName>Perth</ContestName>
+        </ContestIdentifier>
+        <Area Id="245" Type="division">Perth</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Perth</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="175" ShortCode="PETR">
+          <ContestName>Petrie</ContestName>
+        </ContestIdentifier>
+        <Area Id="175" Type="division">Petrie</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Petrie</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="189" ShortCode="PADE">
+          <ContestName>Port Adelaide</ContestName>
+        </ContestIdentifier>
+        <Area Id="189" Type="division">Port Adelaide</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Port Adelaide</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="176" ShortCode="RANK">
+          <ContestName>Rankin</ContestName>
+        </ContestIdentifier>
+        <Area Id="176" Type="division">Rankin</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Rankin</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="144" ShortCode="REID">
+          <ContestName>Reid</ContestName>
+        </ContestIdentifier>
+        <Area Id="144" Type="division">Reid</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Reid</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="145" ShortCode="RICH">
+          <ContestName>Richmond</ContestName>
+        </ContestIdentifier>
+        <Area Id="145" Type="division">Richmond</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Richmond</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="250" ShortCode="RIVE">
+          <ContestName>Riverina</ContestName>
+        </ContestIdentifier>
+        <Area Id="250" Type="division">Riverina</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Riverina</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="146" ShortCode="ROBE">
+          <ContestName>Robertson</ContestName>
+        </ContestIdentifier>
+        <Area Id="146" Type="division">Robertson</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Robertson</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="177" ShortCode="RYAN">
+          <ContestName>Ryan</ContestName>
+        </ContestIdentifier>
+        <Area Id="177" Type="division">Ryan</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Ryan</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="232" ShortCode="SCUL">
+          <ContestName>Scullin</ContestName>
+        </ContestIdentifier>
+        <Area Id="232" Type="division">Scullin</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Scullin</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="148" ShortCode="SHOR">
+          <ContestName>Shortland</ContestName>
+        </ContestIdentifier>
+        <Area Id="148" Type="division">Shortland</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Shortland</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="307" ShortCode="SOLO">
+          <ContestName>Solomon</ContestName>
+        </ContestIdentifier>
+        <Area Id="307" Type="division">Solomon</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Solomon</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="246" ShortCode="STIR">
+          <ContestName>Stirling</ContestName>
+        </ContestIdentifier>
+        <Area Id="246" Type="division">Stirling</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Stirling</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="190" ShortCode="STUR">
+          <ContestName>Sturt</ContestName>
+        </ContestIdentifier>
+        <Area Id="190" Type="division">Sturt</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Sturt</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="247" ShortCode="SWAN">
+          <ContestName>Swan</ContestName>
+        </ContestIdentifier>
+        <Area Id="247" Type="division">Swan</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Swan</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="149" ShortCode="SYDN">
+          <ContestName>Sydney</ContestName>
+        </ContestIdentifier>
+        <Area Id="149" Type="division">Sydney</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Sydney</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="248" ShortCode="TANG">
+          <ContestName>Tangney</ContestName>
+        </ContestIdentifier>
+        <Area Id="248" Type="division">Tangney</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Tangney</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="191" ShortCode="WAKE">
+          <ContestName>Wakefield</ContestName>
+        </ContestIdentifier>
+        <Area Id="191" Type="division">Wakefield</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Wakefield</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="233" ShortCode="WANN">
+          <ContestName>Wannon</ContestName>
+        </ContestIdentifier>
+        <Area Id="233" Type="division">Wannon</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Wannon</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="151" ShortCode="WARR">
+          <ContestName>Warringah</ContestName>
+        </ContestIdentifier>
+        <Area Id="151" Type="division">Warringah</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Warringah</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="251" ShortCode="WATS">
+          <ContestName>Watson</ContestName>
+        </ContestIdentifier>
+        <Area Id="251" Type="division">Watson</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Watson</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="152" ShortCode="WENT">
+          <ContestName>Wentworth</ContestName>
+        </ContestIdentifier>
+        <Area Id="152" Type="division">Wentworth</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Wentworth</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="153" ShortCode="WERR">
+          <ContestName>Werriwa</ContestName>
+        </ContestIdentifier>
+        <Area Id="153" Type="division">Werriwa</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Werriwa</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="150" ShortCode="WHIT">
+          <ContestName>Whitlam</ContestName>
+        </ContestIdentifier>
+        <Area Id="150" Type="division">Whitlam</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Whitlam</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="178" ShortCode="WBAY">
+          <ContestName>Wide Bay</ContestName>
+        </ContestIdentifier>
+        <Area Id="178" Type="division">Wide Bay</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Wide Bay</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="234" ShortCode="WILL">
+          <ContestName>Wills</ContestName>
+        </ContestIdentifier>
+        <Area Id="234" Type="division">Wills</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Wills</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="316" ShortCode="WRIG">
+          <ContestName>Wright</ContestName>
+        </ContestIdentifier>
+        <Area Id="316" Type="division">Wright</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Wright</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+    </Election>
+    <Election>
+      <ElectionIdentifier Id="S">
+        <ElectionName>Senate Election</ElectionName>
+        <ElectionCategory>Senate</ElectionCategory>
+      </ElectionIdentifier>
+      <Date Type="PollingDay">
+        <SingleDate>2016-07-02T00:00:00</SingleDate>
+      </Date>
+      <Contest>
+        <ContestIdentifier Id="ACT">
+          <ContestName>Australian Capital Territory</ContestName>
+        </ContestIdentifier>
+        <Area Id="ACT" Type="state">Australian Capital Territory</Area>
+        <Position>Senator for the Australian Capital Territory</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>2</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="NSW">
+          <ContestName>New South Wales</ContestName>
+        </ContestIdentifier>
+        <Area Id="NSW" Type="state">New South Wales</Area>
+        <Position>Senator for New South Wales</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>12</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="VIC">
+          <ContestName>Victoria</ContestName>
+        </ContestIdentifier>
+        <Area Id="VIC" Type="state">Victoria</Area>
+        <Position>Senator for Victoria</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>12</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="QLD">
+          <ContestName>Queensland</ContestName>
+        </ContestIdentifier>
+        <Area Id="QLD" Type="state">Queensland</Area>
+        <Position>Senator for Queensland</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>12</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="WA">
+          <ContestName>Western Australia</ContestName>
+        </ContestIdentifier>
+        <Area Id="WA" Type="state">Western Australia</Area>
+        <Position>Senator for Western Australia</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>12</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="SA">
+          <ContestName>South Australia</ContestName>
+        </ContestIdentifier>
+        <Area Id="SA" Type="state">South Australia</Area>
+        <Position>Senator for South Australia</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>12</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="NT">
+          <ContestName>Northern Territory</ContestName>
+        </ContestIdentifier>
+        <Area Id="NT" Type="state">Northern Territory</Area>
+        <Position>Senator for the Northern Territory</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>2</NumberOfPositions>
+      </Contest>
+      <Contest>
+        <ContestIdentifier Id="TAS">
+          <ContestName>Tasmania</ContestName>
+        </ContestIdentifier>
+        <Area Id="TAS" Type="state">Tasmania</Area>
+        <Position>Senator for Tasmania</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>12</NumberOfPositions>
+      </Contest>
+    </Election>
+  </ElectionEvent>
+</EML>

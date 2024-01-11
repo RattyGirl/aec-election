@@ -1,0 +1,3216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MediaFeed Id="1a274ad8-4e10-4362-9446-174924db1e1b" Created="2023-06-26T12:49:07" SchemaVersion="3" EmlVersion="5" xmlns="http://www.aec.gov.au/xml/schema/mediafeed" xmlns:eml="urn:oasis:names:tc:evs:schema:eml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:ts="urn:oasis:names:tc:evs:schema:eml:ts" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.aec.gov.au/xml/schema/mediafeed ../Schema/AEC/aec-mediafeed-results-v3-0.xsd">
+  <ManagingAuthority>
+    <eml:AuthorityIdentifier Id="AEC">Australian Electoral Commission</eml:AuthorityIdentifier>
+  </ManagingAuthority>
+  <MessageLanguage>en</MessageLanguage>
+  <MessageGenerator>
+    <Name>Virtual Tally Room</Name>
+    <Environment>PROD</Environment>
+    <Site>CANBERRA</Site>
+    <Server>Internal</Server>
+    <Platform>x64</Platform>
+    <Version>10.10.218.0</Version>
+  </MessageGenerator>
+  <Cycle Created="2023-06-26T12:48:58">fd1ed03a-49f6-4d0a-8352-4dd879168078</Cycle>
+  <Results Phase="Preload" Verbosity="Preload" Granularity="Detailed">
+    <eml:EventIdentifier Id="29422">
+      <eml:EventName>2023 Fadden By-election</eml:EventName>
+    </eml:EventIdentifier>
+    <Election>
+      <eml:ElectionIdentifier Id="H">
+        <eml:ElectionName>House of Representatives By-election for the division of Fadden</eml:ElectionName>
+        <eml:ElectionCategory>ByElection</eml:ElectionCategory>
+      </eml:ElectionIdentifier>
+      <House>
+        <Contests>
+          <Contest Projected="true">
+            <eml:ContestIdentifier Id="159">
+              <eml:ContestName>Fadden</eml:ContestName>
+            </eml:ContestIdentifier>
+            <PollingDistrictIdentifier Id="159" ShortCode="FADD">
+              <Name>Fadden</Name>
+              <StateIdentifier Id="QLD" />
+            </PollingDistrictIdentifier>
+            <Enrolment CloseOfRolls="131267" Historic="127728">131267</Enrolment>
+            <FirstPreferences PollingPlacesReturned="0" PollingPlacesExpected="36">
+              <Candidate>
+                <eml:CandidateIdentifier Id="38274">
+                  <eml:CandidateName>DEL FABBRO, Letitia</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="196" ShortCode="ALP">
+                  <eml:RegisteredName>Australian Labor Party</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>1</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="23638" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="18438" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="786" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="117" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="772" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="3525" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38275">
+                  <eml:CandidateName>TURNER, Scott</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1173" ShortCode="GRN">
+                  <eml:RegisteredName>The Greens</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>2</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="11353" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="8514" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="669" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="72" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="447" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="1651" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38276">
+                  <eml:CandidateName>SIMPSON, Chris</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1472" ShortCode="AUD">
+                  <eml:RegisteredName>Australian Democrats</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>3</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38278">
+                  <eml:CandidateName>ROACH, Sandy</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1133" ShortCode="ON">
+                  <eml:RegisteredName>Pauline Hanson's One Nation</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>4</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="9177" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="7153" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="416" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="55" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="364" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="1189" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38271">
+                  <eml:CandidateName>DAVIS, Marnie Laree</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1496" ShortCode="IAP">
+                  <eml:RegisteredName>Indigenous - Aboriginal Party of Australia</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>5</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38273">
+                  <eml:CandidateName>LUYKEN, Suzette</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1332" ShortCode="HMP">
+                  <eml:RegisteredName>Legalise Cannabis Australia</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>6</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38277">
+                  <eml:CandidateName>BYE, Quentin</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1336" ShortCode="SPP">
+                  <eml:RegisteredName>Sustainable Australia Party - Stop Overdevelopment / Corruption</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>7</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate Independent="true">
+                <eml:CandidateIdentifier Id="38279">
+                  <eml:CandidateName>YOUNG, Kevin</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <BallotPosition>8</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate Independent="true">
+                <eml:CandidateIdentifier Id="38269">
+                  <eml:CandidateName>JONES, Belinda</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <BallotPosition>9</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate Independent="true">
+                <eml:CandidateIdentifier Id="37695">
+                  <eml:CandidateName>BROOKER, Stewart</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <BallotPosition>10</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="4407" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="3206" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="245" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="28" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="193" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="735" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38268">
+                  <eml:CandidateName>PUKALLUS, Jan</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1181" ShortCode="CEC">
+                  <eml:RegisteredName>Australian Citizens Party</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>11</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38272">
+                  <eml:CandidateName>CALDWELL, Cameron</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1323" ShortCode="LNP">
+                  <eml:RegisteredName>LNP</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>12</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="true">true</Incumbent>
+                <Votes Historic="47190" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="36046" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="1007" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="136" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="1346" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="8655" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Candidate>
+                <eml:CandidateIdentifier Id="38270">
+                  <eml:CandidateName>TAYLER, James</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1344" ShortCode="CYA">
+                  <eml:RegisteredName>Australian Federation Party</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>13</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="0" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="0" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="0" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Candidate>
+              <Ghost>
+                <eml:CandidateIdentifier Id="35975">
+                  <eml:CandidateName>O'BRIEN, Nathan Grant</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1469" ShortCode="UAPP">
+                  <eml:RegisteredName>United Australia Party</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>903</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="7014" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="5569" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="340" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="49" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="235" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="821" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Ghost>
+              <Ghost>
+                <eml:CandidateIdentifier Id="37299">
+                  <eml:CandidateName>FORBES, Alex</eml:CandidateName>
+                </eml:CandidateIdentifier>
+                <eml:AffiliationIdentifier Id="1166" ShortCode="LDP">
+                  <eml:RegisteredName>Liberal Democratic Party</eml:RegisteredName>
+                </eml:AffiliationIdentifier>
+                <BallotPosition>907</BallotPosition>
+                <Elected Historic="false">false</Elected>
+                <Incumbent Notional="false">false</Incumbent>
+                <Votes Historic="2992" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="2237" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="150" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="14" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="152" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="439" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Ghost>
+              <Formal>
+                <Votes Historic="105771" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="81163" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="3613" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="471" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="3509" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="17015" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Formal>
+              <Informal>
+                <Votes Historic="4760" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="3919" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="190" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="30" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="109" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="512" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Informal>
+              <Total>
+                <Votes Historic="110531" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+                <VotesByType>
+                  <Votes Type="Ordinary" Historic="85082" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Absent" Historic="3803" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Provisional" Historic="501" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="PrePoll" Historic="3618" Percentage="0" Swing="0">0</Votes>
+                  <Votes Type="Postal" Historic="17527" Percentage="0" Swing="0">0</Votes>
+                </VotesByType>
+              </Total>
+            </FirstPreferences>
+            <TwoCandidatePreferred Restricted="true" PollingPlacesReturned="0" PollingPlacesExpected="36" />
+            <TwoPartyPreferred>
+              <Coalition>
+                <CoalitionIdentifier Id="1" ShortCode="ALP">
+                  <CoalitionName>Australian Labor Party</CoalitionName>
+                </CoalitionIdentifier>
+                <Votes Historic="41645" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+              </Coalition>
+              <Coalition>
+                <CoalitionIdentifier Id="2" ShortCode="LNC">
+                  <CoalitionName>Liberal/National Coalition</CoalitionName>
+                </CoalitionIdentifier>
+                <Votes Historic="64126" Percentage="0" Swing="0" MatchedHistoric="0">0</Votes>
+              </Coalition>
+            </TwoPartyPreferred>
+            <PollingPlaces>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6253" Name="Alberton" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="38" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="18" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="31" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="28" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="147" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="36" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="10" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="309" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="22" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="331" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="31650" Name="Arundel" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="1199" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="686" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="534" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="242" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="1971" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="387" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="155" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="5174" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="269" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="5443" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="32499" Name="Arundel East" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="188" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="76" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="41" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="39" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="230" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="31" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="10" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="615" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="52" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="667" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="58754" Name="Beenleigh FADDEN PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="168" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="61" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="84" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="30" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="303" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="61" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="19" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="726" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="44" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="770" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6260" Name="Biggera Waters" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="299" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="195" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="103" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="55" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="510" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="81" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="50" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1293" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="78" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1371" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6281" Name="Canowindra (Fadden)" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="174" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="87" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="107" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="55" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="309" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="73" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="39" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="844" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="46" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="891" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6264" Name="Coombabah" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="152" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="68" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="60" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="27" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="373" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="64" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="17" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="761" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="50" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="811" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="32519" Name="Coombabah South" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="244" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="125" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="68" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="31" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="281" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="82" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="23" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="854" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="45" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="899" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="97756" Name="Coomera East" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="255" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="175" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="122" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="61" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="310" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="95" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="32" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1051" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="62" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1113" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="58876" Name="Coomera North" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="523" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="311" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="228" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="96" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="609" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="168" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="114" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="2050" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="134" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="2184" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="65480" Name="EAV Fadden PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="9" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="1" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="4" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="1" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="10" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="1" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="26" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="26" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="97824" Name="Gold Coast North FADDEN PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="1255" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="571" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="541" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="247" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="1942" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="364" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="148" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="5068" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="190" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="5258" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6268" Name="Harley Park" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="259" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="129" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="78" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="34" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="426" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="63" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="34" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1024" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="96" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1120" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6269" Name="Helensvale" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="354" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="141" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="151" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="53" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="517" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="122" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="41" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1380" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="78" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1458" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="47743" Name="Helensvale FADDEN PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="3402" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="1340" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="1258" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="508" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="7091" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="889" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="329" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="14817" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="626" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="15442" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="31651" Name="Helensvale North" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="392" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="236" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="196" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="81" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="795" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="130" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="60" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1892" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="102" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1994" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6271" Name="Hope Island" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="249" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="92" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="114" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="45" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="735" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="96" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="34" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1366" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="62" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1428" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="11456" Name="Jacobs Well" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="182" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="67" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="104" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="32" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="443" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="92" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="28" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="949" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="55" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1004" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6274" Name="Labrador" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="551" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="361" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="148" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="115" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="601" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="193" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="59" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="2029" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="157" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="2186" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="97694" Name="Labrador FADDEN PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="772" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="347" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="220" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="121" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="1202" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="174" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="67" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="2904" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="151" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="3055" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="58495" Name="Ormeau" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="399" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="161" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="245" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="64" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="536" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="159" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="51" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1615" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="85" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1701" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6282" Name="Oxenford (Fadden)" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="274" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="152" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="153" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="70" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="418" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="88" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="31" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1187" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="56" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1243" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="33989" Name="Pacific Pines" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="495" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="264" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="229" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="98" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="626" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="150" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="75" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1938" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="147" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="2085" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="97786" Name="Pacific Pines Central" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="137" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="75" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="87" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="24" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="218" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="55" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="17" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="614" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="32" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="646" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="82856" Name="Paradise Lakes" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="153" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="51" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="66" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="32" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="247" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="54" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="14" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="617" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="40" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="657" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="97752" Name="Paradise Point" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="176" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="98" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="88" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="22" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="558" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="88" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="42" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1073" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="49" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1122" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="82885" Name="Pimpama (Fadden)" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="86" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="65" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="46" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="28" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="71" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="38" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="17" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="352" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="33" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="385" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="98163" Name="Pimpama Central" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="397" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="281" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="121" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="53" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="436" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="135" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="29" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1452" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="7" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1459" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="83210" Name="Pimpama East" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="297" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="154" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="136" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="62" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="264" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="93" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="20" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="1027" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="62" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="1089" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="12003" Name="Runaway Bay" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="427" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="242" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="196" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="75" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="963" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="180" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="72" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="2156" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="105" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="2261" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="46721" Name="Runaway Bay FADDEN PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="3533" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="1128" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="1112" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="489" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="10348" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="977" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="419" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="18005" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="688" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="18693" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="97418" Name="Sanctuary Cove" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="120" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="66" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="60" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="21" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="324" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="43" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="17" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="651" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="26" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="677" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="58720" Name="Southport FADDEN PPVC" Classification="PrePollVotingCentre" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="576" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="277" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="135" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="115" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="808" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="107" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="73" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="2092" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="106" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="2198" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="46386" Name="Southport North (Fadden)" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="121" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="120" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="37" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="21" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="153" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="29" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="18" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="499" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="36" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="535" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="109030" Name="Special Hospital Team 1" Classification="SpecialHospital" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="168" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="79" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="57" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="35" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="413" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="39" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="21" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="812" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="24" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="836" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="109331" Name="Special Hospital Team 2" Classification="SpecialHospital" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="173" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="81" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="58" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="36" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="425" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="40" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="22" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="836" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="25" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="861" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="55505" Name="Studio Village (Fadden)" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="165" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="106" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="79" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="36" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="237" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="45" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="16" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="685" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="45" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="730" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+              <PollingPlace>
+                <PollingPlaceIdentifier Id="6297" Name="Woongoolba" />
+                <FirstPreferences>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38274" />
+                    <Votes Historic="75" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38275" />
+                    <Votes Historic="23" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38276" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38278" />
+                    <Votes Historic="51" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38271" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38273" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38277" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38279" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38269" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="37695" />
+                    <Votes Historic="19" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38268" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38272" />
+                    <Votes Historic="199" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Candidate>
+                    <eml:CandidateIdentifier Id="38270" />
+                    <Votes Historic="0" Percentage="0" Swing="0">0</Votes>
+                  </Candidate>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="35975" />
+                    <Votes Historic="43" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Ghost>
+                    <eml:CandidateIdentifier Id="37299" />
+                    <Votes Historic="11" Percentage="0" Swing="0">0</Votes>
+                  </Ghost>
+                  <Formal>
+                    <Votes Historic="422" Percentage="0" Swing="0">0</Votes>
+                  </Formal>
+                  <Informal>
+                    <Votes Historic="31" Percentage="0" Swing="0">0</Votes>
+                  </Informal>
+                  <Total>
+                    <Votes Historic="453" Percentage="0" Swing="0">0</Votes>
+                  </Total>
+                </FirstPreferences>
+                <TwoCandidatePreferred Restricted="true" />
+              </PollingPlace>
+            </PollingPlaces>
+          </Contest>
+        </Contests>
+      </House>
+    </Election>
+  </Results>
+</MediaFeed>

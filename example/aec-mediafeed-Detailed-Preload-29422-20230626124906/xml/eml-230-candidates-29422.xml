@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EML xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:ts="urn:oasis:names:tc:evs:schema:eml:ts" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:oasis:names:tc:evs:schema:eml ../Schema/EML/230-candidatelist-v5-0.xsd" SchemaVersion="5" Id="876356db-8659-42d6-be28-d1a0d1a3f702">
+  <TransactionId>fd1ed03a-49f6-4d0a-8352-4dd879168078</TransactionId>
+  <CandidateList>
+    <EventIdentifier Id="29422">
+      <EventName>2023 Fadden By-election</EventName>
+    </EventIdentifier>
+    <Election>
+      <ElectionIdentifier Id="H">
+        <ElectionName>House of Representatives By-election for the division of Fadden</ElectionName>
+        <ElectionCategory>ByElection</ElectionCategory>
+      </ElectionIdentifier>
+      <Contest>
+        <ContestIdentifier Id="159" ShortCode="FADD">
+          <ContestName>Fadden</ContestName>
+        </ContestIdentifier>
+        <Candidate Independent="yes">
+          <CandidateIdentifier Id="37695">
+            <CandidateName>BROOKER, Stewart</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Stewart Gordon</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Stewart</xnl:FirstName>
+              <xnl:LastName>BROOKER</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Profession>Business Development Manager</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38268">
+            <CandidateName>PUKALLUS, Jan</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Janet Elizabeth</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Jan</xnl:FirstName>
+              <xnl:LastName>PUKALLUS</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>female</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1181" ShortCode="CEC">
+              <RegisteredName>Australian Citizens Party</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Secretary</Profession>
+        </Candidate>
+        <Candidate Independent="yes">
+          <CandidateIdentifier Id="38269">
+            <CandidateName>JONES, Belinda</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Belinda Diana</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Belinda</xnl:FirstName>
+              <xnl:LastName>JONES</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>female</Gender>
+          <Contact />
+          <Profession>Journalist</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38270">
+            <CandidateName>TAYLER, James</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>James Grahame</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">James</xnl:FirstName>
+              <xnl:LastName>TAYLER</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1344" ShortCode="CYA">
+              <RegisteredName>Australian Federation Party</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Engineer</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38271">
+            <CandidateName>DAVIS, Marnie Laree</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Marnie Laree</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Marnie Laree</xnl:FirstName>
+              <xnl:LastName>DAVIS</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>female</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1496" ShortCode="IAP">
+              <RegisteredName>Indigenous - Aboriginal Party of Australia</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Manager</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38272">
+            <CandidateName>CALDWELL, Cameron</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Cameron Mackenzie</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Cameron</xnl:FirstName>
+              <xnl:LastName>CALDWELL</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1323" ShortCode="LNP">
+              <RegisteredName>LNP</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Councillor - City of Gold Coast</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38273">
+            <CandidateName>LUYKEN, Suzette</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Suzette Jennie</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Suzette</xnl:FirstName>
+              <xnl:LastName>LUYKEN</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>female</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1332" ShortCode="HMP">
+              <RegisteredName>Legalise Cannabis Australia</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Carer</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38274">
+            <CandidateName>DEL FABBRO, Letitia</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Letitia Anne</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Letitia</xnl:FirstName>
+              <xnl:LastName>DEL FABBRO</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>female</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="196" ShortCode="ALP">
+              <RegisteredName>Australian Labor Party</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>University Lecturer</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38275">
+            <CandidateName>TURNER, Scott</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Scott James</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Scott</xnl:FirstName>
+              <xnl:LastName>TURNER</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1173" ShortCode="GRN">
+              <RegisteredName>The Greens</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Customer Service</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38276">
+            <CandidateName>SIMPSON, Chris</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Christopher Gerard</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Chris</xnl:FirstName>
+              <xnl:LastName>SIMPSON</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1472" ShortCode="AUD">
+              <RegisteredName>Australian Democrats</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Construction Project Manager</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38277">
+            <CandidateName>BYE, Quentin</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Quentin</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Quentin</xnl:FirstName>
+              <xnl:LastName>BYE</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1336" ShortCode="SPP">
+              <RegisteredName>Sustainable Australia Party - Stop Overdevelopment / Corruption</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Height Safety Technician</Profession>
+        </Candidate>
+        <Candidate Independent="no">
+          <CandidateIdentifier Id="38278">
+            <CandidateName>ROACH, Sandy</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Sandra Jane</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Sandy</xnl:FirstName>
+              <xnl:LastName>ROACH</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>female</Gender>
+          <Contact />
+          <Affiliation>
+            <AffiliationIdentifier Id="1133" ShortCode="ON">
+              <RegisteredName>Pauline Hanson's One Nation</RegisteredName>
+            </AffiliationIdentifier>
+            <Type>Party</Type>
+          </Affiliation>
+          <Profession>Accounts</Profession>
+        </Candidate>
+        <Candidate Independent="yes">
+          <CandidateIdentifier Id="38279">
+            <CandidateName>YOUNG, Kevin</CandidateName>
+          </CandidateIdentifier>
+          <CandidateFullName>
+            <xnl:PersonName>
+              <xnl:FirstName>Kevin</xnl:FirstName>
+              <xnl:FirstName Type="BallotPaper">Kevin</xnl:FirstName>
+              <xnl:LastName>YOUNG</xnl:LastName>
+            </xnl:PersonName>
+          </CandidateFullName>
+          <Gender>male</Gender>
+          <Contact />
+          <Profession>Entrepreneur</Profession>
+        </Candidate>
+      </Contest>
+    </Election>
+  </CandidateList>
+</EML>

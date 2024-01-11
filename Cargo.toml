@@ -1,17 +1,28 @@
 [package]
-name = "aec-election"
+name = "aec_election"
 version = "0.1.0"
 edition = "2021"
+
+[lib]
+name = "election"
+path = "lib/lib.rs"
+
+[[bin]]
+name = "aec"
+path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-suppaftp = "^5.1.0"
-zip = "0.6.4"
-minidom = "0.15.1"
-serde = "1.0.159"
-mongodb = { version="2.4.0", features = ["tokio-sync"], default-features = false}
-postgres = "0.19.5"
+suppaftp = "5.2.2"
+zip = "0.6.6"
+minidom = "0.15.2"
+serde = { version = "1.0.195", features = ["derive"] }
 
-[toolchain]
-channel = "nightly"
+#mongodb = { version="2.8.0", features = ["tokio-sync"], default-features = false}
+postgres = "0.19.7"
+sqlx = { version = "0.7.3", features = ["postgres", "runtime-tokio"] }
+tokio = { version = "1.35.1", features = ["rt", "rt-multi-thread", "macros"] }
+syn = "2.0.48"
+quote = { version = "1.0.35", features = [] }
+election_derive = {path = "election_derive"}

@@ -249,8 +249,8 @@ pub mod polling {
 
 pub mod results {
     use crate::eml_schema::{
-        CandidateIdentifierStructure, ContestIdentifierStructure,
-        ElectionIdentifierStructure, EventIdentifierStructure, ManagingAuthorityStructure,
+        CandidateIdentifierStructure, ContestIdentifierStructure, ElectionIdentifierStructure,
+        EventIdentifierStructure, ManagingAuthorityStructure,
     };
     use crate::xml_extension::IgnoreNS;
     use minidom::Element;
@@ -546,11 +546,28 @@ pub mod results {
     impl From<&Element> for HouseCandidateResultsStructure {
         fn from(value: &Element) -> Self {
             Self {
-                candidate_identifier: value.get_child_ignore_ns("CandidateIdentifier").unwrap().try_into().unwrap(),
-                ballot_position: value.get_child_ignore_ns("BallotPosition").map(|x| x.text()),
-                elected: value.get_child_ignore_ns("BallotPosition").map(|x| x.text()),
-                votes: value.get_child_ignore_ns("Votes").unwrap().text().parse().unwrap(),
-                matched_historic: value.get_child_ignore_ns("Votes").unwrap().attr("MatchedHistoric").map(|x| u32::from_str(x).unwrap_or(0)),
+                candidate_identifier: value
+                    .get_child_ignore_ns("CandidateIdentifier")
+                    .unwrap()
+                    .try_into()
+                    .unwrap(),
+                ballot_position: value
+                    .get_child_ignore_ns("BallotPosition")
+                    .map(|x| x.text()),
+                elected: value
+                    .get_child_ignore_ns("BallotPosition")
+                    .map(|x| x.text()),
+                votes: value
+                    .get_child_ignore_ns("Votes")
+                    .unwrap()
+                    .text()
+                    .parse()
+                    .unwrap(),
+                matched_historic: value
+                    .get_child_ignore_ns("Votes")
+                    .unwrap()
+                    .attr("MatchedHistoric")
+                    .map(|x| u32::from_str(x).unwrap_or(0)),
                 votes_by_type: value
                     .get_child_ignore_ns("VotesByType")
                     .unwrap()
@@ -562,21 +579,18 @@ pub mod results {
         }
     }
 
-    struct SenateMediaFeedStructure {
-
-    }
+    struct SenateMediaFeedStructure {}
 
     impl From<&Element> for SenateMediaFeedStructure {
         fn from(_value: &Element) -> Self {
-            Self{}
+            Self {}
         }
     }
-
 
     struct ReferendumMediaFeedStructure {}
     impl From<&Element> for ReferendumMediaFeedStructure {
         fn from(_value: &Element) -> Self {
-            Self{}
+            Self {}
         }
     }
 }

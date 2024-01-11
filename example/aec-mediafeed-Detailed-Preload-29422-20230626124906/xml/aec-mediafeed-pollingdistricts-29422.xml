@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MediaFeed Id="bfea6187-bb47-4f99-bd2e-4abf73dd87c3" Created="2023-06-26T12:49:06" SchemaVersion="3" EmlVersion="5" xmlns="http://www.aec.gov.au/xml/schema/mediafeed" xmlns:eml="urn:oasis:names:tc:evs:schema:eml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:ts="urn:oasis:names:tc:evs:schema:eml:ts" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.aec.gov.au/xml/schema/mediafeed ../Schema/AEC/aec-mediafeed-pollingdistricts-v3-0.xsd">
+  <ManagingAuthority>
+    <eml:AuthorityIdentifier Id="AEC">Australian Electoral Commission</eml:AuthorityIdentifier>
+  </ManagingAuthority>
+  <MessageLanguage>en</MessageLanguage>
+  <MessageGenerator>
+    <Name>Virtual Tally Room</Name>
+    <Environment>PROD</Environment>
+    <Site>CANBERRA</Site>
+    <Server>Internal</Server>
+    <Platform>x64</Platform>
+    <Version>10.10.218.0</Version>
+  </MessageGenerator>
+  <Cycle Created="2023-06-26T12:48:58">fd1ed03a-49f6-4d0a-8352-4dd879168078</Cycle>
+  <PollingDistrictList>
+    <eml:EventIdentifier Id="29422">
+      <eml:EventName>2023 Fadden By-election</eml:EventName>
+    </eml:EventIdentifier>
+    <PollingDistrict>
+      <PollingDistrictIdentifier Id="159" ShortCode="FADD">
+        <Name>Fadden</Name>
+        <StateIdentifier Id="QLD" />
+      </PollingDistrictIdentifier>
+      <NameDerivation>Named in honour of Sir Arthur William Fadden, 1895-1973, Prime Minister of Australia (August-October 1941) and a Member of the House of Representatives (1936-58).</NameDerivation>
+      <ProductsIndustry>Residential areas are concentrated in the south with semi-rural in the north. Commercial activities include tourism, market gardens, sugar cane farming, and light industry including boat building.</ProductsIndustry>
+      <Location>The Division of Fadden consists of part of the Gold Coast City Council and part of the Redland City Council.</Location>
+      <Demographic>OuterMetropolitan</Demographic>
+      <Area>387</Area>
+      <PollingPlaces>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6253">
+            <eml:Address AddressDetailsKey="Alberton">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.703131</xal:AddressLatitude>
+                <xal:AddressLongitude>153.256718</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">St Peter's Lutheran Church Hall</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">187 Alberton Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">ALBERTON</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4207</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6253" Name="Alberton" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="31650">
+            <eml:Address AddressDetailsKey="Arundel">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.944361742536188</xal:AddressLatitude>
+                <xal:AddressLongitude>153.36534220987897</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Arundel State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">185 Napper Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">ARUNDEL</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4214</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="31650" Name="Arundel" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="32499">
+            <eml:Address AddressDetailsKey="Arundel East">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.939041</xal:AddressLatitude>
+                <xal:AddressLongitude>153.385938</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Arundel Presbyterian Church</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">132 Allied Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">ARUNDEL</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4214</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="32499" Name="Arundel East" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="58754">
+            <eml:Address AddressDetailsKey="Beenleigh FADDEN PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.720291</xal:AddressLatitude>
+                <xal:AddressLongitude>153.198992</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Beenleigh Showgrounds</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">1-19 Showgrounds Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">BEENLEIGH</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4207</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="58754" Name="Beenleigh FADDEN PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6260">
+            <eml:Address AddressDetailsKey="Biggera Waters">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.927353</xal:AddressLatitude>
+                <xal:AddressLongitude>153.396597</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Biggera Waters State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">2 Morala Ave</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">BIGGERA WATERS</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6260" Name="Biggera Waters" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6281">
+            <eml:Address AddressDetailsKey="Canowindra (Fadden)">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.800235</xal:AddressLatitude>
+                <xal:AddressLongitude>153.277382</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Ormeau State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">29 Mirambeena Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PIMPAMA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6281" Name="Canowindra (Fadden)" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6264">
+            <eml:Address AddressDetailsKey="Coombabah">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.893799</xal:AddressLatitude>
+                <xal:AddressLongitude>153.387433</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Coombabah State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">164-172 Oxley Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">COOMBABAH</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6264" Name="Coombabah" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="32519">
+            <eml:Address AddressDetailsKey="Coombabah South">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.924046</xal:AddressLatitude>
+                <xal:AddressLongitude>153.37701</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Coombabah State High School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">550 Pine Ridge Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">COOMBABAH</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="32519" Name="Coombabah South" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="97756">
+            <eml:Address AddressDetailsKey="Coomera East">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.839326</xal:AddressLatitude>
+                <xal:AddressLongitude>153.339233</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Picnic Creek State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">25 Edwardson Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">COOMERA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="97756" Name="Coomera East" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="58876">
+            <eml:Address AddressDetailsKey="Coomera North">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.844651</xal:AddressLatitude>
+                <xal:AddressLongitude>153.32744</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Coomera Rivers State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">81-87 Finnegan Way</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">COOMERA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="58876" Name="Coomera North" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="65480">
+            <eml:Address AddressDetailsKey="EAV Fadden PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-35.27731412</xal:AddressLatitude>
+                <xal:AddressLongitude>149.13122656</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">AEC National EAV Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">10 Mort St</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">CANBERRA</xal:AddressLine>
+                <xal:AddressLine Type="State">ACT</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">2601</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="65480" Name="EAV Fadden PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="97824">
+            <eml:Address AddressDetailsKey="Gold Coast North FADDEN PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.824494</xal:AddressLatitude>
+                <xal:AddressLongitude>153.291676</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Pimpama Community Centre Sports Hub</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">139 Rifle Range Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PIMPAMA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="97824" Name="Gold Coast North FADDEN PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6268">
+            <eml:Address AddressDetailsKey="Harley Park">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.940661</xal:AddressLatitude>
+                <xal:AddressLongitude>153.407262</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Labrador Memorial Senior Citizens Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">370 Marine Pde</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">LABRADOR</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4215</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6268" Name="Harley Park" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6269">
+            <eml:Address AddressDetailsKey="Helensvale">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.914863</xal:AddressLatitude>
+                <xal:AddressLongitude>153.328481</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Helensvale State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">8 Lindfield Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">HELENSVALE</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4212</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6269" Name="Helensvale" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="47743">
+            <eml:Address AddressDetailsKey="Helensvale FADDEN PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.918000253280493</xal:AddressLatitude>
+                <xal:AddressLongitude>153.3368668343519</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Helensvale Senior Citizens Club</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">37 Discovery Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">HELENSVALE</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4212</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="47743" Name="Helensvale FADDEN PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="31651">
+            <eml:Address AddressDetailsKey="Helensvale North">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.898738</xal:AddressLatitude>
+                <xal:AddressLongitude>153.327304</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Helensvale State High School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">243 Discovery Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">HELENSVALE</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4212</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="31651" Name="Helensvale North" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6271">
+            <eml:Address AddressDetailsKey="Hope Island">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.87382</xal:AddressLatitude>
+                <xal:AddressLongitude>153.375288</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Banksia Park Hall</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">27 Crescent Ave</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">HOPE ISLAND</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4212</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6271" Name="Hope Island" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="11456">
+            <eml:Address AddressDetailsKey="Jacobs Well">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.779493</xal:AddressLatitude>
+                <xal:AddressLongitude>153.363525</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Jacobs Well Community Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">27 Bay Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">JACOBS WELL</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4208</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="11456" Name="Jacobs Well" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6274">
+            <eml:Address AddressDetailsKey="Labrador">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.942737</xal:AddressLatitude>
+                <xal:AddressLongitude>153.401165</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Labrador State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">Turpin Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">LABRADOR</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4215</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6274" Name="Labrador" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="97694">
+            <eml:Address AddressDetailsKey="Labrador FADDEN PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.940661</xal:AddressLatitude>
+                <xal:AddressLongitude>153.407262</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Labrador Memorial Senior Citizens Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">370 Marine Pde</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">LABRADOR</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4215</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="97694" Name="Labrador FADDEN PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="58495">
+            <eml:Address AddressDetailsKey="Ormeau">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.772095</xal:AddressLatitude>
+                <xal:AddressLongitude>153.265221</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Ormeau Woods State High School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">148 Goldmine Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">ORMEAU</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4208</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="58495" Name="Ormeau" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6282">
+            <eml:Address AddressDetailsKey="Oxenford (Fadden)">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.90035</xal:AddressLatitude>
+                <xal:AddressLongitude>153.30334</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Oxenford State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">90 Michigan Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">OXENFORD</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4210</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6282" Name="Oxenford (Fadden)" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="33989">
+            <eml:Address AddressDetailsKey="Pacific Pines">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.941395</xal:AddressLatitude>
+                <xal:AddressLongitude>153.318314</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Pacific Pines State High School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">15 Archipelago St</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PACIFIC PINES</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4211</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="33989" Name="Pacific Pines" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="97786">
+            <eml:Address AddressDetailsKey="Pacific Pines Central">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.940135</xal:AddressLatitude>
+                <xal:AddressLongitude>153.318768</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Pacific Pines State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">47-67 Santa Isobel Blvd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PACIFIC PINES</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4211</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="97786" Name="Pacific Pines Central" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="82856">
+            <eml:Address AddressDetailsKey="Paradise Lakes">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.898738</xal:AddressLatitude>
+                <xal:AddressLongitude>153.378825</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Marj Shipman Community Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">91 Hansford Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">COOMBABAH</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="82856" Name="Paradise Lakes" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="97752">
+            <eml:Address AddressDetailsKey="Paradise Point">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.885507</xal:AddressLatitude>
+                <xal:AddressLongitude>153.393827</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Paradise Point Community Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">Community La</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PARADISE POINT</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="97752" Name="Paradise Point" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="82885">
+            <eml:Address AddressDetailsKey="Pimpama (Fadden)">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.824494</xal:AddressLatitude>
+                <xal:AddressLongitude>153.291676</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Pimpama Community Centre Sports Hub</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">139 Rifle Range Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PIMPAMA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="82885" Name="Pimpama (Fadden)" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="98163">
+            <eml:Address AddressDetailsKey="Pimpama Central">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.82389504799693</xal:AddressLatitude>
+                <xal:AddressLongitude>153.30741582769272</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Gainsborough State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">180 Yawalpah Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PIMPAMA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="98163" Name="Pimpama Central" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="83210">
+            <eml:Address AddressDetailsKey="Pimpama East">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.83392</xal:AddressLatitude>
+                <xal:AddressLongitude>153.32214</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Pimpama State Primary College</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">cnr Dixon Dr &amp; Cunningham Dr Nth</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">PIMPAMA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4209</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="83210" Name="Pimpama East" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="12003">
+            <eml:Address AddressDetailsKey="Runaway Bay">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.910856</xal:AddressLatitude>
+                <xal:AddressLongitude>153.399972</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Runaway Bay Community Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">Lae Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">RUNAWAY BAY</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="12003" Name="Runaway Bay" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="46721">
+            <eml:Address AddressDetailsKey="Runaway Bay FADDEN PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.910856</xal:AddressLatitude>
+                <xal:AddressLongitude>153.399972</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Runaway Bay Community Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">Lae Dr</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">RUNAWAY BAY</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4216</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="46721" Name="Runaway Bay FADDEN PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>Full</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="97418">
+            <eml:Address AddressDetailsKey="Sanctuary Cove">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.852423</xal:AddressLatitude>
+                <xal:AddressLongitude>153.360315</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">InterContinental Sanctuary Cove Resort</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">Sanctuary Cove</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine2">Manor Cir</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">Hope Island</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4212</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="97418" Name="Sanctuary Cove" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="58720">
+            <eml:Address AddressDetailsKey="Southport FADDEN PPVC">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.9709</xal:AddressLatitude>
+                <xal:AddressLongitude>153.414</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Southport Community Centre</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">6 Lawson St</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">SOUTHPORT</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4215</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="58720" Name="Southport FADDEN PPVC" Classification="PrePollVotingCentre" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="46386">
+            <eml:Address AddressDetailsKey="Southport North (Fadden)">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.960638</xal:AddressLatitude>
+                <xal:AddressLongitude>153.401152</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Southport State High School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">75 Smith St</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">SOUTHPORT</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4215</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="46386" Name="Southport North (Fadden)" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="109030">
+            <eml:Address AddressDetailsKey="Special Hospital Team 1">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude />
+                <xal:AddressLongitude />
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Multiple sites</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="109030" Name="Special Hospital Team 1" Classification="SpecialHospital" />
+          <WheelchairAccess>Unknown</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="109331">
+            <eml:Address AddressDetailsKey="Special Hospital Team 2">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude />
+                <xal:AddressLongitude />
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Multiple sites</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="109331" Name="Special Hospital Team 2" Classification="SpecialHospital" />
+          <WheelchairAccess>Unknown</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="55505">
+            <eml:Address AddressDetailsKey="Studio Village (Fadden)">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.919338</xal:AddressLatitude>
+                <xal:AddressLongitude>153.305692</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Gaven State School</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">212 Universal St</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">OXENFORD</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4210</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="55505" Name="Studio Village (Fadden)" />
+          <WheelchairAccess>Assisted</WheelchairAccess>
+        </PollingPlace>
+        <PollingPlace Channel="polling">
+          <eml:PhysicalLocation Id="6297">
+            <eml:Address AddressDetailsKey="Woongoolba">
+              <xal:PostalServiceElements Type="GDA94">
+                <xal:AddressLatitude>-27.74566167</xal:AddressLatitude>
+                <xal:AddressLongitude>153.32009626</xal:AddressLongitude>
+              </xal:PostalServiceElements>
+              <xal:AddressLines>
+                <xal:AddressLine Type="Premises">Woongoolba Public Hall</xal:AddressLine>
+                <xal:AddressLine Type="AddressLine1">1226 Stapylton Jacobs Well Rd</xal:AddressLine>
+                <xal:AddressLine Type="Suburb">WOONGOOLBA</xal:AddressLine>
+                <xal:AddressLine Type="State">QLD</xal:AddressLine>
+                <xal:AddressLine Type="Postcode">4207</xal:AddressLine>
+              </xal:AddressLines>
+            </eml:Address>
+          </eml:PhysicalLocation>
+          <PollingPlaceIdentifier Id="6297" Name="Woongoolba" />
+          <WheelchairAccess>None</WheelchairAccess>
+        </PollingPlace>
+      </PollingPlaces>
+    </PollingDistrict>
+  </PollingDistrictList>
+</MediaFeed>

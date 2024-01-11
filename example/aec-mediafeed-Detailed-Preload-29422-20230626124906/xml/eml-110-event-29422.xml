@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EML xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:ts="urn:oasis:names:tc:evs:schema:eml:ts" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:oasis:names:tc:evs:schema:eml ../Schema/EML/110-electionevent-v5-0.xsd" SchemaVersion="5" Id="0a084886-0b9e-4957-94be-7d2fa861f773">
+  <TransactionId>fd1ed03a-49f6-4d0a-8352-4dd879168078</TransactionId>
+  <ElectionEvent>
+    <EventIdentifier Id="29422">
+      <EventName>2023 Fadden By-election</EventName>
+    </EventIdentifier>
+    <ManagingAuthority>
+      <AuthorityIdentifier Id="AEC">Australian Electoral Commission</AuthorityIdentifier>
+      <AuthorityAddress AddressType="Office">
+        <xal:AddressLines>
+          <xal:AddressLine Type="AddressLine1">10 Mort Street</xal:AddressLine>
+          <xal:AddressLine Type="Suburb">Canberra</xal:AddressLine>
+          <xal:AddressLine Type="State">ACT</xal:AddressLine>
+          <xal:AddressLine Type="Postcode">2601</xal:AddressLine>
+        </xal:AddressLines>
+      </AuthorityAddress>
+    </ManagingAuthority>
+    <Election>
+      <ElectionIdentifier Id="H">
+        <ElectionName>House of Representatives By-election for the division of Fadden</ElectionName>
+        <ElectionCategory>ByElection</ElectionCategory>
+      </ElectionIdentifier>
+      <Date Type="PollingDay">
+        <SingleDate>2023-07-15T00:00:00</SingleDate>
+      </Date>
+      <Contest>
+        <ContestIdentifier Id="159" ShortCode="FADD">
+          <ContestName>Fadden</ContestName>
+        </ContestIdentifier>
+        <Area Id="159" Type="division">Fadden</Area>
+        <Position>Member of the House of Representatives for the Federal Division of Fadden</Position>
+        <VotingMethod>other</VotingMethod>
+        <MaxVotes>1</MaxVotes>
+        <NumberOfPositions>1</NumberOfPositions>
+      </Contest>
+    </Election>
+  </ElectionEvent>
+</EML>
