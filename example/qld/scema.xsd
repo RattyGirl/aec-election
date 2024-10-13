@@ -1,0 +1,444 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:simpleType name="yesno" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="contestTypes" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="mayor"/>
+            <xs:enumeration value="councillor"/>
+            <xs:enumeration value="poll"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="countRoundPartiesType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="party">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="count" type="xs:unsignedLong"/>
+                        <xs:element name="percentage" type="xs:float"/>
+                    </xs:sequence>
+                    <xs:attribute name="code" type="xs:string" use="required"/>
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="round" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="countName" type="xs:string" use="required"/>
+        <xs:attribute name="preliminary" type="xs:string" use="required"/>
+        <xs:attribute name="unofficial" type="xs:string" use="required"/>
+        <xs:attribute name="indicative" type="xs:string" use="required"/>
+        <xs:attribute name="preferences" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="countRoundMayorType">
+        <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalVotes" type="xs:unsignedLong"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalFormalVotes" type="countPercentageSection"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalInformalVotes" type="countPercentageSection"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="primaryVoteResults" type="primaryVoteResultsSection"/>
+            <xs:element minOccurs="0" name="twoCandidateVotes" type="twoCandidateVotesSection"/>
+            <xs:element minOccurs="0" name="indicativeCountDetails" type="indicativeCountDetails"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="preferenceDistributionSummary" type="preferenceDistributionSummary"/>
+            <xs:element minOccurs="0" name="districts" type="districtsMayorSection"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="round" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="countName" type="xs:string" use="required"/>
+        <xs:attribute name="preliminary" type="xs:string" use="required"/>
+        <xs:attribute name="unofficial" type="xs:string" use="required"/>
+        <xs:attribute name="indicative" type="xs:string" use="required"/>
+        <xs:attribute name="preferences" type="xs:string" use="required"/>
+        <xs:attribute name="lastUpdated" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="countRoundCouncillorType">
+        <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalVotes" type="xs:unsignedLong"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalBallots" type="xs:unsignedLong"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalFormalVotes" type="countPercentageSection"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalInformalVotes" type="countPercentageSection"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalFormalBallots" type="countPercentageSection"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalInformalBallots" type="countPercentageSection"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="primaryVoteResults" type="primaryVoteResultsSection"/>
+            <xs:element minOccurs="0" name="twoCandidateVotes" type="twoCandidateVotesSection"/>
+            <xs:element minOccurs="0" name="indicativeCountDetails" type="indicativeCountDetails"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="preferenceDistributionSummary" type="preferenceDistributionSummary"/>
+            <xs:element minOccurs="0" name="booths" type="boothsSection"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="round" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="countName" type="xs:string" use="required"/>
+        <xs:attribute name="preliminary" type="xs:string" use="required"/>
+        <xs:attribute name="unofficial" type="xs:string" use="required"/>
+        <xs:attribute name="indicative" type="xs:string" use="required"/>
+        <xs:attribute name="preferences" type="xs:string" use="required"/>
+        <xs:attribute name="lastUpdated" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="countRoundPollType">
+        <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalVotes" type="xs:unsignedLong"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalFormalVotes" type="countPercentageSection"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalInformalVotes" type="countPercentageSection"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="primaryVoteResponseResults" type="primaryVoteResponseResultsSection"/>
+            <xs:element minOccurs="0" name="booths" type="boothsSection"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="round" type="xs:unsignedInt" use="required"/>
+        <xs:attribute name="countName" type="xs:string" use="required"/>
+        <xs:attribute name="preliminary" type="xs:string" use="required"/>
+        <xs:attribute name="unofficial" type="xs:string" use="required"/>
+        <xs:attribute name="lastUpdated" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="districtsCouncillorSection">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="district">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="declaredCandidate">
+                            <xs:complexType>
+                                <xs:attribute name="ballotName" type="xs:string" use="required"/>
+                                <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="numElectedCandidates" type="xs:unsignedShort"/>
+                        <xs:element maxOccurs="1" minOccurs="1" name="candidates" type="candidatesSectionType"/>
+                        <xs:element maxOccurs="4" minOccurs="0" name="countRound" type="countRoundCouncillorType"/>
+                    </xs:sequence>
+                    <xs:attribute name="districtName" type="xs:string" use="required"/>
+                    <xs:attribute name="enrolment" type="xs:unsignedLong" use="required"/>
+                    <xs:attribute name="lastUpdated" type="xs:dateTime" use="required"/>
+                    <xs:attribute name="number" type="xs:unsignedShort" use="optional"/>
+                    <xs:attribute name="votingMethod" type="xs:string" use="optional"/>
+                    <xs:attribute name="votingSystem" type="xs:string" use="optional"/>
+                    <xs:attribute name="final" type="yesno" use="optional"/>
+                    <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:unsignedInt" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="pollElectoratesSection">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="pollElectorate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="declaredResponse">
+                            <xs:complexType>
+                                <xs:attribute name="responseName" type="xs:string" use="required"/>
+                                <xs:attribute name="responseOrderNumber" type="xs:unsignedShort" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="1" name="responses" type="responsesSectionType"/>
+                        <xs:element maxOccurs="2" minOccurs="0" name="countRound" type="countRoundPollType"/>
+                    </xs:sequence>
+                    <xs:attribute name="electorateName" type="xs:string" use="required"/>
+                    <xs:attribute name="enrolment" type="xs:unsignedLong" use="required"/>
+                    <xs:attribute name="lastUpdated" type="xs:dateTime" use="required"/>
+                    <xs:attribute name="number" type="xs:unsignedShort" use="optional"/>
+                    <xs:attribute name="votingMethod" type="xs:string" use="optional"/>
+                    <xs:attribute name="votingSystem" type="xs:string" use="optional"/>
+                    <xs:attribute name="final" type="yesno" use="optional"/>
+                    <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:unsignedInt" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="districtsMayorSection">
+        <xs:sequence>
+            <xs:element name="district" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="0" name="totalVotes" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="totalBallots" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="totalFormalVotes" type="countPercentageSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="totalFormalBallots" type="countPercentageSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="totalInformalVotes" type="countPercentageSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="totalInformalBallots" type="countPercentageSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="primaryVoteResults" type="primaryVoteResultsSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="twoCandidateVotes" type="twoCandidateVotesSection"/>
+                        <xs:element minOccurs="0" name="indicativeCountDetails" type="indicativeCountDetails"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="preferenceDistributionSummary" type="preferenceDistributionSummary"/>
+                        <xs:element name="booths" type="boothsSection"/>
+                    </xs:sequence>
+                    <xs:attribute name="districtName" type="xs:string" use="required"/>
+                    <xs:attribute name="enrolment" type="xs:unsignedLong" use="required"/>
+                    <xs:attribute name="lastUpdated" type="xs:dateTime" use="required"/>
+                    <xs:attribute name="number" type="xs:unsignedShort" use="optional"/>
+                    <xs:attribute name="votingMethod" type="xs:string" use="optional"/>
+                    <xs:attribute name="votingSystem" type="xs:string" use="optional"/>
+                    <xs:attribute name="final" type="yesno" use="optional"/>
+                    <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:unsignedInt" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="boothsSection">
+        <xs:sequence>
+            <xs:element name="booth" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="0" name="votes" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="ballots" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="formalVotes" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="formalBallots" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="informalVotes" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="informalBallots" type="xs:unsignedLong"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="primaryVoteResults" type="primaryVoteResultsSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="twoCandidateVotes" type="twoCandidateVotesSection"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="primaryVoteResponseResults" type="primaryVoteResponseResultsSection"/>
+                        <xs:element minOccurs="0" name="indicativeCountDetails" type="indicativeCountDetails"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="preferenceDistributionSummary" type="preferenceDistributionSummary"/>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                    <xs:attribute name="in" type="yesno" use="required"/>
+                    <xs:attribute name="typeCode" type="xs:string" use="required"/>
+                    <xs:attribute name="typeDescription" type="xs:string" use="required"/>
+                    <xs:attribute name="lastUpdated" type="xs:dateTime" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:unsignedInt" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="countPercentageSection">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="count" type="xs:unsignedLong"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="percentage" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="primaryVoteResultsSection">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="candidate" type="candidateResult"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="primaryVoteResponseResultsSection">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="response" type="responseResult"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="candidateResult">
+        <xs:complexContent>
+            <xs:extension base="countPercentageSection">
+                <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                <xs:attribute name="ballotName" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="responseResult">
+        <xs:complexContent>
+            <xs:extension base="countPercentageSection">
+                <xs:attribute name="responseOrderNumber" type="xs:unsignedShort" use="required"/>
+                <xs:attribute name="responseName" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="twoCandidateVotesSection">
+        <xs:sequence>
+            <xs:element maxOccurs="2" minOccurs="2" name="candidate" type="candidateResult"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="preferenceDistributionSummary">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="primaryVotes" type="primaryVoteResultsSection"/>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="preferenceDistribution" type="preferenceDistribution"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="preferenceDistribution">
+        <xs:sequence>
+            <xs:element minOccurs="2" maxOccurs="unbounded" name="candidatePreferences" type="candidateResult"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="exhausted" type="countPercentageSection"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="votesDistributed" type="xs:unsignedLong"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="votesRemainingInCount" type="xs:unsignedLong"/>
+        </xs:sequence>
+        <xs:attribute name="distribution" type="xs:unsignedShort" use="required"/>
+        <xs:attribute name="excludedBallotName" type="xs:string" use="required"/>
+        <xs:attribute name="excludedBallotOrder" type="xs:unsignedShort" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="indicativeCountDetails">
+        <xs:sequence>
+            <xs:element maxOccurs="2" minOccurs="2" name="selectedCandidate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" maxOccurs="1" name="primaryVotes" type="xs:unsignedInt"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="afterPreferences" type="countPercentageSection"/>
+                    </xs:sequence>
+                    <xs:attribute name="ballotName" type="xs:string" use="required"/>
+                    <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="otherCandidate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="2" maxOccurs="2" name="preferenceCount">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:unsignedLong">
+                                        <xs:attribute name="ballotName" type="xs:string" use="required"/>
+                                        <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element minOccurs="1" maxOccurs="1" name="exhausted" type="xs:unsignedLong"/>
+                    </xs:sequence>
+                    <xs:attribute name="ballotName" type="xs:string" use="required"/>
+                    <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="candidatesSectionType">
+        <xs:sequence>
+            <xs:element name="candidate" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="0" name="surname" type="xs:string"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="givenNames" type="xs:string"/>
+                    </xs:sequence>
+                    <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                    <xs:attribute name="ballotName" type="xs:string" use="required"/>
+                    <xs:attribute name="partyCode" type="xs:string" use="optional"/>
+                    <xs:attribute name="party" type="xs:string" use="optional"/>
+                    <xs:attribute name="sitting" type="yesno" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:unsignedShort" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="responsesSectionType">
+        <xs:sequence>
+            <xs:element name="response" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="responseOrderNumber" type="xs:unsignedShort" use="required"/>
+                    <xs:attribute name="responseName" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:unsignedShort" use="required"/>
+    </xs:complexType>
+    <xs:element name="ecq">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="1" name="remarks" type="xs:string"/>
+                <xs:element form="qualified" name="generationDateTime" type="xs:dateTime"/>
+                <xs:element name="venues">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="booth">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="boothDistrict">
+                                            <xs:complexType>
+                                                <xs:attribute name="districtName" type="xs:string" use="required"/>
+                                                <xs:attribute name="election" type="xs:string" use="required"/>
+                                                <xs:attribute name="jointType" type="xs:string" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:unsignedLong" use="required"/>
+                                    <xs:attribute name="name" type="xs:string" use="required"/>
+                                    <xs:attribute name="buildingName" type="xs:string" use="optional"/>
+                                    <xs:attribute form="unqualified" name="streetNo" type="xs:string" use="optional"/>
+                                    <xs:attribute name="streetName" type="xs:string" use="optional"/>
+                                    <xs:attribute form="unqualified" name="locality" type="xs:string" use="optional"/>
+                                    <xs:attribute name="state" type="xs:string" use="optional"/>
+                                    <xs:attribute name="postcode" type="xs:unsignedInt" use="optional"/>
+                                    <xs:attribute form="unqualified" name="latitude" type="xs:float" use="optional"/>
+                                    <xs:attribute name="longitude" type="xs:float" use="optional"/>
+                                    <xs:attribute name="abolished" type="yesno" use="optional"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="count" type="xs:unsignedInt"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="99" name="election">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="1" minOccurs="1" name="generationDateTime" type="xs:dateTime"/>
+                            <xs:element name="parties" maxOccurs="1" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="4" minOccurs="0" name="countRound" type="countRoundPartiesType"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="lga" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="contest" maxOccurs="2" minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="unbounded" name="declaredCandidate">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="ballotName" type="xs:string" use="required"/>
+                                                            <xs:attribute name="ballotOrderNumber" type="xs:unsignedShort" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element maxOccurs="1" minOccurs="0" name="numElectedCandidates" type="xs:unsignedShort"/>
+                                                    <xs:element maxOccurs="1" minOccurs="0" name="candidates" type="candidatesSectionType"/>
+                                                    <xs:element maxOccurs="4" minOccurs="0" name="countRound" type="countRoundMayorType"/>
+                                                    <xs:element maxOccurs="1" minOccurs="0" name="districts" type="districtsCouncillorSection"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="contestType" type="contestTypes" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="areaCode" type="xs:string" use="required"/>
+                                    <xs:attribute name="electorateName" type="xs:string" use="required"/>
+                                    <xs:attribute name="electorateType" type="xs:string" use="required"/>
+                                    <xs:attribute name="votingMethod" type="xs:string" use="required"/>
+                                    <xs:attribute name="votingSystemMayor" type="xs:string" use="required"/>
+                                    <xs:attribute name="votingSystemCouncillor" type="xs:string" use="required"/>
+                                    <xs:attribute name="enrolment" type="xs:unsignedLong" use="optional"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="districts" type="districtsCouncillorSection"/>
+                            <xs:element name="pollSummary" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="contest" maxOccurs="2" minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="unbounded" name="declaredResponse">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="responseName" type="xs:string" use="required"/>
+                                                            <xs:attribute name="responseOrderNumber" type="xs:unsignedShort" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element maxOccurs="1" minOccurs="0" name="responses" type="responsesSectionType"/>
+                                                    <xs:element maxOccurs="2" minOccurs="0" name="countRound" type="countRoundPollType"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="contestType" type="contestTypes" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element maxOccurs="2" minOccurs="0" name="countRound" type="countRoundPollType"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="enrolment" type="xs:unsignedLong" use="required"/>
+                                    <xs:attribute name="lastUpdated" type="xs:dateTime" use="required"/>
+                                    <xs:attribute name="questionText" type="xs:string" use="optional"/>
+                                    <xs:attribute name="votingMethod" type="xs:string" use="optional"/>
+                                    <xs:attribute name="votingSystem" type="xs:string" use="optional"/>
+                                    <xs:attribute name="final" type="yesno" use="optional"/>
+                                    <xs:attribute name="percentRollCounted" type="xs:float" use="optional"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="pollElectorates" type="pollElectoratesSection"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:unsignedLong" use="required"/>
+                        <xs:attribute name="electionName" type="xs:string" use="required"/>
+                        <xs:attribute name="eventType" type="xs:string" use="required"/>
+                        <xs:attribute name="electionDay" type="xs:date" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

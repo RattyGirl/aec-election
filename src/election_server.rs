@@ -1,4 +1,4 @@
-use std::io::{Cursor};
+use std::io::Cursor;
 use std::net::ToSocketAddrs;
 use suppaftp::FtpStream;
 
@@ -7,7 +7,7 @@ pub struct ElectionServer<A: ToSocketAddrs> {
     ftp_stream: FtpStream,
 }
 
-impl<A: std::net::ToSocketAddrs> ElectionServer<A> {
+impl<A: ToSocketAddrs> ElectionServer<A> {
     pub fn new(addr: A) -> Self {
         let mut ftp_stream = FtpStream::connect(&addr).unwrap();
         ftp_stream.login("anonymous", "").unwrap();

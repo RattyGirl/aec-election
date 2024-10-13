@@ -7,6 +7,10 @@ edition = "2021"
 name = "election"
 path = "lib/lib.rs"
 
+[features]
+default = ["eml-5"]
+eml-5 = []
+
 [[bin]]
 name = "aec"
 path = "src/main.rs"
@@ -26,3 +30,6 @@ tokio = { version = "1.35.1", features = ["rt", "rt-multi-thread", "macros"] }
 syn = "2.0.48"
 quote = { version = "1.0.35", features = [] }
 election_derive = {path = "election_derive"}
+reqwest = {version = "0.12.8", features = ["blocking"]}
+quick-xml = { version = "0.36.2", features = ["serialize"] }
+futures = "0.3.31"

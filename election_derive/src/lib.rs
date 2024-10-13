@@ -1,7 +1,11 @@
-extern crate proc_macro;
-use proc_macro::{TokenStream};
 use quote::quote;
 use syn::{DeriveInput, Fields, parse_macro_input, Type};
+use syn::__private::TokenStream;
+
+#[proc_macro_derive(ElectionToXML)]
+pub fn derive_generate_election_xml(input: TokenStream) -> TokenStream {
+    input
+}
 
 #[proc_macro_derive(PostGresObj)]
 pub fn derive_generate_postgres(input: TokenStream) -> TokenStream {
@@ -16,7 +20,7 @@ pub fn derive_generate_postgres(input: TokenStream) -> TokenStream {
                             "i32" => "INTEGER",
                             "String" => "VARCHAR",
                             u => {
-                                panic!("Unable to parse {} in object {}", input.ident, u);
+                                panic!("Unable to parse {} in object {}", u, input.ident);
                             }
                         }
                     } else {
@@ -32,10 +36,10 @@ pub fn derive_generate_postgres(input: TokenStream) -> TokenStream {
 
             return TokenStream::from(quote!(
             impl PostGresObj for #name {
-                fn postgres_create(&self) -> String {
+                fn postgres_create() -> String {
                         format!("CREATE TABLE {} ({});", stringify!(#name), #vals)
                 }
-                fn postgres_drop(&self) -> String {
+                fn postgres_drop() -> String {
                         format!("DROP TABLE {};", stringify!(#name))
                 }
             }));
