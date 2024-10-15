@@ -1,16 +1,13 @@
 use crate::qld_election::count_round_parties_type::Party;
 use crate::qld_election::ecq_types::Election;
 use election::sql_db::MySQLDB;
-use futures::future::join_all;
+use election::SerialiseDB;
+use election_derive::SerialiseDB;
 use futures::task::SpawnExt;
 use quote::__private::ext::RepToTokensExt;
 use serde::{de, Deserialize};
-use std::fmt::format;
-use std::fs::File;
-use std::io::{Bytes, Cursor, Read};
+use std::io::{Cursor, Read};
 use std::str::FromStr;
-use tokio::task::JoinSet;
-use tokio::{join, try_join};
 use zip::ZipArchive;
 
 const QLD_ELECTION_LINK: &str = "https://resultsdata.elections.qld.gov.au/PublicResults.zip";
@@ -44,7 +41,21 @@ pub async fn read_result(database: &mut MySQLDB) {
     let results: ECQResults = quick_xml::de::from_str(results_string.as_str()).unwrap();
 
     // setup_info(database, &results).await;
-    count(database, &results).await;
+    // count(database, &results).await;
+    println!(
+        "{}",
+        candidate_section_type::Candidate {
+            party: Some("Labor Party".to_string()),
+            party_code: Some("ALP".to_string()),
+            sitting: Some("NO".to_string()),
+            surname: Some("Holmes".to_string()),
+            given_names: Some("Chloe G".to_string()),
+            ballot_name: "HOLMES, Chloe".to_string(),
+            ballot_order: 4
+        }
+        .insert(database)
+        .await
+    );
 }
 
 async fn setup_info(database: &mut MySQLDB, results: &ECQResults) {
@@ -244,7 +255,6 @@ struct CountRoundPartiesType {
     indicative: xs::Str,
     #[serde(rename = "@preferences")]
     preferences: xs::Str,
-
     #[serde(rename = "party")]
     parties: Vec<count_round_parties_type::Party>,
 }
@@ -511,24 +521,33 @@ struct CandidateSectionType {
 }
 mod candidate_section_type {
     use crate::qld_election::xs;
+    use election::sql_db::MySQLDB;
+    use election::SerialiseDB;
+    use election_derive::SerialiseDB;
     use serde::Deserialize;
 
-    #[derive(Debug, PartialEq, Default, Deserialize)]
+    #[derive(Debug, PartialEq, Default, Deserialize, SerialiseDB)]
     #[serde(default)]
+    #[db(table_name = "candidates")]
     pub struct Candidate {
         #[serde(rename = "@ballotOrderNumber")]
         pub(crate) ballot_order: xs::UnsignedShort,
         #[serde(rename = "@ballotName")]
         pub(crate) ballot_name: xs::Str,
         #[serde(rename = "@partyCode")]
+        #[db(null_value="".to_string())]
         pub(crate) party_code: Option<xs::Str>,
         #[serde(rename = "@party")]
+        #[db(null_value="".to_string())]
         pub(crate) party: Option<xs::Str>,
         #[serde(rename = "@sitting")]
-        sitting: Option<xs::Str>,
+        #[db(null_value="".to_string())]
+        pub(crate) sitting: Option<xs::Str>,
         #[serde(rename = "surname")]
+        #[db(null_value="".to_string())]
         pub(crate) surname: Option<xs::Str>,
         #[serde(rename = "givenNames")]
+        #[db(null_value="".to_string())]
         pub(crate) given_names: Option<xs::Str>,
     }
 }
