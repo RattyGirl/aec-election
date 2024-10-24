@@ -8,6 +8,9 @@ use quote::__private::ext::RepToTokensExt;
 use serde::{de, Deserialize};
 use std::io::{Cursor, Read};
 use std::str::FromStr;
+use futures::{StreamExt, TryStreamExt};
+use sqlx::postgres::PgRow;
+use sqlx::Row;
 use zip::ZipArchive;
 
 const QLD_ELECTION_LINK: &str = "https://resultsdata.elections.qld.gov.au/PublicResults.zip";
@@ -24,7 +27,7 @@ mod xs {
 }
 
 pub async fn read_result(database: &mut MySQLDB) {
-    let zip_bytes = reqwest::get(QLD_ELECTION_LINK)
+    let zip_bytes = reqwest::get(QLD_2020_ELECTION)
         .await
         .unwrap()
         .bytes()
@@ -40,8 +43,8 @@ pub async fn read_result(database: &mut MySQLDB) {
 
     let results: ECQResults = quick_xml::de::from_str(results_string.as_str()).unwrap();
 
-    // setup_info(database, &results).await;
-    // count(database, &results).await;
+    setup_info(database, &results).await;
+    count(database, &results).await;
     println!(
         "{}",
         candidate_section_type::Candidate {
@@ -79,12 +82,12 @@ async fn setup_info(database: &mut MySQLDB, results: &ECQResults) {
 
     //add election
     for election in &results.elections {
-        &database
+        println!("{:?}", &database
             .run_raw(format!(
                 "INSERT INTO aec.elections(date, gen_date, name, event_type, state, ec_id) VALUES($${}$$, $${}$$, $${}$$, $${}$$, $${}$$, $${}$$);",
                 &election.election_day, &election.gen_date, &election.election_name, &election.event_type, "QLD", &election.id)
             )
-            .await;
+            .await);
     }
 
     //add candidates to db
@@ -144,6 +147,7 @@ async fn count(database: &mut MySQLDB, results: &ECQResults) {
 
     for district in &qld_election.districts.districts {
         for count_round in &district.count_rounds {
+            println!("{:?}", count_round);
             if (!count_round.count_name.eq("Unofficial Preliminary Count")) {
                 continue;
             }
@@ -156,6 +160,7 @@ async fn count(database: &mut MySQLDB, results: &ECQResults) {
                 (SELECT booths.id FROM booths WHERE booths.ec_id LIKE $${booth_id}$$),\
                 {vote_count})", can_name=candidate_result.ballot_name, district_name=district.district_name,
                                         booth_id=booth_id, vote_count=candidate_result.count);
+                    println!("{}", query);
                     &database.run_raw(query).await;
                 }
             }

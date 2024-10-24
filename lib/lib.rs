@@ -15,6 +15,7 @@ pub trait PostGresObj {
 }
 
 pub trait SerialiseDB {
+    async fn create_table(&self, database: &mut MySQLDB) -> String ;
     async fn insert(&self, database: &mut MySQLDB) -> String;
 }
 

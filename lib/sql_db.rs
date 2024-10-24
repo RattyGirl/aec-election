@@ -4,7 +4,7 @@ use sqlx::postgres::PgQueryResult;
 use sqlx::{Connection, Error, Executor, PgConnection};
 
 pub struct MySQLDB {
-    connection: PgConnection,
+    pub connection: PgConnection,
 }
 
 impl MySQLDB {

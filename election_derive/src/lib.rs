@@ -1,3 +1,4 @@
+use std::fmt::format;
 use quote::quote;
 use syn::{DeriveInput, Fields, parse_macro_input, Type, Data, parenthesized, LitInt, Expr, Token, Ident, Lit, FieldsNamed, parse_str, Field, Attribute, PathArguments, AngleBracketedGenericArguments, ExprMethodCall, parse_quote};
 use syn::__private::{Span, TokenStream};
@@ -157,14 +158,23 @@ pub fn derive_generate_election_xml(input: TokenStream) -> TokenStream {
             let table_fields = determine_fields(&fields);
             let values_expr: Punctuated<Expr, Token![,]> = table_fields.iter().map(|field| field.value_expr.clone()).collect();
             let table_columns: Vec<String> = table_fields.iter().map(|field| field.column.clone()).collect();
-            let query = format!("INSERT INTO {table_name} ({table_columns}) VALUES ({value_brackets})",
-                                table_columns=table_columns.join(", "),
-                                value_brackets=values_expr.iter().map(|x| "$${}$$".to_string()).collect::<Vec<String>>().join(", "));
+            let insert_query = format!("INSERT INTO {table_name} ({table_columns}) VALUES ({value_brackets})",
+                                       table_columns=table_columns.join(", "),
+                                       value_brackets=values_expr.iter().map(|x| "$${}$$".to_string()).collect::<Vec<String>>().join(", "));
+
+            let create_query = format!("CREATE TABLE {table_name} ({table_columns})",
+                                       table_columns=table_columns.join(", "));
+
 
             TokenStream::from(quote!(
                 impl SerialiseDB for #name {
+
+                    async fn create_table(&self, database: &mut MySQLDB) -> String {
+                        #create_query.to_string()
+                    }
+
                     async fn insert(&self, database: &mut MySQLDB) -> String {
-                            format!(#query, #values_expr)
+                            format!(#insert_query, #values_expr)
                     }
                 }
             ))
