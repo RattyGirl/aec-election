@@ -33,3 +33,4 @@ election_derive = {path = "election_derive"}
 reqwest = {version = "0.12.8", features = ["blocking"]}
 quick-xml = { version = "0.36.2", features = ["serialize"] }
 futures = "0.3.31"
+#google-sheets4 = "6.0.0"

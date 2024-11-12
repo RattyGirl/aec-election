@@ -2,13 +2,13 @@
 mod aec_parser;
 mod election_server;
 mod eml_schema;
+mod federal_election;
 mod qld_election;
 mod xml_extension;
 
 use election::sql_db::MySQLDB;
 use std::io::Read;
 
-use crate::qld_election::read_result;
 use crate::xml_extension::IgnoreNS;
 use std::str;
 use std::str::FromStr;
@@ -19,8 +19,8 @@ const AEC_SERVER: &str = "mediafeedarchive.aec.gov.au:21";
 #[tokio::main]
 async fn main() {
     let mut database = MySQLDB::setup("postgresql://aec@localhost/aec", "aec").await;
-    read_result(&mut database).await;
-
+    // qld_election::read_result(&mut database).await;
+    federal_election::get_preload(&mut database).await;
     // let mut aec_server = ElectionServer::new(AEC_SERVER);
     // election::election_models::drop_tables(&mut database).await;
     // election::election_models::generate_tables(&mut database).await;

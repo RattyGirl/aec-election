@@ -4,13 +4,13 @@ use election::sql_db::MySQLDB;
 use election::SerialiseDB;
 use election_derive::SerialiseDB;
 use futures::task::SpawnExt;
+use futures::{StreamExt, TryStreamExt};
 use quote::__private::ext::RepToTokensExt;
 use serde::{de, Deserialize};
-use std::io::{Cursor, Read};
-use std::str::FromStr;
-use futures::{StreamExt, TryStreamExt};
 use sqlx::postgres::PgRow;
 use sqlx::Row;
+use std::io::{Cursor, Read};
+use std::str::FromStr;
 use zip::ZipArchive;
 
 const QLD_ELECTION_LINK: &str = "https://resultsdata.elections.qld.gov.au/PublicResults.zip";
