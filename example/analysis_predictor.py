@@ -1,6 +1,7 @@
 import math
 
 import numpy
+import pandas
 import psycopg2
 import matplotlib
 import matplotlib.pyplot as plt
@@ -52,9 +53,9 @@ class Booth:
 
 def get_all_necessary_data(conn, electorate_id, party):
     cursor = conn.cursor()
-    query = f"""SELECT * from resultstotal cur
+    query = f"""SELECT * from two_resultstotal cur
     LEFT JOIN (
-        SELECT * from resultstotal current
+        SELECT * from two_resultstotal current
             WHERE event_id= '{last_id}' AND (affiliation='{party}') ) past ON cur.contest_id = 
             past.contest_id AND cur.polling_place_id = past.polling_place_id AND cur.affiliation = past.affiliation 
             WHERE cur.event_id= '{cur_id}' AND (cur.affiliation='{party}') AND cur.contest_id = '{electorate_id}';"""
@@ -74,7 +75,7 @@ def get_all_necessary_data(conn, electorate_id, party):
 #     return np.poly1d(numpy.polyfit(z_i[idx], d_Beta_i[idx], deg=3))
 
 def prediction(sorted_booths):
-    last_result = 0.4408
+    last_result = 0.5847
     enrolment = 108402
     fig, ax = plt.subplots(num=None, figsize=(16, 12), dpi=80, facecolor='w', edgecolor='k')
     # ignore if nan in either
@@ -82,6 +83,12 @@ def prediction(sorted_booths):
         item for item in sorted_booths
         if item.historical_total is not None and not (isinstance(item.historical_total, float) and math.isnan(item.historical_total))
     ]
+
+    timestamp_booth = pandas.to_datetime(
+        np.array(list(map(lambda booth: booth.timestamp, sorted_booths)))
+    )
+    timestamps = np.array(timestamp_booth,dtype=np.datetime64)
+
     cum_total_votes = np.cumsum(np.array(list(map(lambda booth: booth.vote, sorted_booths))))
     cum_total_counted = np.cumsum(np.array(list(map(lambda booth: booth.total, sorted_booths))))
     booth_results = np.array(list(map(lambda booth: booth.vote, sorted_booths)))/np.array(list(map(lambda booth: booth.total, sorted_booths)))
@@ -106,12 +113,12 @@ def prediction(sorted_booths):
     ax.plot(
         cum_total_counted/enrolment,
         cum_total_votes/cum_total_counted,
-        label="Current - Lib"
+        label="Current"
     )
     ax.plot(
         cum_last_counted/enrolment,
         cum_last_votes/cum_last_counted,
-        label="Last - ALP"
+        label="Last"
     )
     prediction = cum_swing + last_result
     ax.plot(
@@ -129,8 +136,8 @@ def prediction(sorted_booths):
     for i in range(len(booth_results)):
         # Use only the first i booths
         pred = prediction[i]
-        sizes = booth_sizes[i]
-        std_error = np.sqrt((pred*(1-pred))/enrolment)
+        # sizes = booth_sizes[i]
+        std_error = np.sqrt((pred*(1-pred))/cum_total_counted[i])
         confidence_interval = z_score * std_error
         print(pred)
         min_interval.append(pred-confidence_interval)
