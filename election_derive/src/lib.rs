@@ -224,7 +224,7 @@ pub fn derive_generate_postgres(input: TokenStream) -> TokenStream {
                         format!("CREATE TABLE {} ({});", stringify!(#name), #vals)
                 }
                 fn postgres_drop() -> String {
-                        format!("DROP TABLE {};", stringify!(#name))
+                        format!("DROP TABLE {} CASCADE;", stringify!(#name))
                 }
             }));
         }

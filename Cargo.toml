@@ -17,6 +17,9 @@ path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[profile.release]
+debug = 1
+
 [dependencies]
 suppaftp = "5.2.2"
 zip = "0.6.6"
